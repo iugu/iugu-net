@@ -57,10 +57,8 @@ namespace iugu.Lib
             }
             else
             {
-                throw new Exception("Chave de API não configurada. Verifique a chave iuguApiKey em AppSettings de seu arquivo .config");
+                throw new MissingFieldException("Chave de API não configurada. Verifique a chave iuguApiKey em AppSettings de seu arquivo .config");
             }
-
-            //_apiKey =
 
             _baseURI = Endpoint + "/" + ApiVersion;
 
@@ -138,24 +136,6 @@ namespace iugu.Lib
                 throw new Exception(response.ReasonPhrase);
             }
         }
-
-        //public async Task RunAsync()
-        //{
-        //    // HTTP POST
-        //    var gizmo = new Product() { Name = "Gizmo", Price = 100, Category = "Widget" };
-        //    response = await client.PostAsJsonAsync("api/products", gizmo);
-        //    if (response.IsSuccessStatusCode)
-        //    {
-        //        Uri gizmoUrl = response.Headers.Location;
-
-        //        // HTTP PUT
-        //        gizmo.Price = 80;   // Update price
-        //        response = await client.PutAsJsonAsync(gizmoUrl, gizmo);
-
-        //        // HTTP DELETE
-        //        response = await client.DeleteAsync(gizmoUrl);
-        //    }
-        //}
 
         public void Dispose()
         {

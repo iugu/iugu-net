@@ -9,6 +9,20 @@ namespace iugu.net.ConsoleTest
 {
     class Program
     {
+        //[OK] Autenticação
+        //[OK] Tokens (falta testar)
+        //[OK] Cobrança Direta (falta testar)
+        //[OK] Clientes
+        //[OK] Formas de Pagamento (Falta testar)
+        //[OK] Faturas
+        //[OK] Planos
+        //Assinaturas
+        //Transferências de Valores
+        //Market Place
+
+
+
+
         static void Main(string[] args)
         {
             var iugu = new iugu();

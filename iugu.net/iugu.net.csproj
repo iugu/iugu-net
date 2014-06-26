@@ -48,9 +48,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entity\InvoiceModel - Copy.cs" />
+    <Compile Include="Entity\PlansModel.cs" />
+    <Compile Include="Entity\DataEntryModel.cs" />
     <Compile Include="Entity\CustomerModel.cs" />
+    <Compile Include="Entity\ChargeModel.cs" />
+    <Compile Include="Entity\TokenModel.cs" />
+    <Compile Include="Entity\PaymentMethodModel.cs" />
     <Compile Include="iugu.cs" />
     <Compile Include="Lib\APIResource.cs" />
+    <Compile Include="Lib\Charge.cs" />
+    <Compile Include="Lib\Plans.cs" />
+    <Compile Include="Lib\Invoice.cs" />
+    <Compile Include="Lib\PaymentToken.cs" />
+    <Compile Include="Lib\PaymentMethod.cs" />
     <Compile Include="Lib\Customer.cs" />
     <Compile Include="Lib\Subscription.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

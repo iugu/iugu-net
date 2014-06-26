@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace iugu
 {
-
     public class CustomersModel
     {
         public int totalItems { get; set; }
