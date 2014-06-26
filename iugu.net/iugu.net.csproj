@@ -48,8 +48,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entity\SubscriptionModel.cs" />
     <Compile Include="Entity\InvoiceModel.cs" />
-    <Compile Include="Entity\PlansModel.cs" />
+    <Compile Include="Entity\PlanModel.cs" />
     <Compile Include="Entity\DataEntryModel.cs" />
     <Compile Include="Entity\CustomerModel.cs" />
     <Compile Include="Entity\ChargeModel.cs" />
