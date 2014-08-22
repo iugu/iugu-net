@@ -12,6 +12,15 @@ namespace iugu.Lib
         {
             BaseURI += "/subscriptions";
         }
+
+        //limit (opcional)	Máximo de registros retornados
+        //start (opcional)	Quantos registros pular do início da pesquisa (muito utilizado para paginação)
+        //created_at_from (opcional)	Registros criados a partir desta data passada no parâmetro
+        //created_at_to (opcional)	Registros criados até esta data passada no parâmetro
+        //query (opcional)	Neste parâmetro pode ser passado um texto para pesquisa
+        //updated_since (opcional)	Registros atualizados desde o valor passado no parâmetro
+        //sortBy (opcional)	Um hash sendo a chave o nome do campo para ordenação e o valor sendo DESC ou ASC para descendente e ascendente, respectivamente
+        //customer_id (opcional)	ID do Cliente
         public SubscriptionModel Get()
         {
             var retorno = GetAsync<SubscriptionModel>().Result;
@@ -34,10 +43,11 @@ namespace iugu.Lib
         //subitems[] (opcional)	Array com Itens de Assinatura, sendo que estes podem ser recorrentes ou de cobrança única
         //custom_variables[] (opcional)	Variáveis Personalizadas
 
-        public SubscriptionModel Create(string customer_id, string plan_identifier = null, DateTime? expires_at = null, bool? only_on_charge_success = null,
-            bool? credits_based = null, int? price_cents = null, int? credits_cycle = null, int? credits_min = null, List<Subitem> subitems = null)
+        public SubscriptionModel Create(string customer_id, string plan_identifier = null, DateTime? expires_at = null,
+            bool? only_on_charge_success = null,
+            bool? credits_based = null, int? price_cents = null, int? credits_cycle = null, int? credits_min = null,
+            List<SubscriptionSubitem> subitems = null, List<CustomVariables> custom_variables = null)
         {
-            //TODO: implementar  custom_variables[]
             var subscription = new
             {
                 customer_id = customer_id,
@@ -61,6 +71,34 @@ namespace iugu.Lib
         public SubscriptionModel Put(string id, SubscriptionModel model)
         {
             var retorno = PutAsync<SubscriptionModel>(id, model).Result;
+            return retorno;
+        }
+
+        public SubscriptionModel Suspend(string id)
+        {
+            BaseURI += string.Format("{0}/suspend", id);
+            var retorno = PostAsync<SubscriptionModel>(null).Result;
+            return retorno;
+        }
+
+        public SubscriptionModel Activate(string id)
+        {
+            BaseURI += string.Format("{0}/activate", id);
+            var retorno = PostAsync<SubscriptionModel>(null).Result;
+            return retorno;
+        }
+
+        public SubscriptionModel ChangePlan(string id, string plan_identifier)
+        {
+            BaseURI += string.Format("{0}/change_plan/{1}", id, plan_identifier);
+            var retorno = PostAsync<SubscriptionModel>(null).Result;
+            return retorno;
+        }
+
+        public SubscriptionModel AddCredits(string id, int quantity)
+        {
+            BaseURI += string.Format("{0}/add_credits/{1}", id, quantity);
+            var retorno = PostAsync<SubscriptionModel>(null).Result;
             return retorno;
         }
     }

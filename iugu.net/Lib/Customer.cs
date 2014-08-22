@@ -23,14 +23,14 @@ namespace iugu.Lib
             return retorno;
         }
 
-        public CustomerModel Create(string email, string name = null, string notes = null)
+        public CustomerModel Create(string email, string name = null, string notes = null, List<CustomVariables> custom_variables = null)
         {
-            //TODO: implementar  custom_variables[]
             var user = new
             {
                 email = email,
                 name = name,
-                notes = notes
+                notes = notes,
+                custom_variables = custom_variables
             };
             var retorno = PostAsync<CustomerModel>(user).Result;
             return retorno;

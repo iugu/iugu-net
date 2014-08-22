@@ -56,6 +56,8 @@
     <Compile Include="Entity\ChargeModel.cs" />
     <Compile Include="Entity\TokenModel.cs" />
     <Compile Include="Entity\PaymentMethodModel.cs" />
+    <Compile Include="Entity\TransferModel.cs" />
+    <Compile Include="Lib\Transfers.cs" />
     <Compile Include="iugu.cs" />
     <Compile Include="Lib\APIResource.cs" />
     <Compile Include="Lib\Charge.cs" />

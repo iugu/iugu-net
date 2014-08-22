@@ -13,7 +13,7 @@ namespace iugu
         public string plan_identifier { get; set; }
         public int price_cents { get; set; }
         public string currency { get; set; }
-        public Features features { get; set; }
+        public SubscriptionFeatures features { get; set; }
         public object expires_at { get; set; }
         public string created_at { get; set; }
         public string updated_at { get; set; }
@@ -31,9 +31,9 @@ namespace iugu
         public int credits { get; set; }
         public bool credits_based { get; set; }
         public object recent_invoices { get; set; }
-        public List<Subitem> subitems { get; set; }
-        public List<Log> logs { get; set; }
-        public List<object> custom_variables { get; set; }
+        public List<SubscriptionSubitem> subitems { get; set; }
+        public List<SubscriptionLog> logs { get; set; }
+        public List<CustomVariables> custom_variables { get; set; }
     }
 
     public class Feat
@@ -42,12 +42,12 @@ namespace iugu
         public int value { get; set; }
     }
 
-    public class Features
+    public class SubscriptionFeatures
     {
         public Feat feat { get; set; }
     }
 
-    public class Subitem
+    public class SubscriptionSubitem
     {
         public string id { get; set; }
         public string description { get; set; }
@@ -57,7 +57,7 @@ namespace iugu
         public string total { get; set; }
     }
 
-    public class Log
+    public class SubscriptionLog
     {
         public string id { get; set; }
         public string description { get; set; }
