@@ -1,10 +1,6 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace iugu.Lib
@@ -12,32 +8,13 @@ namespace iugu.Lib
     public class APIResource : IDisposable
     {
         protected HttpClient client = new HttpClient();
-        private string _version;
-        private string _endpoint;
-        private string _apiVersion;
-        private string _apiKey;
+        private readonly string _version;
+        private readonly string _endpoint;
+        private readonly string _apiVersion;
+        private readonly string _apiKey;
         private string _baseURI;
 
-        public string Version
-        {
-            get { return _version; }
-            set { _version = value; }
-        }
-        public string Endpoint
-        {
-            get { return _endpoint; }
-            set { _endpoint = value; }
-        }
-        public string ApiVersion
-        {
-            get { return _apiVersion; }
-            set { _apiVersion = value; }
-        }
-        public string ApiKey
-        {
-            get { return _apiKey; }
-            set { _apiKey = value; }
-        }
+
         public string BaseURI
         {
             get { return _baseURI; }
@@ -60,86 +37,59 @@ namespace iugu.Lib
                 throw new MissingFieldException("Chave de API não configurada. Verifique a chave iuguApiKey em AppSettings de seu arquivo .config");
             }
 
-            _baseURI = Endpoint + "/" + ApiVersion;
+            _baseURI = _endpoint + "/" + _apiVersion;
 
             client.BaseAddress = new Uri(BaseURI);
-            //client.DefaultRequestHeaders.Accept.Clear();
-            //client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(System.Text.ASCIIEncoding.ASCII.GetBytes(ApiKey)));
-        }
-
-        protected async Task<T> GetAsync<T>()
-        {
-            HttpResponseMessage response = await client.GetAsync(BaseURI);
-            if (response.IsSuccessStatusCode)
-            {
-                T data = await response.Content.ReadAsAsync<T>();
-                return data;
-            }
-            else
-            {
-                throw new Exception(response.ReasonPhrase);
-            }
-        }
-
-        protected async Task<T> GetAsync<T>(string id)
-        {
-            HttpResponseMessage response = await client.GetAsync(BaseURI + "/" + id);
-            if (response.IsSuccessStatusCode)
-            {
-                T data = await response.Content.ReadAsAsync<T>();
-                return data;
-            }
-            else
-            {
-                throw new Exception(response.ReasonPhrase);
-            }
-        }
-        protected async Task<T> PostAsync<T>(object data)
-        {
-            HttpResponseMessage response = await client.PostAsJsonAsync(BaseURI, data);
-
-            if (response.IsSuccessStatusCode)
-            {
-                return await response.Content.ReadAsAsync<T>();
-            }
-            else
-            {
-                throw new Exception(response.ReasonPhrase);
-            }
-        }
-
-        protected async Task<T> PutAsync<T>(string id, object data)
-        {
-            HttpResponseMessage response = await client.PutAsJsonAsync(BaseURI + "/" + id, data);
-
-            if (response.IsSuccessStatusCode)
-            {
-                return await response.Content.ReadAsAsync<T>();
-            }
-            else
-            {
-                throw new Exception(response.ReasonPhrase);
-            }
-        }
-
-        protected async Task<T> DeleteAsync<T>(string id)
-        {
-            HttpResponseMessage response = await client.DeleteAsync(BaseURI + "/" + id);
-
-            if (response.IsSuccessStatusCode)
-            {
-                return await response.Content.ReadAsAsync<T>();
-            }
-            else
-            {
-                throw new Exception(response.ReasonPhrase);
-            }
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(System.Text.ASCIIEncoding.ASCII.GetBytes(_apiKey)));
         }
 
         public void Dispose()
         {
             client.Dispose();
+            GC.SuppressFinalize(this);
+        }
+
+        protected async Task<T> GetAsync<T>()
+        {
+            var response = await client.GetAsync(BaseURI).ConfigureAwait(false);
+            return await ProcessResponse<T>(response).ConfigureAwait(false);
+        }
+
+        protected async Task<T> GetAsync<T>(string id)
+        {
+            var response = await client.GetAsync(BaseURI + "/" + id).ConfigureAwait(false);
+            return await ProcessResponse<T>(response).ConfigureAwait(false);
+        }
+
+        protected async Task<T> PostAsync<T>(object data)
+        {
+            var response = await client.PostAsJsonAsync(BaseURI, data).ConfigureAwait(false);
+            return await ProcessResponse<T>(response).ConfigureAwait(false);
+        }
+
+        protected async Task<T> PutAsync<T>(string id, object data)
+        {
+            var response = await client.PutAsJsonAsync(BaseURI + "/" + id, data).ConfigureAwait(false);
+            return await ProcessResponse<T>(response).ConfigureAwait(false);
+        }
+
+        protected async Task<T> DeleteAsync<T>(string id)
+        {
+            var response = await client.DeleteAsync(BaseURI + "/" + id).ConfigureAwait(false);
+            return await ProcessResponse<T>(response).ConfigureAwait(false);
+        }
+
+        private static async Task<T> ProcessResponse<T>(HttpResponseMessage response)
+        {
+            if (response.IsSuccessStatusCode)
+            {
+                T data = await response.Content.ReadAsAsync<T>().ConfigureAwait(false);
+                return data;
+            }
+            else
+            {
+                throw new Exception(response.ReasonPhrase);
+            }
         }
     }
 }
