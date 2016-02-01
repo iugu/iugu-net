@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{35EE3CD1-39DE-4401-8523-EB94774CBD3B}</ProjectGuid>
+    <ProjectGuid>{0D223953-B740-4921-A583-61CAF9134F60}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>iugu.net</RootNamespace>
-    <AssemblyName>iugu.net</AssemblyName>
+    <RootNamespace>iugu.net.UnitTests</RootNamespace>
+    <AssemblyName>iugu.net.UnitTests</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -34,8 +34,15 @@
       <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="nunit.framework, Version=3.0.5813.39031, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.3.0.1\lib\net45\nunit.framework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ploeh.AutoFixture, Version=3.39.0.0, Culture=neutral, PublicKeyToken=b24654c590009d4f, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoFixture.3.39.0\lib\net40\Ploeh.AutoFixture.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net" />
     <Reference Include="System.Net.Http" />
@@ -58,29 +65,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entity\ChargeModel.cs" />
-    <Compile Include="Entity\CustomerModel.cs" />
-    <Compile Include="Entity\DataEntryModel.cs" />
-    <Compile Include="Entity\InvoiceModel.cs" />
-    <Compile Include="Entity\PaymentMethodModel.cs" />
-    <Compile Include="Entity\PlanModel.cs" />
-    <Compile Include="Entity\SubscriptionModel.cs" />
-    <Compile Include="Entity\TokenModel.cs" />
-    <Compile Include="Entity\TransferModel.cs" />
-    <Compile Include="Lib\APIResource.cs" />
-    <Compile Include="Lib\Charge.cs" />
-    <Compile Include="Lib\Customer.cs" />
-    <Compile Include="Lib\Invoice.cs" />
-    <Compile Include="Lib\PaymentMethod.cs" />
-    <Compile Include="Lib\PaymentToken.cs" />
-    <Compile Include="Lib\Plans.cs" />
-    <Compile Include="Lib\Subscription.cs" />
-    <Compile Include="Lib\Transfers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\iugu.net\iugu.net.csproj">
+      <Project>{35ee3cd1-39de-4401-8523-eb94774cbd3b}</Project>
+      <Name>iugu.net</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
