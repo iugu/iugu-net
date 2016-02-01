@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace iugu.Lib
@@ -12,18 +9,38 @@ namespace iugu.Lib
         {
             BaseURI += "/customers";
         }
+
         public CustomersModel Get()
         {
-            var retorno = GetAsync<CustomersModel>().Result;
+            var retorno = GetAsync().Result;
             return retorno;
         }
+
+        public async Task<CustomersModel> GetAsync()
+        {
+            var retorno = await GetAsync<CustomersModel>().ConfigureAwait(false);
+            return retorno;
+        }
+
         public CustomerModel Get(string id)
         {
-            var retorno = GetAsync<CustomerModel>(id).Result;
+            var retorno = GetAsync(id).Result;
+            return retorno;
+        }
+
+        public async Task<CustomerModel> GetAsync(string id)
+        {
+            var retorno = await GetAsync<CustomerModel>(id).ConfigureAwait(false);
             return retorno;
         }
 
         public CustomerModel Create(string email, string name = null, string notes = null, List<CustomVariables> custom_variables = null)
+        {
+            var retorno = CreateAsync(email, name, notes, custom_variables).Result;
+            return retorno;
+        }
+
+        public async Task<CustomerModel> CreateAsync(string email, string name = null, string notes = null, List<CustomVariables> custom_variables = null)
         {
             var user = new
             {
@@ -32,17 +49,31 @@ namespace iugu.Lib
                 notes = notes,
                 custom_variables = custom_variables
             };
-            var retorno = PostAsync<CustomerModel>(user).Result;
+            var retorno = await PostAsync<CustomerModel>(user).ConfigureAwait(false);
             return retorno;
         }
+
         public CustomerModel Delete(string id)
         {
-            var retorno = DeleteAsync<CustomerModel>(id).Result;
+            var retorno = DeleteAsync(id).Result;
             return retorno;
         }
+
+        public async Task<CustomerModel> DeleteAsync(string id)
+        {
+            var retorno = await DeleteAsync<CustomerModel>(id).ConfigureAwait(false);
+            return retorno;
+        }
+
         public CustomerModel Put(string id, CustomerModel model)
         {
-            var retorno = PutAsync<CustomerModel>(id, model).Result;
+            var retorno = PutAsync(id, model).Result;
+            return retorno;
+        }
+
+        public async Task<CustomerModel> PutAsync(string id, CustomerModel model)
+        {
+            var retorno = await PutAsync<CustomerModel>(id, model).ConfigureAwait(false);
             return retorno;
         }
     }
