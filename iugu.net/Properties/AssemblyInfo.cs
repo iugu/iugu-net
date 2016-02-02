@@ -6,13 +6,13 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("iugu.net")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Client .Net para a API da IUGU")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("IUGU")]
 [assembly: AssemblyProduct("iugu.net")]
-[assembly: AssemblyCopyright("Copyright ©  2014")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
+[assembly: AssemblyCopyright("IUGU Copyright ©  2016")]
+[assembly: AssemblyTrademark("IUGU")]
+[assembly: AssemblyCulture("en-US")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
 // to COM components.  If you need to access a type in this assembly from 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("f0ad7e5a-fc84-4d14-89de-0f5e32cca8f9")]
+[assembly: Guid("35ee3cd1-39de-4401-8523-eb94774cbd3b")]
 
 // Version information for an assembly consists of the following four values:
 //
