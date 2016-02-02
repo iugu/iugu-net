@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using iugu.Entity;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace iugu.Lib

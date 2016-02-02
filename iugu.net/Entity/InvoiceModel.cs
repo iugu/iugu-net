@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using iugu.Entity;
 
-namespace iugu
+namespace iugu.Entity
 {
     public class InvoiceModel
     {
