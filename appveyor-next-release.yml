@@ -1,7 +1,7 @@
-version: 1.0.{build}
+version: 1.0.0-rc.{build}
 branches:
   only:
-  - master
+  - develop
 configuration: Release
 before_build:
 - cmd: nuget restore
@@ -14,17 +14,13 @@ artifacts:
 before_deploy:
 - cmd: nuget pack iugu.net.nuspec
 deploy:
-- provider: NuGet
-  api_key:
-    secure: yVnwQrFVedb/RyaiSlhL0rlb5S1A+ICdsIBKzUlAgPqGOxF3XfxZIrJ21bWFMIRd
-  artifact: /iugu.net.*\.nupkg/
-  on:
-    branch: master
 - provider: GitHub
-  release: Stable $(appveyor_build_version)
-  description: "Versão estável do iugu.net"
+  tag: $(appveyor_build_version)
+  release: "Pré Release - v$(appveyor_build_version)"
+  description: "Pré release do client .Net da IUGU"
   auth_token:
     secure: Nda/bZCNmkZTzHTnIhHJgqVmQ1cbgvArT6rIFWFpwlkz3c4d6I+joPIyvmJC01yG
   artifact: /iugu.net.*\.nupkg/
+  prerelease: true
   on:
-    branch: master
+    branch: develop
