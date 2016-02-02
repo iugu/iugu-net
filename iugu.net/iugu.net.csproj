@@ -60,9 +60,12 @@
   <ItemGroup>
     <Compile Include="Constants.cs" />
     <Compile Include="Entity\ChargeModel.cs" />
+    <Compile Include="Entity\AddressModel.cs" />
     <Compile Include="Entity\CustomerModel.cs" />
     <Compile Include="Entity\DataEntryModel.cs" />
+    <Compile Include="Entity\InvoiceItem.cs" />
     <Compile Include="Entity\InvoiceModel.cs" />
+    <Compile Include="Entity\PayerModel.cs" />
     <Compile Include="Entity\PaymentMethodModel.cs" />
     <Compile Include="Entity\PlanModel.cs" />
     <Compile Include="Entity\SubscriptionModel.cs" />
@@ -78,15 +81,14 @@
     <Compile Include="Lib\Subscription.cs" />
     <Compile Include="Lib\Transfers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Request\ChargeRequestMessage.cs" />
+    <Compile Include="Response\ChargeBankSlipResponseMessage.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Request\" />
-    <Folder Include="Response\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
