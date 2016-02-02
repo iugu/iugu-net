@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace iugu
+namespace iugu.Entity
 {
-    class TransferModel
+    public class TransferModel
     {
         public string id { get; set; }
         public string created_at { get; set; }
