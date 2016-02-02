@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>iugu.net</id>
+        <version>1.0.0.0</version>
+        <title>iugu.net</title>
+        <authors>IUGU</authors>
+        <owners>IUGU</owners>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Client .Net para a API da IUGU</description>
+        <copyright>IUGU Copyright ©  2016</copyright>
+        <dependencies>
+            <dependency id="Microsoft.AspNet.WebApi.Client" version="5.2.3" />
+            <dependency id="System.Net.Http.Formatting.Extension" version="5.2.3.0" />
+        </dependencies>
+    </metadata>
+    <files>
+    <file src="iugu.net\bin\Release\iugu.net.dll" target="lib\net452" />
+    <file src="iugu.net\bin\Release\iugu.net.pdb" target="lib\net452" />
+    </files>
+</package>
