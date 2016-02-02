@@ -1,11 +1,12 @@
-﻿using NUnit.Framework;
+﻿using iugu.Entity;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 
 namespace iugu.UnitTest
 {
     [TestFixture]
-    public class Customer
+    public class CustomerIntegratedTests
     {
         [Test]
         public void Create_a_customer_with_success()
