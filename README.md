@@ -33,12 +33,16 @@ A referência completa da Api pode ser encontrada em [IUGU Api](https://iugu.com
 ```csharp
 public class AnyClass
 {
-    CustomersModel myClients;
-    using (var apiClient = new Lib.Customer())
+    public CustomersModel GetAllClient()
     {
-        myClients = await apiClient.GetAsync().ConfigureAwait(false);
-    };
-    //Mais exemplos em no projeto de testes integrados
+        CustomersModel myClients;
+        using (var apiClient = new Lib.Customer())
+        {
+            myClients = await apiClient.GetAsync().ConfigureAwait(false);
+        };
+        //Mais exemplos em no projeto de testes integrados
+        return myClients;
+     }
 }
 ```
 
