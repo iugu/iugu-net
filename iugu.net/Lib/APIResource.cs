@@ -58,7 +58,14 @@ namespace iugu.Lib
 
         protected async Task<T> PostAsync<T>(object data)
         {
-            var response = await SendRequestAsync(HttpMethod.Post, BaseURI, data).ConfigureAwait(false);
+            var response = await PostAsync<T>(data, null).ConfigureAwait(false);
+            return response;
+        }
+
+        protected async Task<T> PostAsync<T>(object data, string partOfUrl)
+        {
+            var appendUrl = string.IsNullOrEmpty(partOfUrl) ? string.Empty : $"/{partOfUrl}";
+            var response = await SendRequestAsync(HttpMethod.Post, BaseURI + appendUrl, data).ConfigureAwait(false);
             return await ProcessResponse<T>(response).ConfigureAwait(false);
         }
 
