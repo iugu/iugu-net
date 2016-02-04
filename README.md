@@ -40,9 +40,9 @@ public class AnyClass
         {
             myClients = await apiClient.GetAsync().ConfigureAwait(false);
         };
-        //Mais exemplos em no projeto de testes integrados
         return myClients;
      }
 }
 ```
+##### Para mais exemplos no veja o [projeto de testes integrados](https://github.com/iugu/iugu-net/tree/develop/iugu.net.IntegratedTests)
 
