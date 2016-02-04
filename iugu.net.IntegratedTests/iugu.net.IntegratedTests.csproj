@@ -75,6 +75,7 @@
   <ItemGroup>
     <Compile Include="ChargeIntegratedTests.cs" />
     <Compile Include="CustomerIntegratedTests.cs" />
+    <Compile Include="MarketPlaceIntegratedTests.cs" />
     <Compile Include="PaymentTokenIntegratedTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
