@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.Threading.Tasks;
 
-namespace iugu.Lib
+namespace  iugu.net.Lib
 {
     public class PaymentToken : APIResource
     {

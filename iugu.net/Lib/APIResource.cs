@@ -1,11 +1,12 @@
-﻿using Newtonsoft.Json;
+﻿using iugu.net.Request;
+using Newtonsoft.Json;
 using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace iugu.Lib
+namespace  iugu.net.Lib
 {
     public class APIResource : IDisposable
     {

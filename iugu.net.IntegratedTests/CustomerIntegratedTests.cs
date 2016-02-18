@@ -1,4 +1,5 @@
-﻿using iugu.Entity;
+﻿using iugu.net.Entity;
+using iugu.net.Lib;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,7 @@ namespace iugu.UnitTest
             CustomerModel myClient;
 
             // Act
-            using (var apiClient = new Lib.Customer())
+            using (var apiClient = new Customer())
             {
                 myClient = await apiClient.CreateAsync("malka2@gmail.com", "Daniel Teste 2 C#", "teste da api em C#", custom).ConfigureAwait(false);
             };
@@ -37,7 +38,7 @@ namespace iugu.UnitTest
             CustomerModel myClient;
 
             // Act
-            using (var apiClient = new Lib.Customer())
+            using (var apiClient = new Customer())
             {
                 Assert.Throws<AggregateException>(() => apiClient.Get(Guid.NewGuid().ToString()), "Not Found");
             };
@@ -51,7 +52,7 @@ namespace iugu.UnitTest
             CustomersModel myClients;
 
             // Act
-            using (var apiClient = new Lib.Customer())
+            using (var apiClient = new Customer())
             {
                 myClients = await apiClient.GetAsync().ConfigureAwait(false);
             };

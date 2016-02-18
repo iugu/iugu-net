@@ -1,11 +1,11 @@
-﻿using iugu.Entity;
+﻿using iugu.net.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace iugu.Lib
+namespace  iugu.net.Lib
 {
     /// <summary>
     /// Os clientes efetuam pagamentos através das faturas. 

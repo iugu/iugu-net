@@ -1,4 +1,4 @@
-﻿using iugu.Lib;
+﻿using iugu.net.Lib;
 using iugu.net.Request;
 using iugu.net.Response;
 using System;

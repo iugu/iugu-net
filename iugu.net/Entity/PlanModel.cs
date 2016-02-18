@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using iugu.Entity;
+using iugu.net.Entity;
 
-namespace iugu.Entity
+namespace  iugu.net.Entity
 {
     public class PlanModel
     {
