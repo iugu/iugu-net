@@ -10,14 +10,18 @@ namespace iugu.net.Entity
     public class AccountModel
     {
         private readonly AddressModel _address;
+        private readonly string _fullAddress;
 
-        //public AccountModel()
-        //{
-        //}
+        [JsonConstructor]
+        public AccountModel(string address)
+        {
+            _fullAddress = address;
+        }
 
         public AccountModel(AddressModel address)
         {
             this._address = address;
+
         }
         /// <summary>
         /// Valor máximo da venda('Até R$ 100,00', 'Entre R$ 100,00 e R$ 500,00', 'Mais que R$ 500,00')
@@ -81,7 +85,7 @@ namespace iugu.net.Entity
         {
             get
             {
-                return $"{_address.Street}, {_address.Number} - {_address.City} - {_address.State}/{_address.Country}";
+                return _address == null ? _fullAddress : $"{_address.Street}, {_address.Number} - {_address.City} - {_address.State}/{_address.Country}";
             }
         }
 
@@ -89,47 +93,48 @@ namespace iugu.net.Entity
         /// Cep
         /// </summary>
         [JsonProperty("cep")]
-        public string Cep { get { return _address.ZipCode; } }
+        public string Cep { get { return _address?.ZipCode; } }
 
         /// <summary>
         /// Cidade
         /// </summary>
         [JsonProperty("city")]
-        public string city { get { return _address.City; } }
+        public string City { get { return _address?.City; } }
 
         /// <summary>
         /// Estado
         /// </summary>
         [JsonProperty("state")]
-        public string state { get { return $"{_address.Street} - {_address.Number}"; } }
+        public string State { get { return $"{_address?.Street} - {_address?.Number}"; } }
 
         /// <summary>
         /// Telefone comercial
         /// </summary>
         [JsonProperty("telephone")]
-        public string telephone { get; set; }
+        public string Phone { get; set; }
 
         /// <summary>
         /// Nome do Responsável, caso Pessoa Jurídica
         /// </summary>
         [JsonProperty("resp_name")]
-        public string resp_name { get; set; }
+        public string RespName { get; set; }
 
         /// <summary>
         /// CPF do Responsável, caso Pessoa Jurídica
         /// </summary>
         [JsonProperty("resp_cpf")]
-        public string resp_cpf { get; set; }
+        public string RespCPF { get; set; }
 
         /// <summary>
         /// Nome da instituição bancária 
         /// Suportados : 'Itaú', 'Bradesco', 'Caixa Econômica', 'Banco do Brasil', 'Santander'
         /// </summary>
         [JsonProperty("bank")]
-        public string bank { get; set; }
+        public string Bank { get; set; }
 
         /// <summary>
         /// Agência da Conta
+        /// Formatos com validação automática(9999-D, 9999)
         /// </summary>
         [JsonProperty("bank_ag")]
         public string BankAgency { get; set; }
@@ -142,6 +147,7 @@ namespace iugu.net.Entity
 
         /// <summary>
         /// Número da Conta
+        /// Formatos com validação automática(99999999-D, XXX99999999-D onde X é Operação, 	9999999-D, 99999-D)
         /// </summary>
         [JsonProperty("bank_cc")]
         public string BankAccountNumber { get; set; }
