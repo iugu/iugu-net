@@ -73,6 +73,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountIntegratedTests.cs" />
     <Compile Include="ChargeIntegratedTests.cs" />
     <Compile Include="CustomerIntegratedTests.cs" />
     <Compile Include="MarketPlaceIntegratedTests.cs" />
