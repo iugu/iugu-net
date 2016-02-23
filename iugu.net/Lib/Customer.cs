@@ -1,8 +1,8 @@
-﻿using iugu.Entity;
+﻿using iugu.net.Entity;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace iugu.Lib
+namespace  iugu.net.Lib
 {
     public class Customer : APIResource
     {

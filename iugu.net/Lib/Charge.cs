@@ -2,7 +2,7 @@
 using iugu.net.Response;
 using System.Threading.Tasks;
 
-namespace iugu.Lib
+namespace  iugu.net.Lib
 {
     /// <summary>
     /// Cobrança Direta

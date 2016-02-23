@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants.cs" />
+    <Compile Include="Entity\AccountModel.cs" />
     <Compile Include="Entity\ChargeModel.cs" />
     <Compile Include="Entity\AddressModel.cs" />
     <Compile Include="Entity\CustomerModel.cs" />
@@ -71,21 +72,31 @@
     <Compile Include="Entity\SubscriptionModel.cs" />
     <Compile Include="Entity\TokenModel.cs" />
     <Compile Include="Entity\TransferModel.cs" />
+    <Compile Include="Lib\Account.cs" />
     <Compile Include="Lib\APIResource.cs" />
     <Compile Include="Lib\Charge.cs" />
     <Compile Include="Lib\Customer.cs" />
     <Compile Include="Lib\Invoice.cs" />
+    <Compile Include="Lib\MarketPlace.cs" />
     <Compile Include="Lib\PaymentMethod.cs" />
     <Compile Include="Lib\PaymentToken.cs" />
     <Compile Include="Lib\Plans.cs" />
+    <Compile Include="Lib\StandardHttpClient.cs" />
     <Compile Include="Lib\Subscription.cs" />
     <Compile Include="Lib\Transfers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Request\AccountRequestMessage.cs" />
     <Compile Include="Request\ChargeRequestMessage.cs" />
+    <Compile Include="Request\VerifyAccountRequestMessage.cs" />
+    <Compile Include="Response\AccountResponseMessage.cs" />
     <Compile Include="Response\ChargeBankSlipResponseMessage.cs" />
+    <Compile Include="Response\GetAccountResponseMessage.cs" />
+    <Compile Include="Response\VerifyAccountResponseMessage.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
