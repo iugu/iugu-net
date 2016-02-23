@@ -80,6 +80,7 @@
     <Compile Include="Lib\PaymentMethod.cs" />
     <Compile Include="Lib\PaymentToken.cs" />
     <Compile Include="Lib\Plans.cs" />
+    <Compile Include="Lib\StandardHttpClient.cs" />
     <Compile Include="Lib\Subscription.cs" />
     <Compile Include="Lib\Transfers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

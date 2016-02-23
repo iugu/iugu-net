@@ -78,6 +78,7 @@
     <Compile Include="MarketPlaceIntegratedTests.cs" />
     <Compile Include="PaymentTokenIntegratedTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Stubs\StubHttpClient.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -92,6 +93,7 @@
       <Name>iugu.net</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
