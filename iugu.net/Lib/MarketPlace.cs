@@ -9,11 +9,16 @@ using System.Threading.Tasks;
 
 namespace iugu.net.Lib
 {
-    public class MarketPlace : APIResource
+    public class MarketPlace : IDisposable
     {
-        public MarketPlace()
+        public readonly IApiResources Api;
+
+        public MarketPlace() : this(new APIResource()) { }
+
+        public MarketPlace(IApiResources api)
         {
-            BaseURI += "/marketplace";
+            Api = api;
+            api.BaseURI += "/marketplace";
         }
 
         /// <summary>
@@ -34,27 +39,14 @@ namespace iugu.net.Lib
         /// <returns>informações da conta recém criada</returns>
         public async Task<AccountResponseMessage> CreateUnderAccountAsync(AccountRequestMessage underAccount)
         {
-            var retorno = await PostAsync<AccountResponseMessage>(underAccount, "create_account").ConfigureAwait(false);
+            var retorno = await Api.PostAsync<AccountResponseMessage>(underAccount, "create_account").ConfigureAwait(false);
             return retorno;
         }
 
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="underAccountData"></param>
-        /// <returns></returns>
-        public VerifyAccountResponseMessage VerifyUnderAccount(VerifyAccountRequestMessage underAccountData)
+        public void Dispose()
         {
-            var retorno = VerifyUnderAccountAsync(underAccountData).Result;
-            return retorno;
+            Api.Dispose();
+            GC.SuppressFinalize(this);
         }
-
-        public async Task<VerifyAccountResponseMessage> VerifyUnderAccountAsync(VerifyAccountRequestMessage underAccountData)
-        {
-            var retorno = await PostAsync<VerifyAccountResponseMessage>(underAccountData, "request_verification").ConfigureAwait(false);
-            return retorno;
-        }
-
     }
 }
