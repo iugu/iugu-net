@@ -2,7 +2,6 @@ version: 1.2.0-rc{build}
 branches:
   only:
   - develop
-  
 configuration: Release
 
 # environment variables
@@ -13,29 +12,27 @@ environment:
 
 # build cache to preserve files/folders between builds
 cache:
-  - packages -> **\packages.config  # preserve "packages" directory in the root of build folder but will reset it if packages.config is modified
-	
+ - packages -> **\packages.config  # preserve "packages" directory in the root of build folder but will reset it if packages.config is modified
+
 before_build:
-- cmd: nuget restore
+- cmd: nuget restore iugu.net.sln
 
 build:
+  project: iugu.net.sln
   verbosity: minimal
- 
+
 before_package:
 - cmd: nuget pack iugu.net.nuspec
-
-test_script:
-- cmd: nunit3-console <assembly> [options] --result=myresults.xml;format=AppVeyor
 
 artifacts:
 - path: '**\iugu.net*.nupkg'
 
 before_deploy:
-- cmd: nuget pack -Version $(appveyor_build_version) iugu.net.nuspec
+- ps: nuget pack -Version $env:APPVEYOR_BUILD_VERSION iugu.net.nuspec
 
 after_test:
 - ps: packages\OpenCover.4.6.519\tools\OpenCover.Console.exe -register:user -filter:"+[iugu.net]iugu.net*" -target:"packages\NUnit.Console.3.0.1\tools\nunit3-console.exe" "-targetargs:iugu.net.IntegratedTests\bin\Release\iugu.net.IntegratedTests.dll iugu.net.UnitTests\bin\Release\iugu.net.UnitTests.dll" -output:coverage.xml
-- ps: packages\coveralls.io.1.3.2\tools\coveralls.net.exe --opencover coverage.xml
+- ps: packages\coveralls.io.1.3.4\tools\coveralls.net.exe --opencover coverage.xml
 
 deploy:
 - provider: GitHub
@@ -43,7 +40,7 @@ deploy:
   release: "Pré Release - v$(appveyor_build_version)"
   description: "Pré release do client .Net da IUGU"
   auth_token:
-    secure: cJmNmislNrA8RXV3HKJ2ZJvV8+h1Itkys0TpvhKK4bd9yUsrTNTCSm9gpMGogb5fdknAVP28IrD+aLtewS9AuUtjCAo6aWYMeGO9fqV/13Y=
+    secure: Nda/bZCNmkZTzHTnIhHJgqVmQ1cbgvArT6rIFWFpwlkz3c4d6I+joPIyvmJC01yG
   artifact: /iugu.net.*\.nupkg/
   prerelease: true
   on:
