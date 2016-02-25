@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace iugu.net.Lib
 {
+    /// <summary>
+    /// Inteface básica de um recurso de API
+    /// </summary>
     public interface IApiResources : IDisposable
     {
         string BaseURI { get; set; }
@@ -25,6 +28,9 @@ namespace iugu.net.Lib
         Task<T> DeleteAsync<T>(string id);
     }
 
+    /// <summary>
+    /// Implementação da inteface básica de acesso a recursos básicos da API da IUGU
+    /// </summary>
     public class APIResource : IApiResources
     {
         private readonly IHttpClientWrapper client;

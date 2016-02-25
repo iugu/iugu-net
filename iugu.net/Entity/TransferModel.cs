@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace  iugu.net.Entity
+﻿namespace iugu.net.Entity
 {
+    // TODO: Precisa de refatoração, nomes fora do padrão .Net, sem documentação também
     public class TransferModel
     {
         public string id { get; set; }
@@ -15,6 +10,7 @@ namespace  iugu.net.Entity
         public Receiver receiver { get; set; }
     }
 
+    // TODO: Precisa de refatoração, nomes fora do padrão .Net, sem documentação também
     public class Receiver
     {
         public string id { get; set; }

@@ -1,13 +1,11 @@
 ﻿using iugu.net.Entity;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace iugu.net.Request
 {
+    /// <summary>
+    /// Requisição para efetuar uma cobrança, no momento apenas suporte a boletos
+    /// </summary>
     public class ChargeRequestMessage
     {
         /// <summary>

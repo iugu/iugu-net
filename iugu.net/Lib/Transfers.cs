@@ -1,25 +1,32 @@
 ﻿using iugu.net.Entity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace  iugu.net.Lib
+namespace iugu.net.Lib
 {
-    class Transfers : APIResource
+    /// <summary>
+    /// Transfere um determinado valor de sua conta para a conta destino
+    /// </summary>
+    public class Transfers : APIResource
     {
         public Transfers()
         {
             BaseURI += "/transfers";
         }
 
+        /// <summary>
+        /// Lista com todas as transferências efetuadas.
+        /// </summary>
+        /// <returns>A lista de transferência</returns>
         public TransferModel Get()
         {
             var retorno = GetAsync().Result;
             return retorno;
         }
 
+        /// <summary>
+        /// Lista com todas as transferências efetuadas.
+        /// </summary>
+        /// <returns>A lista de transferência</returns>
         public async Task<TransferModel> GetAsync()
         {
             var retorno = await GetAsync<TransferModel>().ConfigureAwait(false);

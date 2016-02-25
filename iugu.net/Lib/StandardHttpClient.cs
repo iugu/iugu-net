@@ -10,6 +10,11 @@ namespace iugu.net.Lib
     /// </summary>
     public interface IHttpClientWrapper : IDisposable
     {
+        /// <summary>
+        /// Enviar uma requisição
+        /// </summary>
+        /// <param name="request">Dados da mensagem da requisição</param>
+        /// <returns>resposta da requisição</returns>
         Task<HttpResponseMessage> SendAsync(HttpRequestMessage request);
     }
 
@@ -24,6 +29,12 @@ namespace iugu.net.Lib
         {
             client = new HttpClient();
         }
+
+        /// <summary>
+        /// Enviar uma requisição
+        /// </summary>
+        /// <param name="requestMessage">Dados da mensagem da requisição</param>
+        /// <returns>resposta da requisição</returns>
         public async Task<HttpResponseMessage> SendAsync(HttpRequestMessage requestMessage)
         {
             var response = await client.SendAsync(requestMessage).ConfigureAwait(false);

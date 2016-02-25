@@ -1,12 +1,10 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace iugu.net.Request
 {
+    /// <summary>
+    /// Requisição para a API de contas
+    /// </summary>
     public class AccountRequestMessage
     {
         /// <summary>

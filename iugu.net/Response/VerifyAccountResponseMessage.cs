@@ -4,6 +4,9 @@ using System;
 
 namespace iugu.net.Response
 {
+    /// <summary>
+    /// Resposta da verificação dos dados de uma conta
+    /// </summary>
     public class VerifyAccountResponseMessage
     {
         /// <summary>

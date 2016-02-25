@@ -4,6 +4,9 @@ using System;
 
 namespace iugu.net.Response
 {
+    /// <summary>
+    /// Resposta da API de contas ao obter 1 conta
+    /// </summary>
     public class GetAccountResponseMessage
     {
         /// <summary>
@@ -187,31 +190,9 @@ namespace iugu.net.Response
         public Information[] ExtraInformations { get; set; }
     }
 
-
-    public class Last_Verification_Request_Data
-    {
-        public string price_range { get; set; }
-        public string physical_products { get; set; }
-        public string business_type { get; set; }
-        public string person_type { get; set; }
-        public string automatic_transfer { get; set; }
-        public string cpf { get; set; }
-        public string name { get; set; }
-        public string address { get; set; }
-        public string cep { get; set; }
-        public string city { get; set; }
-        public string state { get; set; }
-        public string telephone { get; set; }
-        public string bank { get; set; }
-        public string bank_ag { get; set; }
-        public string account_type { get; set; }
-        public string bank_cc { get; set; }
-        public string document_id { get; set; }
-        public string document_cpf { get; set; }
-        public string document_activity { get; set; }
-    }
-
-
+    /// <summary>
+    /// Modelo que representa as informações da retirada
+    /// </summary>
     public class WithdrawModel
     {
         /// <summary>
@@ -291,11 +272,16 @@ namespace iugu.net.Response
         public string UpdatedAt { get; set; }
     }
 
-
+    /// <summary>
+    /// Informações extras da conta
+    /// </summary>
     public class Information
     {
-        public string key { get; set; }
-        public string value { get; set; }
+        [JsonProperty("key")]
+        public string Key { get; set; }
+
+        [JsonProperty("value")]
+        public string Value { get; set; }
     }
 
 }

@@ -4,14 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace  iugu.net.Entity
+namespace iugu.net.Entity
 {
+    // TODO: Precisa de refatoração, nomes fora do padrão .Net, sem documentação também
     public class CustomersModel
     {
         public int totalItems { get; set; }
         public List<CustomerModel> items { get; set; }
     }
 
+    // TODO: Precisa de refatoração, nomes fora do padrão .Net, sem documentação também
     public class CustomerModel
     {
         public string id { get; set; }

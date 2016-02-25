@@ -2,8 +2,13 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace  iugu.net.Lib
+namespace iugu.net.Lib
 {
+    /// <summary>
+    /// Utilizando o objeto cliente você pode controlar os pagamentos feito por um cliente específico, bem como controlar os dados de contato desse cliente. 
+    /// Também permite a criação de formas de pagamento desse cliente para que então o pagamento recorrente (assinatura) possa ser automatizado utilizando a 
+    /// forma de pagamento padrão deste cliente.
+    /// </summary>
     public class Customer : APIResource
     {
         public Customer()
@@ -35,19 +40,38 @@ namespace  iugu.net.Lib
             return retorno;
         }
 
-        public CustomerModel Create(string email, string name = null, string notes = null, List<CustomVariables> custom_variables = null)
+        /// <summary>
+        /// Criar um cliente
+        /// </summary>
+        /// <param name="email">E-Mail do Cliente</param>
+        /// <param name="name">(Opcional) Nome do Cliente</param>
+        /// <param name="notes">(Opcional) Anotações Gerais do Cliente</param>
+        /// <param name="custom_variables">(Opcional) Variáveis Personalizadas</param>
+        /// <param name="withCopyEmail">(Opcional) Endereços de E-mail para cópia separados por vírgula.</param>
+        /// <returns>O cliente criado</returns>
+        public CustomerModel Create(string email, string name = null, string notes = null, List<CustomVariables> custom_variables = null, string withCopyEmail = null)
         {
-            var retorno = CreateAsync(email, name, notes, custom_variables).Result;
+            var retorno = CreateAsync(email, name, notes, custom_variables, withCopyEmail).Result;
             return retorno;
         }
 
-        public async Task<CustomerModel> CreateAsync(string email, string name = null, string notes = null, List<CustomVariables> custom_variables = null)
+        /// <summary>
+        /// Criar um cliente
+        /// </summary>
+        /// <param name="email">E-Mail do Cliente</param>
+        /// <param name="name">(Opcional) Nome do Cliente</param>
+        /// <param name="notes">(Opcional) Anotações Gerais do Cliente</param>
+        /// <param name="custom_variables">(Opcional) Variáveis Personalizadas</param>
+        /// <param name="withCopyEmail">(Opcional) Endereços de E-mail para cópia separados por vírgula.</param>
+        /// <returns>O cliente criado</returns>
+        public async Task<CustomerModel> CreateAsync(string email, string name = null, string notes = null, List<CustomVariables> custom_variables = null, string withCopyEmail = null)
         {
             var user = new
             {
                 email = email,
                 name = name,
                 notes = notes,
+                cc_emails = withCopyEmail,
                 custom_variables = custom_variables
             };
             var retorno = await PostAsync<CustomerModel>(user).ConfigureAwait(false);

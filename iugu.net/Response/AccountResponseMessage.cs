@@ -1,12 +1,11 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace iugu.net.Response
 {
+    /// <summary>
+    /// Requisição para a API de conta 
+    /// </summary>
     public class AccountResponseMessage
     {
         /// <summary>
@@ -22,14 +21,21 @@ namespace iugu.net.Response
         public string Name { get; set; }
 
         /// <summary>
-        /// 
+        /// Token de produção
         /// </summary>
         [JsonProperty("live_api_token")]
         public string LiveApiToken { get; set; }
 
+        /// <summary>
+        /// Token de teste
+        /// </summary>
         [JsonProperty("test_api_token")]
         public string TestApiToken { get; set; }
 
+        /// <summary>
+        /// Token do usuário, usado em algumas APIs específicas
+        /// </summary>
+        [Obsolete]
         [JsonProperty("user_token")]
         public string UserToken { get; set; }
     }

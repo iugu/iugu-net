@@ -1,12 +1,10 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace iugu.net.Entity
 {
+    /// <summary>
+    /// Modelo que representa a conta de um cliente seja ele pessoa física ou jurídica
+    /// </summary>
     public class AccountModel
     {
         private readonly AddressModel _address;

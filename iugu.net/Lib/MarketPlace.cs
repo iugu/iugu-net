@@ -1,14 +1,17 @@
-﻿using iugu.net.Lib;
-using iugu.net.Request;
+﻿using iugu.net.Request;
 using iugu.net.Response;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace iugu.net.Lib
 {
+    /// <summary>
+    /// Api que permite que uma conta tenha subcontas, possibilitando uma rede de clientes e subclientes
+    /// <see cref="https://iugu.com/referencias/api#marketplace"/>
+    /// <see cref="http://support.iugu.com/hc/pt-br/articles/202022433-Como-funciona-o-marketplace-"/>
+    /// <see cref="http://support.iugu.com/hc/pt-br/articles/201480389-Exemplos-de-fluxos-de-marketplace"/>
+    /// <see cref="http://support.iugu.com/hc/pt-br/articles/202399728-Como-s%C3%A3o-compostas-as-tarifas-do-marketplace-"/>
+    /// </summary>
     public class MarketPlace : IDisposable
     {
         public readonly IApiResources Api;

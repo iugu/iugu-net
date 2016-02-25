@@ -7,6 +7,7 @@ using iugu.net.Entity;
 
 namespace  iugu.net.Entity
 {
+    // TODO: Precisa de refatoração, nomes fora do padrão .Net, sem documentação também
     public class InvoiceModel
     {
         public string id { get; set; }
@@ -40,6 +41,7 @@ namespace  iugu.net.Entity
         public List<Logs> logs { get; set; }
     }
 
+    // TODO: Precisa de refatoração, nomes fora do padrão .Net, sem documentação também
     public class BankSlip
     {
         public string digitable_line { get; set; }
@@ -47,6 +49,7 @@ namespace  iugu.net.Entity
         public string barcode { get; set; }
     }
 
+    // TODO: Precisa de refatoração, nomes fora do padrão .Net, sem documentação também
     public class Item
     {
         public string id { get; set; }
@@ -58,6 +61,7 @@ namespace  iugu.net.Entity
         public string price { get; set; }
     }
 
+    // TODO: Precisa de refatoração, nomes fora do padrão .Net, sem documentação também
     public class Variable
     {
         public string id { get; set; }
@@ -65,6 +69,7 @@ namespace  iugu.net.Entity
         public string value { get; set; }
     }
 
+    // TODO: Precisa de refatoração, nomes fora do padrão .Net, sem documentação também
     public class InvoiceListModel
     {
         public Facets facets { get; set; }
@@ -72,12 +77,14 @@ namespace  iugu.net.Entity
         public List<InvoiceModel> items { get; set; }
     }
 
+    // TODO: Precisa de refatoração, nomes fora do padrão .Net, sem documentação também
     public class Term
     {
         public string term { get; set; }
         public int count { get; set; }
     }
 
+    // TODO: Precisa de refatoração, nomes fora do padrão .Net, sem documentação também
     public class Status
     {
         public string _type { get; set; }
@@ -87,6 +94,7 @@ namespace  iugu.net.Entity
         public List<Term> terms { get; set; }
     }
 
+    // TODO: Precisa de refatoração, nomes fora do padrão .Net, sem documentação também
     public class Facets
     {
         public Status status { get; set; }

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace iugu.net
+﻿namespace iugu.net
 {
     public static class Constants
     {

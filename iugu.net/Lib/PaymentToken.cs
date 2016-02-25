@@ -1,8 +1,14 @@
 ﻿using Newtonsoft.Json;
 using System.Threading.Tasks;
 
-namespace  iugu.net.Lib
+namespace iugu.net.Lib
 {
+    /// <summary>
+    /// O processo para cobrança transparente funciona da seguinte maneira:
+    /// Primeiramente, os dados de cartão de crédito do cliente são enviados a Iugu através que conexão segura SSL.A Iugu então retorna um token que representa o meio de pagamento desse cliente.
+    // Esse token é então utilizado para que seja feita uma cobrança através deste meio de pagamento.
+    /// Pronto! Pagamento efetuado!
+    /// </summary>
     public class PaymentToken : APIResource
     {
         public PaymentToken()

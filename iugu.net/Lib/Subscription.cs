@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace  iugu.net.Lib
+namespace iugu.net.Lib
 {
     public class Subscription : APIResource
     {
@@ -32,18 +32,21 @@ namespace  iugu.net.Lib
             var retorno = GetAsync<SubscriptionModel>(id).Result;
             return retorno;
         }
-
-        //plan_identifier (opcional)	Identificador do Plano. Só é enviado para assinaturas que não são credits_based
-        //customer_id	ID do Cliente
-        //expires_at (opcional)	Data de Expiração (Também é a data da próxima cobrança)
-        //only_on_charge_success (opcional)	Apenas Cria a Assinatura se a Cobrança for bem sucedida. Isso só funciona caso o cliente já tenha uma forma de pagamento padrão cadastrada
-        //credits_based (opcional)	É uma assinatura baseada em créditos? booleano
-        //price_cents (opcional)	Preço em centavos da recarga para assinaturas baseadas em crédito
-        //credits_cycle (opcional)	Quantidade de créditos adicionados a cada ciclo, só enviado para assinaturas credits_based
-        //credits_min (opcional)	Quantidade de créditos que ativa o ciclo, por ex: Efetuar cobrança cada vez que a assinatura tenha apenas 1 crédito sobrando. Esse 1 crédito é o credits_min
-        //subitems[] (opcional)	Array com Itens de Assinatura, sendo que estes podem ser recorrentes ou de cobrança única
-        //custom_variables[] (opcional)	Variáveis Personalizadas
-
+        
+        /// <summary>
+        /// Cria uma assinatura para um cliente cadastrado
+        /// </summary>
+        /// <param name="customer_id">Identifucação do cliente</param>
+        /// <param name="plan_identifier">Identificação do plano de pagamento</param>
+        /// <param name="expires_at">Data de Expiração (Também é a data da próxima cobrança)</param>
+        /// <param name="only_on_charge_success">Apenas Cria a Assinatura se a Cobrança for bem sucedida. Isso só funciona caso o cliente já tenha uma forma de pagamento padrão cadastrada</param>
+        /// <param name="credits_based">É uma assinatura baseada em créditos</param>
+        /// <param name="price_cents">Preço em centavos da recarga para assinaturas baseadas em crédito</param>
+        /// <param name="credits_cycle">Quantidade de créditos adicionados a cada ciclo, só enviado para assinaturas credits_based</param>
+        /// <param name="credits_min">Quantidade de créditos que ativa o ciclo, por ex: Efetuar cobrança cada vez que a assinatura tenha apenas 1 crédito sobrando. Esse 1 crédito é o credits_min</param>
+        /// <param name="subitems">Itens de assinatura, sendo que estes podem ser recorrentes ou de cobrança única</param>
+        /// <param name="custom_variables">Variáveis Personalizadas</param>
+        /// <returns></returns>
         public SubscriptionModel Create(string customer_id, string plan_identifier = null, DateTime? expires_at = null,
             bool? only_on_charge_success = null,
             bool? credits_based = null, int? price_cents = null, int? credits_cycle = null, int? credits_min = null,

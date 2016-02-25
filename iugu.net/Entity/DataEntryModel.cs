@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace  iugu.net.Entity
 {
+    // TODO: Precisa de refatoração, nomes fora do padrão .Net, sem documentação também
     public class CustomVariables
     {
         public string name { get; set; }
@@ -13,8 +14,7 @@ namespace  iugu.net.Entity
 
     }
 
-
-
+    // TODO: Precisa de refatoração, nomes fora do padrão .Net
     public class Logs
     {
         /// <summary>
@@ -29,6 +29,7 @@ namespace  iugu.net.Entity
 
     }
 
+    // TODO: Precisa de refatoração, nomes fora do padrão .Net
     public class Feature
     {
         /// <summary>
@@ -47,6 +48,7 @@ namespace  iugu.net.Entity
         public int value { get; set; }
     }
 
+    // TODO: Precisa de refatoração, nomes fora do padrão .Net
     public class Prices
     {
         /// <summary>
@@ -60,6 +62,7 @@ namespace  iugu.net.Entity
         public int value_cents { get; set; }
     }
 
+    // TODO: Precisa de refatoração, nomes fora do padrão .Net
     public class CreditCard
     {
         /// <summary>

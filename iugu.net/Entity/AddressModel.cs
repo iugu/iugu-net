@@ -1,12 +1,10 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace iugu.net.Entity
 {
+    /// <summary>
+    /// Model que representa dados de endereço
+    /// </summary>
     public class AddressModel
     {
         /// <summary>

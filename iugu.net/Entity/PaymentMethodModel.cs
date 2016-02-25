@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace  iugu.net.Entity
+namespace iugu.net.Entity
 {
+    // TODO: Precisa de refatoração, nomes fora do padrão .Net, sem documentação também
     public class PaymentMethodModel
     {
         public string id { get; set; }
@@ -14,6 +15,7 @@ namespace  iugu.net.Entity
         public PaymentMethodData data { get; set; }
     }
 
+    // TODO: Precisa de refatoração, nomes fora do padrão .Net, sem documentação também
     public class PaymentMethodData
     {
         public string token { get; set; }

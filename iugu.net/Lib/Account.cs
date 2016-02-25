@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 
 namespace iugu.net.Lib
 {
+    /// <summary>
+    /// Api de operações em contas
+    /// </summary>
     public class Account : IDisposable
     {
         public readonly IApiResources Api;

@@ -1,11 +1,8 @@
 ﻿using iugu.net.Entity;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace  iugu.net.Lib
+namespace iugu.net.Lib
 {
     public class Plans : APIResource
     {
@@ -70,8 +67,8 @@ namespace  iugu.net.Lib
         /// <param name="interval_type">Tipo de Interval ("weeks" ou "months")</param>
         /// <param name="value_cents">Preço do Plano em Centavos</param>
         /// <param name="currency">Moeda do Preço (Somente "BRL" por enquanto)</param>
-        /// <param name="prices"> (opcional)	Preços do Plano</param>
-        /// <param name="features"> (opcional)	Funcionalidades do Plano</param>
+        /// <param name="prices"> (opcional) Preços do Plano</param>
+        /// <param name="features"> (opcional) Funcionalidades do Plano</param>
         public async Task<PlanModel> CreateAsync(string name, string identifier, int interval, string interval_type, int value_cents,
             string currency = "BRL", List<PlanPrice> prices = null, List<PlanFeature> features = null)
         {

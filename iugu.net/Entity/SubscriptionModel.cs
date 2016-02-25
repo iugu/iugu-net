@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
-namespace  iugu.net.Entity
+namespace iugu.net.Entity
 {
+    // todo: Precisa de refatoração, nomes fora do padrão .Net, sem documentação também
     public class SubscriptionModel
     {
         public string id { get; set; }
