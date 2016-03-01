@@ -1,4 +1,5 @@
 ﻿using iugu.net.Entity;
+using iugu.net.Request;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -78,6 +79,17 @@ namespace iugu.net.Lib
             return retorno;
         }
 
+        /// <summary>
+        /// Cria um cliente em uma conta especifica
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="customApiToken"></param>
+        /// <returns></returns>
+        public async Task<CustomerModel> CreateAsync(CustomerRequestMessage request, string customApiToken)
+        {
+            var retorno = await PostAsync<CustomerModel>(request, null, customApiToken).ConfigureAwait(false);
+            return retorno;
+        }
         public CustomerModel Delete(string id)
         {
             var retorno = DeleteAsync(id).Result;

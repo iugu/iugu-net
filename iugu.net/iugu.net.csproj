@@ -87,6 +87,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Request\AccountRequestMessage.cs" />
     <Compile Include="Request\ChargeRequestMessage.cs" />
+    <Compile Include="Request\CustomerRequestMessage.cs" />
     <Compile Include="Request\VerifyAccountRequestMessage.cs" />
     <Compile Include="Response\AccountResponseMessage.cs" />
     <Compile Include="Response\ChargeBankSlipResponseMessage.cs" />
