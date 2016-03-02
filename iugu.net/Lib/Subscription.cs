@@ -1,4 +1,5 @@
 ﻿using iugu.net.Entity;
+using iugu.net.Request;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,7 +33,7 @@ namespace iugu.net.Lib
             var retorno = GetAsync<SubscriptionModel>(id).Result;
             return retorno;
         }
-        
+
         /// <summary>
         /// Cria uma assinatura para um cliente cadastrado
         /// </summary>
@@ -47,6 +48,7 @@ namespace iugu.net.Lib
         /// <param name="subitems">Itens de assinatura, sendo que estes podem ser recorrentes ou de cobrança única</param>
         /// <param name="custom_variables">Variáveis Personalizadas</param>
         /// <returns></returns>
+        [Obsolete]
         public SubscriptionModel Create(string customer_id, string plan_identifier = null, DateTime? expires_at = null,
             bool? only_on_charge_success = null,
             bool? credits_based = null, int? price_cents = null, int? credits_cycle = null, int? credits_min = null,
@@ -62,11 +64,34 @@ namespace iugu.net.Lib
                 price_cents = price_cents,
                 credits_cycle = credits_cycle,
                 credits_min = credits_min,
-                subitems = subitems
+                subitems = subitems,
+                custom_variables = custom_variables
             };
             var retorno = PostAsync<SubscriptionModel>(subscription).Result;
             return retorno;
         }
+
+        /// <summary>
+        /// Cria uma assinatura para um cliente cadastrado
+        /// </summary>
+        /// <param name="request">Request para criar uma assinatura</param>
+        public async Task<SubscriptionModel> CreateAsync(SubscriptionRequestMessage request)
+        {
+            var retorno = await CreateAsync(request, null).ConfigureAwait(false);
+            return retorno;
+        }
+
+        /// <summary>
+        /// Cria uma assinatura para um cliente cadastrado
+        /// </summary>
+        /// <param name="request">Request para criar uma assinatura</param>
+        /// <param name="customApiToken">Um token customizado, por exemplo, de um cliente de uma subconta, comum em marketplaces</param>
+        public async Task<SubscriptionModel> CreateAsync(SubscriptionRequestMessage request, string customApiToken)
+        {
+            var retorno = await PostAsync<SubscriptionModel>(request, null, customApiToken).ConfigureAwait(false);
+            return retorno;
+        }
+
         public SubscriptionModel Delete(string id)
         {
             var retorno = DeleteAsync<SubscriptionModel>(id).Result;

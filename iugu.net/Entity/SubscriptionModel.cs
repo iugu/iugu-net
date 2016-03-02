@@ -52,6 +52,7 @@ namespace iugu.net.Entity
         public int price_cents { get; set; }
         public string price { get; set; }
         public string total { get; set; }
+        public bool? recurrent { get; set; }
     }
 
     public class SubscriptionLog
