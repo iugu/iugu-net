@@ -76,6 +76,7 @@
     <Compile Include="AccountIntegratedTests.cs" />
     <Compile Include="ChargeIntegratedTests.cs" />
     <Compile Include="CustomerIntegratedTests.cs" />
+    <Compile Include="InvoiceIntegratedTests.cs" />
     <Compile Include="MarketPlaceIntegratedTests.cs" />
     <Compile Include="PaymentTokenIntegratedTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

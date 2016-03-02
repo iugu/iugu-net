@@ -1,11 +1,12 @@
 ﻿using iugu.net.Entity;
+using iugu.net.Request;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace  iugu.net.Lib
+namespace iugu.net.Lib
 {
     /// <summary>
     /// Os clientes efetuam pagamentos através das faturas. 
@@ -72,9 +73,8 @@ namespace  iugu.net.Lib
         /// <returns></returns>
         public InvoiceModel Create(string email, DateTime due_date, Item[] items, string return_url = "",
             string expired_url = "", string notification_url = "", int tax_cents = 0, int discount_cents = 0, string customer_id = "", bool ignore_due_email = false,
-            string subscription_id = "", int credits = 0, Logs logs = null, CustomVariables custom_variables = null)
+            string subscription_id = "", int credits = 0, Logs logs = null, List<CustomVariables> custom_variables = null)
         {
-            //TODO: implementar  custom_variables[]
             var retorno = CreateAsync(email, due_date, items, return_url, expired_url, notification_url, tax_cents,
                                       discount_cents, customer_id, ignore_due_email, subscription_id, credits, logs,
                                       custom_variables).Result;
@@ -99,11 +99,10 @@ namespace  iugu.net.Lib
         /// <param name="logs">(opcional) Logs da Fatura</param>
         /// <param name="custom_variables">(opcional) Variáveis Personalizadas</param>
         /// <returns></returns>
-        public async Task<InvoiceModel> CreateAsync(string email, DateTime due_date, Item[] items, string return_url = "",
-    string expired_url = "", string notification_url = "", int tax_cents = 0, int discount_cents = 0, string customer_id = "", bool ignore_due_email = false,
-    string subscription_id = "", int credits = 0, Logs logs = null, CustomVariables custom_variables = null)
+        public async Task<InvoiceModel> CreateAsync(string email, DateTime due_date, Item[] items, string return_url,
+    string expired_url, string notification_url, int tax_cents = 0, int discount_cents = 0, string customer_id = null, bool ignore_due_email = false,
+    string subscription_id = null, int? credits = null, Logs logs = null, List<CustomVariables> custom_variables = null)
         {
-            //TODO: implementar  custom_variables[]
             var invoice = new
             {
                 email = email,
@@ -118,7 +117,8 @@ namespace  iugu.net.Lib
                 subscription_id = subscription_id,
                 credits = credits,
                 logs = logs,
-                custom_variables = custom_variables
+                custom_variables = custom_variables,
+                notification_url = notification_url
             };
             var retorno = await PostAsync<InvoiceModel>(invoice).ConfigureAwait(false);
             return retorno;
@@ -172,6 +172,12 @@ namespace  iugu.net.Lib
         {
             BaseURI += "/cancel";
             var retorno = await PutAsync<InvoiceModel>(id, null).ConfigureAwait(false);
+            return retorno;
+        }
+
+        public async Task<InvoiceModel> DuplicateAsync(string id, InvoiceDuplicateRequestMessage data)
+        {
+            var retorno = await PostAsync<InvoiceModel>(data, $"{id}/duplicate").ConfigureAwait(false);
             return retorno;
         }
     }

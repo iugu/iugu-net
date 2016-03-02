@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using iugu.net.Entity;
 
-namespace  iugu.net.Entity
+namespace iugu.net.Entity
 {
     // TODO: Precisa de refatoração, nomes fora do padrão .Net, sem documentação também
     public class InvoiceModel
@@ -59,6 +59,7 @@ namespace  iugu.net.Entity
         public string created_at { get; set; }
         public string updated_at { get; set; }
         public string price { get; set; }
+        public bool? _destroy { get; set; }
     }
 
     // TODO: Precisa de refatoração, nomes fora do padrão .Net, sem documentação também
