@@ -41,6 +41,12 @@ namespace iugu.net.Lib
             return retorno;
         }
 
+        public async Task<CustomerModel> GetFromCustomApiTokenAsync(string customApiToken)
+        {
+            var retorno = await GetAsync<CustomerModel>(null, customApiToken).ConfigureAwait(false);
+            return retorno;
+        }
+
         /// <summary>
         /// Criar um cliente
         /// </summary>
