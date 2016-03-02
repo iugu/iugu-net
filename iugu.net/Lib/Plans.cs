@@ -69,8 +69,9 @@ namespace iugu.net.Lib
         /// <param name="currency">Moeda do Preço (Somente "BRL" por enquanto)</param>
         /// <param name="prices"> (opcional) Preços do Plano</param>
         /// <param name="features"> (opcional) Funcionalidades do Plano</param>
+        /// <param name="payable_with">(opcional) Método de pagamento que será disponibilizado para as Faturas pertencentes a Assinaturas deste Plano ('all', 'credit_card' ou 'bank_slip')</param>
         public async Task<PlanModel> CreateAsync(string name, string identifier, int interval, string interval_type, int value_cents,
-            string currency = "BRL", List<PlanPrice> prices = null, List<PlanFeature> features = null)
+            string currency = "BRL", List<PlanPrice> prices = null, List<PlanFeature> features = null, string payable_with = null)
         {
             //TODO: implementar  custom_variables[]
             var user = new
@@ -82,7 +83,8 @@ namespace iugu.net.Lib
                 value_cents = value_cents,
                 currency = currency,
                 prices = prices,
-                features = features
+                features = features,
+                payable_with = payable_with
             };
             var retorno = await PostAsync<PlanModel>(user).ConfigureAwait(false);
             return retorno;
