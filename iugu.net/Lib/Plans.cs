@@ -34,9 +34,16 @@ namespace iugu.net.Lib
             return retorno;
         }
 
-        public async Task<PlanModel> GetAsync(string id)
+        public async Task<PlanModel> GetAsync(string id, string customApiToken = null)
         {
-            var retorno = await GetAsync<PlanModel>(id).ConfigureAwait(false);
+            var retorno = await GetAsync<PlanModel>(id, customApiToken).ConfigureAwait(false);
+            return retorno;
+        }
+
+        public async Task<PlanModel> GetByIdentifierAsync(string planIdentifier, string customApiToken = null)
+        {
+            BaseURI += "/identifier";
+            var retorno = await GetAsync<PlanModel>(planIdentifier, customApiToken).ConfigureAwait(false);
             return retorno;
         }
 
