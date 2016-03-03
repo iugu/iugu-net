@@ -55,5 +55,14 @@
             public const string BANCO_DO_BRASIL = "Banco do Brasil";
             public const string SANTANDER = "Santander";
         }
+
+        /// <summary>
+        /// Os tipos de periodicidade e/ou recorrência
+        /// </summary>
+        public static class GenerateCycleType
+        {
+            public const string MONTLY = "months";
+            public const string WEEKLY = "weeks";
+        }
     }
 }

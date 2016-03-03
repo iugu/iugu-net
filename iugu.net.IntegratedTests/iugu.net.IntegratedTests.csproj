@@ -79,6 +79,7 @@
     <Compile Include="InvoiceIntegratedTests.cs" />
     <Compile Include="MarketPlaceIntegratedTests.cs" />
     <Compile Include="PaymentTokenIntegratedTests.cs" />
+    <Compile Include="PlanIntegratedTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Stubs\StubHttpClient.cs" />
   </ItemGroup>
