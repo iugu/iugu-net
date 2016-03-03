@@ -40,5 +40,23 @@ namespace iugu.net.IntegratedTests
             // Assert
             Assert.That(response.Name, Is.EqualTo(request.Name));
         }
+
+        [Test]
+        public async Task Get_all_accounts_in_marketplace_with_success()
+        {
+            // Arrange
+            var request = new AccountRequestMessage { Name = "any_market_place_under_account@gmail.com", CommissionPercent = 10 };
+            MarketplaceAccoutsResponse response;
+
+
+            // Act
+            using (var client = new MarketPlace())
+            {
+                response = await client.GetAllSubAccountsAsync().ConfigureAwait(false);
+            }
+
+            // Assert
+            Assert.That(response, Is.Not.Null);
+        }
     }
 }

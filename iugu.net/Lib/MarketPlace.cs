@@ -14,7 +14,7 @@ namespace iugu.net.Lib
     /// </summary>
     public class MarketPlace : IDisposable
     {
-        public readonly IApiResources Api;
+        protected readonly IApiResources Api;
 
         public MarketPlace() : this(new APIResource()) { }
 
@@ -45,6 +45,28 @@ namespace iugu.net.Lib
             var retorno = await Api.PostAsync<AccountResponseMessage>(underAccount, "create_account").ConfigureAwait(false);
             return retorno;
         }
+
+        /// <summary>
+        /// Listas todas as subcontas dentro de um marketplace
+        /// </summary>
+        /// <returns></returns>
+        public async Task<MarketplaceAccoutsResponse> GetAllSubAccountsAsync()
+        {
+            var retorno = await Api.GetAsync<MarketplaceAccoutsResponse>().ConfigureAwait(false);
+            return retorno;
+        }
+
+        /// <summary>
+        /// Listas todas as subcontas dentro de um marketplace
+        /// </summary>
+        /// <param name="customApiToken">api token customizado</param>
+        /// <returns></returns>
+        public async Task<MarketplaceAccoutsResponse> GetAllSubAccountsAsync(string customApiToken)
+        {
+            var retorno = await Api.GetAsync<MarketplaceAccoutsResponse>(null, customApiToken).ConfigureAwait(false);
+            return retorno;
+        }
+
 
         public void Dispose()
         {
