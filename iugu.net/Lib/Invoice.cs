@@ -170,8 +170,7 @@ namespace iugu.net.Lib
 
         public async Task<InvoiceModel> CancelAsync(string id)
         {
-            BaseURI += "/cancel";
-            var retorno = await PutAsync<InvoiceModel>(id, null).ConfigureAwait(false);
+            var retorno = await PutAsync<InvoiceModel>(default(object), $"{id}/cancel").ConfigureAwait(false);
             return retorno;
         }
 

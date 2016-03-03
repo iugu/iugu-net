@@ -131,6 +131,13 @@ namespace iugu.net.Lib
             return await ProcessResponse<T>(response).ConfigureAwait(false);
         }
 
+        public async Task<T> PutAsync<T>(object data, string partOfUrl)
+        {
+            var appendUrl = string.IsNullOrEmpty(partOfUrl) ? string.Empty : $"/{partOfUrl}";
+            var response = await SendRequestAsync(HttpMethod.Put, BaseURI + appendUrl, data).ConfigureAwait(false);
+            return await ProcessResponse<T>(response).ConfigureAwait(false);
+        }
+
         public async Task<T> DeleteAsync<T>(string id)
         {
             var response = await SendRequestAsync(HttpMethod.Delete, BaseURI + "/" + id).ConfigureAwait(false);
