@@ -56,6 +56,7 @@ namespace iugu.net.IntegratedTests
             Assert.That(plan.identifier, Is.EqualTo(planId));
         }
 
+
         [Test]
         public async Task Get_plan_by_identifier()
         {

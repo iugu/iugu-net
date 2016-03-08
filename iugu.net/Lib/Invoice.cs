@@ -49,7 +49,13 @@ namespace iugu.net.Lib
 
         public async Task<InvoiceModel> GetAsync(string id)
         {
-            var retorno = await GetAsync<InvoiceModel>(id).ConfigureAwait(false);
+            var retorno = await GetAsync(id, null).ConfigureAwait(false);
+            return retorno;
+        }
+
+        public async Task<InvoiceModel> GetAsync(string id, string customApiToken)
+        {
+            var retorno = await GetAsync<InvoiceModel>(id, null, customApiToken).ConfigureAwait(false);
             return retorno;
         }
 
@@ -181,7 +187,13 @@ namespace iugu.net.Lib
 
         public async Task<InvoiceModel> CancelAsync(string id)
         {
-            var retorno = await PutAsync<InvoiceModel>(default(object), $"{id}/cancel").ConfigureAwait(false);
+            var retorno = await CancelAsync(id, null).ConfigureAwait(false);
+            return retorno;
+        }
+
+        public async Task<InvoiceModel> CancelAsync(string id, string customApiToken)
+        {
+            var retorno = await PutAsync<InvoiceModel>(default(object), $"{id}/cancel", customApiToken).ConfigureAwait(false);
             return retorno;
         }
 
@@ -196,6 +208,21 @@ namespace iugu.net.Lib
             var retorno = await PostAsync<InvoiceModel>(data, $"{id}/duplicate").ConfigureAwait(false);
             return retorno;
         }
+
+
+        /// <summary>
+        /// Gera segunda via de uma Fatura. Somente faturas pendentes podem ter segunda via gerada. A fatura atual é cancelada e uma nova é gerada com status ‘pending’.
+        /// </summary>
+        /// <param name="id">Identificador da fatura</param>
+        /// <param name="data">Informações da nova fatura</param>
+        /// <param name="customApiToken">Token customizado geralmente passado quando está se trabalhando como marketplace</param>
+        /// <returns></returns>
+        public async Task<InvoiceModel> DuplicateAsync(string id, InvoiceDuplicateRequestMessage data, string customApiToken)
+        {
+            var retorno = await PostAsync<InvoiceModel>(data, $"{id}/duplicate", customApiToken).ConfigureAwait(false);
+            return retorno;
+        }
+
 
         /// <summary>
         /// Captura uma fatura com estado 'Em Análise'

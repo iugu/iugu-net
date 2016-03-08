@@ -101,8 +101,8 @@ namespace iugu.net.Lib
 
         public async Task<T> GetAsync<T>(string id, string partOfUrl, string apiUserToken)
         {
-            var appendUrl = string.IsNullOrEmpty(partOfUrl) ? string.Empty : $"/{partOfUrl}";
-            var response = await SendRequestAsync(HttpMethod.Get, BaseURI + appendUrl + "/" + id, null, apiUserToken).ConfigureAwait(false);
+            var completeUrl = GetCompleteUrl($"{partOfUrl}/{id}");
+            var response = await SendRequestAsync(HttpMethod.Get, completeUrl, null, apiUserToken).ConfigureAwait(false);
             return await ProcessResponse<T>(response).ConfigureAwait(false);
         }
 
@@ -118,29 +118,38 @@ namespace iugu.net.Lib
             return response;
         }
 
-        public async Task<T> PostAsync<T>(object data, string partOfUrl, string apiUserToken)
+        public async Task<T> PostAsync<T>(object data, string partOfUrl, string customApiToken)
         {
-            var appendUrl = string.IsNullOrEmpty(partOfUrl) ? string.Empty : $"/{partOfUrl}";
-            var response = await SendRequestAsync(HttpMethod.Post, BaseURI + appendUrl, data, apiUserToken).ConfigureAwait(false);
+            var completeUrl = GetCompleteUrl(partOfUrl);
+            var response = await SendRequestAsync(HttpMethod.Post, completeUrl, data, customApiToken).ConfigureAwait(false);
             return await ProcessResponse<T>(response).ConfigureAwait(false);
         }
 
         public async Task<T> PutAsync<T>(string id, object data)
         {
-            var response = await SendRequestAsync(HttpMethod.Put, BaseURI + "/" + id, data).ConfigureAwait(false);
-            return await ProcessResponse<T>(response).ConfigureAwait(false);
+            return await PutAsync<T>(data, id, null).ConfigureAwait(false);
         }
 
         public async Task<T> PutAsync<T>(object data, string partOfUrl)
         {
-            var appendUrl = string.IsNullOrEmpty(partOfUrl) ? string.Empty : $"/{partOfUrl}";
-            var response = await SendRequestAsync(HttpMethod.Put, BaseURI + appendUrl, data).ConfigureAwait(false);
+            return await PutAsync<T>(data, partOfUrl, null).ConfigureAwait(false);
+        }
+
+        public async Task<T> PutAsync<T>(object data, string partOfUrl, string customApiToken)
+        {
+            var completeUrl = GetCompleteUrl(partOfUrl);
+            var response = await SendRequestAsync(HttpMethod.Put, completeUrl, data, customApiToken).ConfigureAwait(false);
             return await ProcessResponse<T>(response).ConfigureAwait(false);
         }
 
         public async Task<T> DeleteAsync<T>(string id)
         {
-            var response = await SendRequestAsync(HttpMethod.Delete, BaseURI + "/" + id).ConfigureAwait(false);
+            return await DeleteAsync<T>(id, null).ConfigureAwait(false);
+        }
+
+        public async Task<T> DeleteAsync<T>(string id, string customApiToken)
+        {
+            var response = await SendRequestAsync(HttpMethod.Delete, $"{BaseURI}/{id}", null, customApiToken).ConfigureAwait(false);
             return await ProcessResponse<T>(response).ConfigureAwait(false);
         }
 
@@ -188,6 +197,11 @@ namespace iugu.net.Lib
             else {
                 requestMessage.Headers.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.ASCII.GetBytes(_apiKey)));
             }
+        }
+
+        private string GetCompleteUrl(string partOfUrl)
+        {
+            return string.IsNullOrEmpty(partOfUrl) ? BaseURI : $"{BaseURI}/{partOfUrl}";
         }
     }
 }

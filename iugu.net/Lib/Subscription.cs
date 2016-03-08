@@ -94,9 +94,16 @@ namespace iugu.net.Lib
 
         public SubscriptionModel Delete(string id)
         {
-            var retorno = DeleteAsync<SubscriptionModel>(id).Result;
+            var retorno = DeleteAsync(id, null).Result;
             return retorno;
         }
+
+        public async Task<SubscriptionModel> DeleteAsync(string id, string customApiToken)
+        {
+            var retorno = await DeleteAsync<SubscriptionModel>(id, customApiToken).ConfigureAwait(false);
+            return retorno;
+        }
+
         public SubscriptionModel Put(string id, SubscriptionModel model)
         {
             var retorno = PutAsync<SubscriptionModel>(id, model).Result;

@@ -117,7 +117,13 @@ namespace iugu.net.Lib
 
         public async Task<PlanModel> DeleteAsync(string id)
         {
-            var retorno = await DeleteAsync<PlanModel>(id).ConfigureAwait(false);
+            var retorno = await DeleteAsync(id, null).ConfigureAwait(false);
+            return retorno;
+        }
+
+        public async Task<PlanModel> DeleteAsync(string id, string customApiToken)
+        {
+            var retorno = await DeleteAsync<PlanModel>(id, customApiToken).ConfigureAwait(false);
             return retorno;
         }
 
