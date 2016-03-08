@@ -90,6 +90,7 @@
     <Compile Include="Request\ChargeRequestMessage.cs" />
     <Compile Include="Request\CustomerRequestMessage.cs" />
     <Compile Include="Request\InvoiceDuplicateRequestMessage.cs" />
+    <Compile Include="Request\InvoiceRequestMessage.cs" />
     <Compile Include="Request\PlanRequestMessage.cs" />
     <Compile Include="Request\SubscriptionRequestMessage.cs" />
     <Compile Include="Request\VerifyAccountRequestMessage.cs" />
