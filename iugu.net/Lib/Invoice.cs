@@ -174,9 +174,26 @@ namespace iugu.net.Lib
             return retorno;
         }
 
+        /// <summary>
+        /// Gera segunda via de uma Fatura. Somente faturas pendentes podem ter segunda via gerada. A fatura atual é cancelada e uma nova é gerada com status ‘pending’.
+        /// </summary>
+        /// <param name="id">Identificador da fatura</param>
+        /// <param name="data">Informações da nova fatura</param>
+        /// <returns></returns>
         public async Task<InvoiceModel> DuplicateAsync(string id, InvoiceDuplicateRequestMessage data)
         {
             var retorno = await PostAsync<InvoiceModel>(data, $"{id}/duplicate").ConfigureAwait(false);
+            return retorno;
+        }
+
+        /// <summary>
+        /// Captura uma fatura com estado 'Em Análise'
+        /// </summary>
+        /// <param name="id">Identificador da fatura</param>
+        /// <returns></returns>
+        public async Task<InvoiceModel> CaptureAsync(string id)
+        {
+            var retorno = await PostAsync<InvoiceModel>(default(object), $"{id}/capture").ConfigureAwait(false);
             return retorno;
         }
     }
