@@ -72,6 +72,7 @@
     <Compile Include="Entity\SubscriptionModel.cs" />
     <Compile Include="Entity\TokenModel.cs" />
     <Compile Include="Entity\TransferModel.cs" />
+    <Compile Include="Enums.cs" />
     <Compile Include="Lib\Account.cs" />
     <Compile Include="Lib\APIResource.cs" />
     <Compile Include="Lib\Charge.cs" />
@@ -89,6 +90,7 @@
     <Compile Include="Request\ChargeRequestMessage.cs" />
     <Compile Include="Request\CustomerRequestMessage.cs" />
     <Compile Include="Request\InvoiceDuplicateRequestMessage.cs" />
+    <Compile Include="Request\PlanRequestMessage.cs" />
     <Compile Include="Request\SubscriptionRequestMessage.cs" />
     <Compile Include="Request\VerifyAccountRequestMessage.cs" />
     <Compile Include="Response\AccountResponseMessage.cs" />
