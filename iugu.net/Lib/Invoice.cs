@@ -124,6 +124,17 @@ namespace iugu.net.Lib
             return retorno;
         }
 
+        /// <summary>
+        /// Cria uma Fatura para um Cliente
+        /// </summary>
+        /// <param name="invoice">todo: describe invoice parameter on CreateAsync</param>
+        /// <param name="customApiToken">todo: describe customApiToken parameter on CreateAsync</param>
+        /// <returns></returns>
+        public async Task<InvoiceModel> CreateAsync(InvoiceRequestMessage invoice, string customApiToken)
+        {
+            var retorno = await PostAsync<InvoiceModel>(invoice, null, customApiToken).ConfigureAwait(false);
+            return retorno;
+        }
 
         public InvoiceModel Delete(string id)
         {
