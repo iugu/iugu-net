@@ -1,4 +1,5 @@
 ﻿using iugu.net.Entity;
+using iugu.net.Request;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -80,7 +81,6 @@ namespace iugu.net.Lib
         public async Task<PlanModel> CreateAsync(string name, string identifier, int interval, string interval_type, int value_cents,
             string currency = "BRL", List<PlanPrice> prices = null, List<PlanFeature> features = null, string payable_with = null)
         {
-            //TODO: implementar  custom_variables[]
             var user = new
             {
                 name = name,
@@ -94,6 +94,18 @@ namespace iugu.net.Lib
                 payable_with = payable_with
             };
             var retorno = await PostAsync<PlanModel>(user).ConfigureAwait(false);
+            return retorno;
+        }
+
+
+        /// <summary>
+        /// Cria um Plano possibilitando enviar um ApiToken customizado
+        /// </summary>
+        /// <param name="plan">todo: describe plan parameter on CreateAsync</param>
+        /// <param name="customApiToken">todo: describe customApiToken parameter on CreateAsync</param>
+        public async Task<PlanModel> CreateAsync(PlanRequestMessage plan, string customApiToken)
+        {
+            var retorno = await PostAsync<PlanModel>(plan, null, customApiToken).ConfigureAwait(false);
             return retorno;
         }
 

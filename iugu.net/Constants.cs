@@ -7,6 +7,7 @@
         /// </summary>
         public static class PaymentMethod
         {
+            public const string ALL = "all";
             public const string CREDIT_CARD = "credit_card";
             public const string BANK_SLIP = "bank_slip";
         }
@@ -21,9 +22,8 @@
             public const string CANCELED = "canceled";
             public const string PAID = "paid";
             public const string PARTIALLY_PAID = "partially_paid";
-            public const string AUTHORIZED = "authorized";
-            public const string CHARGEBACK = "chargeback";
             public const string REFUNDED = "refunded";
+            public const string EXPIRED = "Expired";
         }
 
         /// <summary>
@@ -61,8 +61,16 @@
         /// </summary>
         public static class GenerateCycleType
         {
-            public const string MONTLY = "months";
+            public const string MONTHLY = "months";
             public const string WEEKLY = "weeks";
+        }
+
+        /// <summary>
+        /// Modedas disponíveis
+        /// </summary>
+        public static class CurrencyTypes
+        {
+            public const string BRL = "BRL";
         }
     }
 }
