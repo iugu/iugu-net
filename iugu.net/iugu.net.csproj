@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants.cs" />
+    <Compile Include="CustomSerializers\EnumToConstantSerializer.cs" />
     <Compile Include="Entity\AccountModel.cs" />
     <Compile Include="Entity\ChargeModel.cs" />
     <Compile Include="Entity\AddressModel.cs" />
