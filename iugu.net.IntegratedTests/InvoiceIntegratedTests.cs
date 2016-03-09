@@ -50,10 +50,10 @@ namespace iugu.net.IntegratedTests
                     IsCreditBased = false,
                     CustomVariables = customVariables,
                     Subitems = subscriptionItems
-                });
+                }).ConfigureAwait(false);
 
                 var invoiceItems = new Item[] { new Item { description = "Mensalidade", price_cents = 65000, quantity = 1 } };
-                invoice = await apiInvoice.CreateAsync("anyemail@gmail.com.br", invoiceDate, invoiceItems, null, null, null, 0, 0, null, false, subscription.id, null, null, customVariables);
+                invoice = await apiInvoice.CreateAsync("anyemail@gmail.com.br", invoiceDate, invoiceItems, null, null, null, 0, 0, null, false, subscription.id, null, null, customVariables).ConfigureAwait(false);
             };
 
             // Assert
@@ -103,7 +103,7 @@ namespace iugu.net.IntegratedTests
                     IsCreditBased = false,
                     CustomVariables = customVariables,
                     Subitems = subscriptionItems
-                });
+                }).ConfigureAwait(false);
 
                 var invoiceItems = new Item[] { new Item { description = "Mensalidade", price_cents = 65000, quantity = 1 } };
                 var current = await apiInvoice.CreateAsync("anyemail@gmail.com.br", invoiceDate, invoiceItems, null, null, null, 0, 0, null, false, subscription.id, null, null, customVariables);
@@ -156,7 +156,7 @@ namespace iugu.net.IntegratedTests
                     IsCreditBased = false,
                     CustomVariables = customVariables,
                     Subitems = subscriptionItems
-                });
+                }).ConfigureAwait(false);
 
                 var invoiceItems = new Item[] { new Item { description = "Mensalidade", price_cents = 65000, quantity = 1 } };
                 var invoiceRequest = new InvoiceRequestMessage("anyemail@gmail.com.br", invoiceDate, invoiceItems)
@@ -165,7 +165,7 @@ namespace iugu.net.IntegratedTests
                     CustomVariables = customVariables.ToArray(),
                 };
 
-                invoice = await apiInvoice.CreateAsync(invoiceRequest, "74c265aedbfaea379bc0148fae9b5526");
+                invoice = await apiInvoice.CreateAsync(invoiceRequest, "74c265aedbfaea379bc0148fae9b5526").ConfigureAwait(false);
             };
 
             // Assert
@@ -216,7 +216,7 @@ namespace iugu.net.IntegratedTests
                     IsCreditBased = false,
                     CustomVariables = customVariables,
                     Subitems = subscriptionItems
-                }, customApiToken);
+                }, customApiToken).ConfigureAwait(false);
 
                 var invoiceItems = new Item[] { new Item { description = "Mensalidade", price_cents = 65000, quantity = 1 } };
                 var request = new InvoiceRequestMessage("anyemail@gmail.com.br", invoiceDate, invoiceItems)
@@ -225,7 +225,7 @@ namespace iugu.net.IntegratedTests
                     CustomVariables = customVariables.ToArray()
                 };
 
-                var current = await apiInvoice.CreateAsync(request, customApiToken);
+                var current = await apiInvoice.CreateAsync(request, customApiToken).ConfigureAwait(false);
                 invoice = await apiInvoice.DuplicateAsync(current.id, new InvoiceDuplicateRequestMessage(newDate), customApiToken).ConfigureAwait(false);
                 cancelInvoice = await apiInvoice.GetAsync(current.id, customApiToken).ConfigureAwait(false);
             };

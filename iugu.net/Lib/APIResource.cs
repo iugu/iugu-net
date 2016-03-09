@@ -101,7 +101,7 @@ namespace iugu.net.Lib
 
         public async Task<T> GetAsync<T>(string id, string partOfUrl, string apiUserToken)
         {
-            var completeUrl = GetCompleteUrl($"{partOfUrl}/{id}");
+            var completeUrl = GetCompleteUrl(partOfUrl, id);
             var response = await SendRequestAsync(HttpMethod.Get, completeUrl, null, apiUserToken).ConfigureAwait(false);
             return await ProcessResponse<T>(response).ConfigureAwait(false);
         }
@@ -120,7 +120,7 @@ namespace iugu.net.Lib
 
         public async Task<T> PostAsync<T>(object data, string partOfUrl, string customApiToken)
         {
-            var completeUrl = GetCompleteUrl(partOfUrl);
+            var completeUrl = GetCompleteUrl(partOfUrl, null);
             var response = await SendRequestAsync(HttpMethod.Post, completeUrl, data, customApiToken).ConfigureAwait(false);
             return await ProcessResponse<T>(response).ConfigureAwait(false);
         }
@@ -137,7 +137,7 @@ namespace iugu.net.Lib
 
         public async Task<T> PutAsync<T>(object data, string partOfUrl, string customApiToken)
         {
-            var completeUrl = GetCompleteUrl(partOfUrl);
+            var completeUrl = GetCompleteUrl(partOfUrl, null);
             var response = await SendRequestAsync(HttpMethod.Put, completeUrl, data, customApiToken).ConfigureAwait(false);
             return await ProcessResponse<T>(response).ConfigureAwait(false);
         }
@@ -199,9 +199,10 @@ namespace iugu.net.Lib
             }
         }
 
-        private string GetCompleteUrl(string partOfUrl)
+        private string GetCompleteUrl(string partOfUrl, string id)
         {
-            return string.IsNullOrEmpty(partOfUrl) ? BaseURI : $"{BaseURI}/{partOfUrl}";
+            var url = string.IsNullOrEmpty(partOfUrl) ? $"{BaseURI}/{id}" : $"{BaseURI}/{partOfUrl}/{id}";
+            return url;
         }
     }
 }
