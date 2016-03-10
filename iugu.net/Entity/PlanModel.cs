@@ -2,6 +2,12 @@
 
 namespace iugu.net.Entity
 {
+
+    public class PlanModelsList
+    {
+        public int TotalItems { get; set; }
+        public PlanModel[] Items { get; set; }
+    }
     // TODO: Precisa de refatoração, nomes fora do padrão .Net, sem documentação também
     public class PlanModel
     {

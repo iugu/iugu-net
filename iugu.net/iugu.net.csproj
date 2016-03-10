@@ -98,6 +98,7 @@
     <Compile Include="Response\ChargeBankSlipResponseMessage.cs" />
     <Compile Include="Response\GetAccountResponseMessage.cs" />
     <Compile Include="Response\MarketplaceAccoutsResponse.cs" />
+    <Compile Include="Response\PaggedResponseMessage.cs" />
     <Compile Include="Response\VerifyAccountResponseMessage.cs" />
   </ItemGroup>
   <ItemGroup>

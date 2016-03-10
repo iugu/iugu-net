@@ -1,5 +1,6 @@
 ﻿using iugu.net.Entity;
 using iugu.net.Request;
+using iugu.net.Response;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -23,6 +24,17 @@ namespace iugu.net.Lib
             return retorno;
         }
 
+        public async Task<PaggedResponseMessage<PlanModel>> GetAllAsync()
+        {
+            var retorno = await GetAllAsync(null).ConfigureAwait(false);
+            return retorno;
+        }
+
+        public async Task<PaggedResponseMessage<PlanModel>> GetAllAsync(string customApiToken)
+        {
+            var retorno = await GetAsync<PaggedResponseMessage<PlanModel>>(null, customApiToken).ConfigureAwait(false);
+            return retorno;
+        }
         public async Task<PlanModel> GetAsync()
         {
             var retorno = await GetAsync<PlanModel>().ConfigureAwait(false);
