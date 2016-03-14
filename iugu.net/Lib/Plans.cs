@@ -55,8 +55,7 @@ namespace iugu.net.Lib
 
         public async Task<PlanModel> GetByIdentifierAsync(string planIdentifier, string customApiToken = null)
         {
-            BaseURI += "/identifier";
-            var retorno = await GetAsync<PlanModel>(planIdentifier, customApiToken).ConfigureAwait(false);
+            var retorno = await GetAsync<PlanModel>(null, $"/identifier/{planIdentifier}", customApiToken).ConfigureAwait(false);
             return retorno;
         }
 
