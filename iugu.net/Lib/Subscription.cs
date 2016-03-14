@@ -106,35 +106,61 @@ namespace iugu.net.Lib
 
         public SubscriptionModel Put(string id, SubscriptionModel model)
         {
-            var retorno = PutAsync<SubscriptionModel>(id, model).Result;
+            var retorno = PutAsync(id, model).Result;
+            return retorno;
+        }
+
+        public async Task<SubscriptionModel> PutAsync(string id, SubscriptionModel model)
+        {
+            var retorno = await PutAsync<SubscriptionModel>(id, model).ConfigureAwait(false);
             return retorno;
         }
 
         public SubscriptionModel Suspend(string id)
         {
-            BaseURI += string.Format("{0}/suspend", id);
-            var retorno = PostAsync<SubscriptionModel>(null).Result;
+            var retorno = SuspendAsync(id).Result;
+            return retorno;
+        }
+
+        public async Task<SubscriptionModel> SuspendAsync(string id)
+        {
+            var retorno = await PostAsync<SubscriptionModel>(null, $"{id}/suspend").ConfigureAwait(false);
             return retorno;
         }
 
         public SubscriptionModel Activate(string id)
         {
-            BaseURI += string.Format("{0}/activate", id);
-            var retorno = PostAsync<SubscriptionModel>(null).Result;
+            var retorno = ActivateAsync(id).Result;
+            return retorno;
+        }
+
+        public async Task<SubscriptionModel> ActivateAsync(string id)
+        {
+            var retorno = await PostAsync<SubscriptionModel>(null, $"{id}/activate").ConfigureAwait(false);
             return retorno;
         }
 
         public SubscriptionModel ChangePlan(string id, string plan_identifier)
         {
-            BaseURI += string.Format("{0}/change_plan/{1}", id, plan_identifier);
-            var retorno = PostAsync<SubscriptionModel>(null).Result;
+            var retorno = ChangePlanAsync(id, plan_identifier).Result;
+            return retorno;
+        }
+
+        public async Task<SubscriptionModel> ChangePlanAsync(string id, string plan_identifier)
+        {
+            var retorno = await PostAsync<SubscriptionModel>(null, $"{id}/change_plan/{plan_identifier}").ConfigureAwait(false);
             return retorno;
         }
 
         public SubscriptionModel AddCredits(string id, int quantity)
         {
-            BaseURI += string.Format("{0}/add_credits/{1}", id, quantity);
-            var retorno = PostAsync<SubscriptionModel>(null).Result;
+            var retorno = AddCreditsAsync(id, quantity).Result;
+            return retorno;
+        }
+
+        public async Task<SubscriptionModel> AddCreditsAsync(string id, int quantity)
+        {
+            var retorno = await PostAsync<SubscriptionModel>(null, $"{id}/add_credits/{quantity}").ConfigureAwait(false);
             return retorno;
         }
     }
