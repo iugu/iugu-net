@@ -74,6 +74,31 @@ namespace iugu.net.Lib
             return retorno;
         }
 
+        /// <summary>
+        /// Faz um pedido de Saque de um valor. de uma determinada conta
+        /// </summary>
+        /// <param name="targetAccountId">Id da conta a ser validada</param>
+        /// <param name="amount">Valor da retirada</param>
+        /// <returns>Resposta da API depedido de saque</returns>
+        public async Task<AccountRequestWithdrawResponse> RequestWithdrawAsync(string targetAccountId, decimal amount)
+        {
+            var retorno = await Api.PostAsync<AccountRequestWithdrawResponse>(amount, $"{targetAccountId}/request_withdraw").ConfigureAwait(false);
+            return retorno;
+        }
+
+        /// <summary>
+        /// Faz um pedido de saque de todo saldo de uma conta
+        /// </summary>
+        /// <param name="targetAccountId">Id da conta a ser validada</param>
+        /// <returns>Resposta da API depedido de saque</returns>
+        public async Task<AccountRequestWithdrawResponse> RequestWithdrawAllAsync(string targetAccountId)
+        {
+            var accountBalanceValue = await Api.GetAsync<GetAccountResponseMessage>(targetAccountId).ConfigureAwait(false);
+            var convertedValue = Convert.ToDecimal(accountBalanceValue.Balance.Replace(Constants.CurrencySymbol.BRL, string.Empty).Replace(",", "."));
+            var retorno = await Api.PostAsync<AccountRequestWithdrawResponse>(convertedValue, $"{targetAccountId}/request_withdraw").ConfigureAwait(false);
+            return retorno;
+        }
+
         public void Dispose()
         {
             Api.Dispose();

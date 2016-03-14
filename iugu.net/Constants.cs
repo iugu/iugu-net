@@ -72,5 +72,13 @@
         {
             public const string BRL = "BRL";
         }
+
+        /// <summary>
+        /// Símbolo de modedas disponíveis
+        /// </summary>
+        public static class CurrencySymbol
+        {
+            public const string BRL = "R$";
+        }
     }
 }
