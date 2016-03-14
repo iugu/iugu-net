@@ -53,12 +53,26 @@ namespace iugu.net.Lib
         /// <returns></returns>
         public async Task<TransferModel> CreateAsync(string receiver_id, int amount_cents)
         {
+            var retorno = await CreateAsync(receiver_id, amount_cents, null).ConfigureAwait(false);
+            return retorno;
+        }
+
+
+        /// <summary>
+        /// Transfere um determinado valor de uma conta origem para uma conta destino.
+        /// </summary>
+        /// <param name="receiverAccountId">Account ID da conta que irá receber o valor</param>
+        /// <param name="amountInCents">Valor a transferir em centavos</param>
+        /// <param name="customSourceAccountApiToken">Token da conta de onde está saindo a quantia</param>
+        /// <returns></returns>
+        public async Task<TransferModel> CreateAsync(string receiverAccountId, int amountInCents, string customSourceAccountApiToken)
+        {
             var user = new
             {
-                receiver_id = receiver_id,
-                amount_cents = amount_cents
+                receiver_id = receiverAccountId,
+                amount_cents = amountInCents
             };
-            var retorno = await PostAsync<TransferModel>(user).ConfigureAwait(false);
+            var retorno = await PostAsync<TransferModel>(user, null, customSourceAccountApiToken).ConfigureAwait(false);
             return retorno;
         }
     }
