@@ -174,8 +174,7 @@ namespace iugu.net.Lib
 
         public async Task<InvoiceModel> RefundAsync(string id)
         {
-            BaseURI += string.Format("{0}/refund", id);
-            var retorno = await PostAsync<InvoiceModel>(null).ConfigureAwait(false);
+            var retorno = await PostAsync<InvoiceModel>(null, $"{id}/refund").ConfigureAwait(false);
             return retorno;
         }
 
