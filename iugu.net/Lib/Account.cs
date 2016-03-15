@@ -82,7 +82,7 @@ namespace iugu.net.Lib
         /// <returns>Resposta da API depedido de saque</returns>
         public async Task<AccountRequestWithdrawResponse> RequestWithdrawAsync(string targetAccountId, decimal amount)
         {
-            var retorno = await Api.PostAsync<AccountRequestWithdrawResponse>(amount, $"{targetAccountId}/request_withdraw").ConfigureAwait(false);
+            var retorno = await Api.PostAsync<AccountRequestWithdrawResponse>(new { amount = amount }, $"{targetAccountId}/request_withdraw").ConfigureAwait(false);
             return retorno;
         }
 
@@ -95,7 +95,7 @@ namespace iugu.net.Lib
         {
             var accountBalanceValue = await Api.GetAsync<GetAccountResponseMessage>(targetAccountId).ConfigureAwait(false);
             var convertedValue = Convert.ToDecimal(accountBalanceValue.Balance.Replace(Constants.CurrencySymbol.BRL, string.Empty).Replace(",", "."));
-            var retorno = await Api.PostAsync<AccountRequestWithdrawResponse>(convertedValue, $"{targetAccountId}/request_withdraw").ConfigureAwait(false);
+            var retorno = await Api.PostAsync<AccountRequestWithdrawResponse>(new { amount = convertedValue }, $"{targetAccountId}/request_withdraw").ConfigureAwait(false);
             return retorno;
         }
 
