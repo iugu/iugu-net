@@ -106,5 +106,27 @@ namespace iugu.net.IntegratedTests
             // Assert
             response.ShouldBeEquivalentTo(request);
         }
+
+
+        [Test]
+        [Ignore("Necessita do LiveApiToken")]
+        public async Task Update_account_configurations_with_success()
+        {
+            // Arrange
+            GetAccountResponseMessage response;
+            var request = new AccountConfigurationRequestMessage
+            {
+                PerDayInterest = true,
+                Fines = true,
+                LatePaymentFine = 2,
+            };
+
+            // Act && Assert
+            using (IApiResources apiClient = new APIResource())
+            using (var client = new Account(apiClient))
+            {
+                Assert.DoesNotThrow(async () => { await client.ConfigureAccountAsync(request, "74c265aedbfaea379bc0148fae9b5526").ConfigureAwait(false); });
+            }
+        }
     }
 }

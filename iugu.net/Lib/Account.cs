@@ -99,6 +99,18 @@ namespace iugu.net.Lib
             return retorno;
         }
 
+        /// <summary>
+        /// Configura parâmetros de uma sub-conta
+        /// </summary>
+        /// <param name="request">Configurações</param>
+        /// <param name="accountApiToken">Live Api Token da conta</param>
+        /// <returns></returns>
+        public async Task<GetAccountResponseMessage> ConfigureAccountAsync(AccountConfigurationRequestMessage request, string accountApiToken)
+        {
+            var retorno = await Api.PostAsync<GetAccountResponseMessage>(request, $"/configuration", accountApiToken).ConfigureAwait(false);
+            return retorno;
+        }
+
         public void Dispose()
         {
             Api.Dispose();
