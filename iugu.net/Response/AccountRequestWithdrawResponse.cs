@@ -21,7 +21,7 @@ namespace iugu.net.Response
         /// <summary>
         /// Valor solicitado para saque
         /// </summary>
-        [JsonProperty("account_id")]
+        [JsonProperty("amount")]
         public decimal WithdrawValue { get; set; }
     }
 }
