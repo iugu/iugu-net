@@ -33,6 +33,8 @@
         {
             public const string SAVING_ACCOUNT = "Poupança";
             public const string CHECKING_ACCOUNT = "Corrente";
+            public const string SAVING_ACCOUNT_ABBREVIATION = "cp";
+            public const string CHECKING_ACCOUNT_ABBREVIATION = "cc";
         }
 
         /// <summary>

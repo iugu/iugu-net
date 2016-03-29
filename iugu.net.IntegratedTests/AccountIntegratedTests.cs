@@ -145,5 +145,22 @@ namespace iugu.net.IntegratedTests
                 Assert.That(response.WithdrawValue, Is.EqualTo(value));
             }
         }
+
+        [Test]
+        [Ignore("Necessita de dados bancários reais")]
+        public async Task Update_account_information_configurations_with_success()
+        {
+            // Arrange
+            SimpleResponseMessage response;
+            var request = new BankVerificationRequestMessage(AvailableBanks.Santander, "1111", "99999999-9", BankAccountTypeAbbreviation.CC, true);
+            // Act && Assert
+            using (IApiResources apiClient = new APIResource())
+            using (var client = new Account(apiClient))
+            {
+                response = await client.UpdateBankAccoutDataAsync(request, "74c265aedbfaea379bc0148fae9b5526").ConfigureAwait(false);
+            }
+
+            Assert.That(response.Success, Is.True);
+        }
     }
 }

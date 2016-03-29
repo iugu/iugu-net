@@ -37,7 +37,7 @@ namespace iugu.net
     /// </summary>
     public enum AvailableBanks
     {
-        CaixaEconomicaFederal, BancoDoBrasil, Bradesco, Itau, Santander
+        CaixaEconomicaFederal = 104, BancoDoBrasil = 001, Bradesco = 237, Itau = 341, Santander = 033, HSBC = 399
     }
 
     /// <summary>
@@ -65,7 +65,7 @@ namespace iugu.net
     }
 
     /// <summary>
-    /// Person type
+    /// Bank account type
     /// </summary>
     public enum BankAccountType
     {
@@ -80,6 +80,18 @@ namespace iugu.net
         CheckingAccount
     }
 
+    public enum BankAccountTypeAbbreviation
+    {
+        /// <summary>
+        /// Conta poupança
+        /// </summary>
+        CP,
+
+        /// <summary>
+        /// Conta Corrente
+        /// </summary>
+        CC
+    }
     /// <summary>
     /// Metodos de pagamento suportado
     /// </summary>
