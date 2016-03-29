@@ -25,6 +25,7 @@ namespace iugu.net.Lib
         //updated_since (opcional)	Registros atualizados desde o valor passado no parâmetro
         //sortBy (opcional)	Um hash sendo a chave o nome do campo para ordenação e o valor sendo DESC ou ASC para descendente e ascendente, respectivamente
         //customer_id (opcional)	ID do Cliente
+        [Obsolete("Sera descontinuado na versão 2.x do client, use a versão assincrona do método")]
         public InvoiceListModel Get()
         {
             //TODO: Implementar GET com parametros
@@ -39,6 +40,7 @@ namespace iugu.net.Lib
             return retorno;
         }
 
+        [Obsolete("Sera descontinuado na versão 2.x do client, use a versão assincrona do método")]
         public InvoiceModel Get(string id)
         {
             var retorno = GetAsync(id).Result;
@@ -65,7 +67,7 @@ namespace iugu.net.Lib
         /// <param name="items"> Itens da Fatura</param>
         /// <param name="return_url">(opcional)	Cliente é redirecionado para essa URL após efetuar o pagamento da Fatura pela página de Fatura da Iugu</param>
         /// <param name="expired_url">(opcional) Cliente é redirecionado para essa URL se a Fatura que estiver acessando estiver expirada</param>
-        ///  <param name="notification_url">(opcional) URL chamada para todas as notificações de Fatura, assim como os webhooks (Gatilhos) são chamados</param>
+        /// <param name="notification_url">(opcional) URL chamada para todas as notificações de Fatura, assim como os webhooks (Gatilhos) são chamados</param>
         /// <param name="tax_cents">(opcional) Valor dos Impostos em centavos</param>
         /// <param name="discount_cents">(opcional)	Valor dos Descontos em centavos</param>
         /// <param name="customer_id">(opcional) ID do Cliente</param>
@@ -75,6 +77,7 @@ namespace iugu.net.Lib
         /// <param name="logs">(opcional) Logs da Fatura</param>
         /// <param name="custom_variables">(opcional) Variáveis Personalizadas</param>
         /// <returns></returns>
+        [Obsolete("Sera descontinuado na versão 2.x do client, use a versão assincrona do método que recebe InvoiceRequestMessage como parâmetro")]
         public InvoiceModel Create(string email, DateTime due_date, Item[] items, string return_url = "",
             string expired_url = "", string notification_url = "", int tax_cents = 0, int discount_cents = 0, string customer_id = "", bool ignore_due_email = false,
             string subscription_id = "", int credits = 0, Logs logs = null, List<CustomVariables> custom_variables = null)
@@ -103,6 +106,7 @@ namespace iugu.net.Lib
         /// <param name="logs">(opcional) Logs da Fatura</param>
         /// <param name="custom_variables">(opcional) Variáveis Personalizadas</param>
         /// <returns></returns>
+        [Obsolete("Sera descontinuado na versão 2.x do client, use a versão assincrona do método que recebe InvoiceRequestMessage como parâmetro")]
         public async Task<InvoiceModel> CreateAsync(string email, DateTime due_date, Item[] items, string return_url,
     string expired_url, string notification_url, int tax_cents = 0, int discount_cents = 0, string customer_id = null, bool ignore_due_email = false,
     string subscription_id = null, int? credits = null, Logs logs = null, List<CustomVariables> custom_variables = null)
@@ -131,15 +135,16 @@ namespace iugu.net.Lib
         /// <summary>
         /// Cria uma Fatura para um Cliente
         /// </summary>
-        /// <param name="invoice">todo: describe invoice parameter on CreateAsync</param>
-        /// <param name="customApiToken">todo: describe customApiToken parameter on CreateAsync</param>
-        /// <returns></returns>
+        /// <param name="invoice"></param>
+        /// <param name="customApiToken">Token customizado opcional, mais utilizado em marketplaces</param>
+        /// <returns>Objeto invoice resultante da requisição</returns>
         public async Task<InvoiceModel> CreateAsync(InvoiceRequestMessage invoice, string customApiToken)
         {
             var retorno = await PostAsync<InvoiceModel>(invoice, null, customApiToken).ConfigureAwait(false);
             return retorno;
         }
 
+        [Obsolete("Sera descontinuado na versão 2.x do client, use a versão assincrona do método")]
         public InvoiceModel Delete(string id)
         {
             var retorno = DeleteAsync(id).Result;
@@ -152,6 +157,7 @@ namespace iugu.net.Lib
             return retorno;
         }
 
+        [Obsolete("Sera descontinuado na versão 2.x do client, use a versão assincrona do método")]
         public InvoiceModel Put(string id, InvoiceModel model)
         {
             var retorno = PutAsync(id, model).Result;
@@ -164,6 +170,7 @@ namespace iugu.net.Lib
             return retorno;
         }
 
+        [Obsolete("Sera descontinuado na versão 2.x do client, use a versão assincrona do método")]
         public InvoiceModel Refund(string id)
         {
             var retorno = RefundAsync(id).Result;
@@ -176,6 +183,7 @@ namespace iugu.net.Lib
             return retorno;
         }
 
+        [Obsolete("Sera descontinuado na versão 2.x do client, use a versão assincrona do método")]
         public InvoiceModel Cancel(string id)
         {
             var retorno = CancelAsync(id).Result;
@@ -199,13 +207,12 @@ namespace iugu.net.Lib
         /// </summary>
         /// <param name="id">Identificador da fatura</param>
         /// <param name="data">Informações da nova fatura</param>
-        /// <returns></returns>
+        /// <returns>Objeto invoice resultante da requisição</returns>
         public async Task<InvoiceModel> DuplicateAsync(string id, InvoiceDuplicateRequestMessage data)
         {
             var retorno = await PostAsync<InvoiceModel>(data, $"{id}/duplicate").ConfigureAwait(false);
             return retorno;
         }
-
 
         /// <summary>
         /// Gera segunda via de uma Fatura. Somente faturas pendentes podem ter segunda via gerada. A fatura atual é cancelada e uma nova é gerada com status ‘pending’.
@@ -213,19 +220,18 @@ namespace iugu.net.Lib
         /// <param name="id">Identificador da fatura</param>
         /// <param name="data">Informações da nova fatura</param>
         /// <param name="customApiToken">Token customizado geralmente passado quando está se trabalhando como marketplace</param>
-        /// <returns></returns>
+        /// <returns>Objeto invoice resultante da requisição</returns>
         public async Task<InvoiceModel> DuplicateAsync(string id, InvoiceDuplicateRequestMessage data, string customApiToken)
         {
             var retorno = await PostAsync<InvoiceModel>(data, $"{id}/duplicate", customApiToken).ConfigureAwait(false);
             return retorno;
         }
 
-
         /// <summary>
         /// Captura uma fatura com estado 'Em Análise'
         /// </summary>
         /// <param name="id">Identificador da fatura</param>
-        /// <returns></returns>
+        /// <returns>Objeto invoice resultante da requisição</returns>
         public async Task<InvoiceModel> CaptureAsync(string id)
         {
             var retorno = await PostAsync<InvoiceModel>(default(object), $"{id}/capture").ConfigureAwait(false);

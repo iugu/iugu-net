@@ -29,6 +29,7 @@ namespace iugu.net.Lib
         /// </summary>
         /// <param name="underAccount">Informações da conta que se deseja criar</param>
         /// <returns>informações da conta recém criada</returns>
+        [Obsolete("Sera descontinuado na versão 2.x do client, use a versão assincrona do método que recebe AccountRequestMessage como parâmetro")]
         public AccountResponseMessage CreateUnderAccount(AccountRequestMessage underAccount)
         {
             var retorno = CreateUnderAccountAsync(underAccount).Result;
@@ -66,7 +67,6 @@ namespace iugu.net.Lib
             var retorno = await Api.GetAsync<MarketplaceAccoutsResponse>(null, customApiToken).ConfigureAwait(false);
             return retorno;
         }
-
 
         public void Dispose()
         {

@@ -1,5 +1,6 @@
 ﻿using iugu.net.Entity;
 using iugu.net.Request;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -17,6 +18,7 @@ namespace iugu.net.Lib
             BaseURI = "/customers";
         }
 
+        [Obsolete("Sera descontinuado na versão 2.x do client, use a versão assincrona do método")]
         public CustomersModel Get()
         {
             var retorno = GetAsync().Result;
@@ -29,6 +31,7 @@ namespace iugu.net.Lib
             return retorno;
         }
 
+        [Obsolete("Sera descontinuado na versão 2.x do client, use a versão assincrona do método")]
         public CustomerModel Get(string id)
         {
             var retorno = GetAsync(id).Result;
@@ -56,6 +59,7 @@ namespace iugu.net.Lib
         /// <param name="custom_variables">(Opcional) Variáveis Personalizadas</param>
         /// <param name="withCopyEmail">(Opcional) Endereços de E-mail para cópia separados por vírgula.</param>
         /// <returns>O cliente criado</returns>
+        [Obsolete("Sera descontinuado na versão 2.x do client, use a versão assincrona que recebe CustomerRequestMessage como parâmetro do método")]
         public CustomerModel Create(string email, string name = null, string notes = null, List<CustomVariables> custom_variables = null, string withCopyEmail = null)
         {
             var retorno = CreateAsync(email, name, notes, custom_variables, withCopyEmail).Result;
@@ -71,6 +75,7 @@ namespace iugu.net.Lib
         /// <param name="custom_variables">(Opcional) Variáveis Personalizadas</param>
         /// <param name="withCopyEmail">(Opcional) Endereços de E-mail para cópia separados por vírgula.</param>
         /// <returns>O cliente criado</returns>
+        [Obsolete("Sera descontinuado na versão 2.x do client, use a versão assincrona que recebe CustomerRequestMessage como parâmetro do método")]
         public async Task<CustomerModel> CreateAsync(string email, string name = null, string notes = null, List<CustomVariables> custom_variables = null, string withCopyEmail = null)
         {
             var user = new
@@ -96,6 +101,8 @@ namespace iugu.net.Lib
             var retorno = await PostAsync<CustomerModel>(request, null, customApiToken).ConfigureAwait(false);
             return retorno;
         }
+
+        [Obsolete("Sera descontinuado na versão 2.x do client, use a versão assincrona do método")]
         public CustomerModel Delete(string id)
         {
             var retorno = DeleteAsync(id).Result;
@@ -108,6 +115,7 @@ namespace iugu.net.Lib
             return retorno;
         }
 
+        [Obsolete("Sera descontinuado na versão 2.x do client, use a versão assincrona do método")]
         public CustomerModel Put(string id, CustomerModel model)
         {
             var retorno = PutAsync(id, model).Result;

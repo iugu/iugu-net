@@ -1,4 +1,5 @@
 ﻿using iugu.net.Entity;
+using System;
 using System.Threading.Tasks;
 
 namespace iugu.net.Lib
@@ -17,6 +18,7 @@ namespace iugu.net.Lib
         /// Lista com todas as transferências efetuadas.
         /// </summary>
         /// <returns>A lista de transferência</returns>
+        [Obsolete("Sera descontinuado na versão 2.x do client, use a versão assincrona do método")]
         public TransferModel Get()
         {
             var retorno = GetAsync().Result;
@@ -39,6 +41,7 @@ namespace iugu.net.Lib
         /// <param name="receiver_id">Account ID da conta que irá receber o valor</param>
         /// <param name="amount_cents">Valor a transferir em centavos</param>
         /// <returns></returns>
+        [Obsolete("Sera descontinuado na versão 2.x do client, use a versão assincrona do método")]
         public TransferModel Create(string receiver_id, int amount_cents)
         {
             var retorno = CreateAsync(receiver_id, amount_cents).Result;
@@ -56,7 +59,6 @@ namespace iugu.net.Lib
             var retorno = await CreateAsync(receiver_id, amount_cents, null).ConfigureAwait(false);
             return retorno;
         }
-
 
         /// <summary>
         /// Transfere um determinado valor de uma conta origem para uma conta destino.

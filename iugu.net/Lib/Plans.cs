@@ -1,6 +1,7 @@
 ﻿using iugu.net.Entity;
 using iugu.net.Request;
 using iugu.net.Response;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -18,6 +19,7 @@ namespace iugu.net.Lib
         //query (opcional)	Neste parâmetro pode ser passado um texto para pesquisa
         //updated_since (opcional)	Registros atualizados desde o valor passado no parâmetro
         //sortBy (opcional)	Um hash sendo a chave o nome do campo para ordenação e o valor sendo DESC ou ASC para descendente e ascendente, respectivamente
+        [Obsolete("Sera descontinuado na versão 2.x do client, use a versão assincrona do método")]
         public PlanModel Get()
         {
             var retorno = GetAsync().Result;
@@ -41,6 +43,7 @@ namespace iugu.net.Lib
             return retorno;
         }
 
+        [Obsolete("Sera descontinuado na versão 2.x do client, use a versão assincrona do método")]
         public PlanModel Get(string id)
         {
             var retorno = GetAsync(id).Result;
@@ -70,6 +73,7 @@ namespace iugu.net.Lib
         /// <param name="currency">Moeda do Preço (Somente "BRL" por enquanto)</param>
         /// <param name="prices"> (opcional)	Preços do Plano</param>
         /// <param name="features"> (opcional)	Funcionalidades do Plano</param>
+        [Obsolete("Sera descontinuado na versão 2.x do client, use a versão assincrona do método que recebe PlanRequestMessage como parametro")]
         public PlanModel Create(string name, string identifier, int interval, string interval_type, int value_cents,
             string currency = "BRL", List<PlanPrice> prices = null, List<PlanFeature> features = null)
         {
@@ -89,6 +93,7 @@ namespace iugu.net.Lib
         /// <param name="prices"> (opcional) Preços do Plano</param>
         /// <param name="features"> (opcional) Funcionalidades do Plano</param>
         /// <param name="payable_with">(opcional) Método de pagamento que será disponibilizado para as Faturas pertencentes a Assinaturas deste Plano ('all', 'credit_card' ou 'bank_slip')</param>
+        [Obsolete("Sera descontinuado na versão 2.x do client, use a versão assincrona do método que recebe PlanRequestMessage como parametro")]
         public async Task<PlanModel> CreateAsync(string name, string identifier, int interval, string interval_type, int value_cents,
             string currency = "BRL", List<PlanPrice> prices = null, List<PlanFeature> features = null, string payable_with = null)
         {
@@ -120,6 +125,7 @@ namespace iugu.net.Lib
             return retorno;
         }
 
+        [Obsolete("Sera descontinuado na versão 2.x do client, use a versão assincrona do método")]
         public PlanModel Delete(string id)
         {
             var retorno = DeleteAsync(id).Result;
@@ -138,6 +144,7 @@ namespace iugu.net.Lib
             return retorno;
         }
 
+        [Obsolete("Sera descontinuado na versão 2.x do client, use a versão assincrona do método")]
         public PlanModel Put(string id, PlanModel model)
         {
             var retorno = PutAsync<PlanModel>(id, model).Result;

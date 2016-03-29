@@ -1,4 +1,5 @@
 ﻿using iugu.net.Entity;
+using System;
 using System.Threading.Tasks;
 
 namespace iugu.net.Lib
@@ -20,6 +21,7 @@ namespace iugu.net.Lib
             BaseURI = string.Format("/customers/{0}/payment_methods", CustomerID);
         }
 
+        [Obsolete("Sera descontinuado na versão 2.x do client, use a versão assincrona do método")]
         public PaymentMethodModel Get()
         {
             var retorno = GetAsync().Result;
@@ -32,6 +34,7 @@ namespace iugu.net.Lib
             return retorno;
         }
 
+        [Obsolete("Sera descontinuado na versão 2.x do client, use a versão assincrona do método")]
         public PaymentMethodModel Get(string id)
         {
             var retorno = GetAsync(id).Result;
@@ -52,6 +55,7 @@ namespace iugu.net.Lib
         /// <param name="set_as_default">(opcional)	Tipo da Forma de Pagamento. Atualmente suportamos apenas Cartão de Crédito (tipo credit_card). Só deve ser enviado caso não envie token.</param>
         /// <param name="token">(opcional)	Token de Pagamento, pode ser utilizado em vez de enviar os dados da forma de pagamento</param>
         /// <param name="item_type">(opcional)	Transforma a forma de pagamento na padrão do cliente</param>
+        [Obsolete("Sera descontinuado na versão 2.x do client, use a versão assincrona do método")]
         public PaymentMethodModel Create(string description, CreditCard data, bool? set_as_default, string token = "", string item_type = "")
         {
             var retorno = CreateAsync(description, data, set_as_default, token, item_type).Result;
@@ -80,6 +84,7 @@ namespace iugu.net.Lib
             return retorno;
         }
 
+        [Obsolete("Sera descontinuado na versão 2.x do client, use a versão assincrona do método")]
         public PaymentMethodModel Delete(string id)
         {
             var retorno = DeleteAsync(id).Result;
@@ -92,6 +97,7 @@ namespace iugu.net.Lib
             return retorno;
         }
 
+        [Obsolete("Sera descontinuado na versão 2.x do client, use a versão assincrona do método")]
         public PaymentMethodModel Put(string id, PaymentMethodModel model)
         {
             var retorno = PutAsync(id, model).Result;

@@ -35,7 +35,6 @@ namespace iugu.net.Response
         /// <summary>
         /// Token do usuário, usado em algumas APIs específicas
         /// </summary>
-        [Obsolete]
         [JsonProperty("user_token")]
         public string UserToken { get; set; }
     }

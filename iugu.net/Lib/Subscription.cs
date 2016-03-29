@@ -21,11 +21,14 @@ namespace iugu.net.Lib
         //updated_since (opcional)	Registros atualizados desde o valor passado no parâmetro
         //sortBy (opcional)	Um hash sendo a chave o nome do campo para ordenação e o valor sendo DESC ou ASC para descendente e ascendente, respectivamente
         //customer_id (opcional)	ID do Cliente
+        [Obsolete("Sera descontinuado na versão 2.x do client, use a versão assincrona do método")]
         public SubscriptionModel Get()
         {
             var retorno = GetAsync<SubscriptionModel>().Result;
             return retorno;
         }
+
+        [Obsolete("Sera descontinuado na versão 2.x do client, use a versão assincrona do método")]
         public SubscriptionModel Get(string id)
         {
             var retorno = GetAsync<SubscriptionModel>(id).Result;
@@ -46,7 +49,7 @@ namespace iugu.net.Lib
         /// <param name="subitems">Itens de assinatura, sendo que estes podem ser recorrentes ou de cobrança única</param>
         /// <param name="custom_variables">Variáveis Personalizadas</param>
         /// <returns></returns>
-        [Obsolete]
+        [Obsolete("Sera descontinuado na versão 2.x do client, use a versão assincrona do método que recebe SubscriptionRequestMessage como parametro")]
         public SubscriptionModel Create(string customer_id, string plan_identifier = null, DateTime? expires_at = null,
             bool? only_on_charge_success = null,
             bool? credits_based = null, int? price_cents = null, int? credits_cycle = null, int? credits_min = null,
@@ -90,6 +93,7 @@ namespace iugu.net.Lib
             return retorno;
         }
 
+        [Obsolete("Sera descontinuado na versão 2.x do client, use a versão assincrona do método")]
         public SubscriptionModel Delete(string id)
         {
             var retorno = DeleteAsync(id, null).Result;
@@ -102,6 +106,7 @@ namespace iugu.net.Lib
             return retorno;
         }
 
+        [Obsolete("Sera descontinuado na versão 2.x do client, use a versão assincrona do método")]
         public SubscriptionModel Put(string id, SubscriptionModel model)
         {
             var retorno = PutAsync(id, model).Result;
@@ -114,6 +119,7 @@ namespace iugu.net.Lib
             return retorno;
         }
 
+        [Obsolete("Sera descontinuado na versão 2.x do client, use a versão assincrona do método")]
         public SubscriptionModel Suspend(string id)
         {
             var retorno = SuspendAsync(id).Result;
@@ -126,6 +132,7 @@ namespace iugu.net.Lib
             return retorno;
         }
 
+        [Obsolete("Sera descontinuado na versão 2.x do client, use a versão assincrona do método")]
         public SubscriptionModel Activate(string id)
         {
             var retorno = ActivateAsync(id).Result;
@@ -138,6 +145,7 @@ namespace iugu.net.Lib
             return retorno;
         }
 
+        [Obsolete("Sera descontinuado na versão 2.x do client, use a versão assincrona do método")]
         public SubscriptionModel ChangePlan(string id, string plan_identifier)
         {
             var retorno = ChangePlanAsync(id, plan_identifier).Result;
@@ -150,6 +158,7 @@ namespace iugu.net.Lib
             return retorno;
         }
 
+        [Obsolete("Sera descontinuado na versão 2.x do client, use a versão assincrona do método")]
         public SubscriptionModel AddCredits(string id, int quantity)
         {
             var retorno = AddCreditsAsync(id, quantity).Result;
