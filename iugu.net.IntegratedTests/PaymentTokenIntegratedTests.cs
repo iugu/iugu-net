@@ -1,9 +1,8 @@
-﻿using iugu.net.Lib;
+﻿using iugu.net.Entity;
+using iugu.net.Lib;
+using iugu.net.Request;
+using iugu.net.Response;
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace iugu.net.IntegratedTests

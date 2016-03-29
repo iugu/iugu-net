@@ -67,6 +67,7 @@
     <Compile Include="Entity\InvoiceItem.cs" />
     <Compile Include="Entity\InvoiceModel.cs" />
     <Compile Include="Entity\PayerModel.cs" />
+    <Compile Include="Entity\PaymentInfoModel.cs" />
     <Compile Include="Entity\PaymentMethodModel.cs" />
     <Compile Include="Entity\PlanModel.cs" />
     <Compile Include="Entity\SubscriptionModel.cs" />
@@ -93,6 +94,7 @@
     <Compile Include="Request\CustomerRequestMessage.cs" />
     <Compile Include="Request\InvoiceDuplicateRequestMessage.cs" />
     <Compile Include="Request\InvoiceRequestMessage.cs" />
+    <Compile Include="Request\PaymentTokenRequest.cs" />
     <Compile Include="Request\PlanRequestMessage.cs" />
     <Compile Include="Request\SubscriptionRequestMessage.cs" />
     <Compile Include="Request\VerifyAccountRequestMessage.cs" />
@@ -102,6 +104,7 @@
     <Compile Include="Response\GetAccountResponseMessage.cs" />
     <Compile Include="Response\MarketplaceAccoutsResponse.cs" />
     <Compile Include="Response\PaggedResponseMessage.cs" />
+    <Compile Include="Response\PaymentTokenResponse.cs" />
     <Compile Include="Response\SimpleResponseMessage.cs" />
     <Compile Include="Response\VerifyAccountResponseMessage.cs" />
   </ItemGroup>
