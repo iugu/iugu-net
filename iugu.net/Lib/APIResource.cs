@@ -44,7 +44,7 @@ namespace iugu.net.Lib
         public string BaseURI
         {
             get { return _baseURI; }
-            set { _baseURI = value; }
+            set { _baseURI = _endpoint + "/" + _apiVersion + value; }
         }
 
         /// <summary>

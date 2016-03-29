@@ -21,7 +21,7 @@ namespace iugu.net.Lib
         public MarketPlace(IApiResources api)
         {
             Api = api;
-            api.BaseURI += "/marketplace";
+            api.BaseURI = "/marketplace";
         }
 
         /// <summary>

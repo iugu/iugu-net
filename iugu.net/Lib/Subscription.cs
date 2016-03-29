@@ -12,7 +12,7 @@ namespace iugu.net.Lib
     {
         public Subscription()
         {
-            BaseURI += "/subscriptions";
+            BaseURI = "/subscriptions";
         }
 
         //limit (opcional)	Máximo de registros retornados

@@ -13,7 +13,7 @@ namespace iugu.net.Lib
     {
         public PaymentToken()
         {
-            BaseURI += "/payment_token";
+            BaseURI = "/payment_token";
         }
 
         /// <summary>

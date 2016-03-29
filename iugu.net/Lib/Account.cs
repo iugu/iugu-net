@@ -17,7 +17,7 @@ namespace iugu.net.Lib
         public Account(IApiResources api)
         {
             Api = api;
-            api.BaseURI += "/accounts";
+            api.BaseURI = "/accounts";
         }
 
         /// <summary>
@@ -136,6 +136,21 @@ namespace iugu.net.Lib
         public async Task<GetAccountResponseMessage> ConfigureAccountAsync(AccountConfigurationRequestMessage request, string accountApiToken)
         {
             var retorno = await Api.PostAsync<GetAccountResponseMessage>(request, $"/configuration", accountApiToken).ConfigureAwait(false);
+            return retorno;
+        }
+
+        /// <summary>
+        /// Envia dados para alteração de dados bancários.
+        /// </summary>
+        /// <param name="request">Requisição com o pedido de atualização dos dados bancários</param>
+        /// <param name="accountApiToken">Token customizado da conta onde se quer fazer a atualização</param>
+        /// <returns>Mensagem com o status da solicitação de update</returns>
+        public async Task<SimpleResponseMessage> UpdateBankAccoutDataAsync(BankVerificationRequestMessage request, string accountApiToken)
+        {
+            //var currentBaseApiUrl = Api.BaseURI;
+            Api.BaseURI = "/bank_verification";
+            var retorno = await Api.PostAsync<SimpleResponseMessage>(request, null, accountApiToken).ConfigureAwait(false);
+            Api.BaseURI = "/accounts";
             return retorno;
         }
 

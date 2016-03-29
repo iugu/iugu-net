@@ -10,7 +10,7 @@ namespace iugu.net.Lib
     {
         public Plans()
         {
-            BaseURI += "/plans";
+            BaseURI = "/plans";
         }
 
         //limit (opcional)	Máximo de registros retornados
@@ -55,7 +55,7 @@ namespace iugu.net.Lib
 
         public async Task<PlanModel> GetByIdentifierAsync(string planIdentifier, string customApiToken = null)
         {
-            var retorno = await GetAsync<PlanModel>(null, $"/identifier/{planIdentifier}", customApiToken).ConfigureAwait(false);
+            var retorno = await GetAsync<PlanModel>(null, $"identifier/{planIdentifier}", customApiToken).ConfigureAwait(false);
             return retorno;
         }
 

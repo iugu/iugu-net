@@ -17,7 +17,7 @@ namespace iugu.net.Lib
         public PaymentMethod(string customerid)
         {
             _customerID = customerid;
-            BaseURI += string.Format("/customers/{0}/payment_methods", CustomerID);
+            BaseURI = string.Format("/customers/{0}/payment_methods", CustomerID);
         }
 
         public PaymentMethodModel Get()

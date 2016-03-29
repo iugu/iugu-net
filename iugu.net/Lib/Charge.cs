@@ -2,7 +2,7 @@
 using iugu.net.Response;
 using System.Threading.Tasks;
 
-namespace  iugu.net.Lib
+namespace iugu.net.Lib
 {
     /// <summary>
     /// Cobrança Direta
@@ -12,7 +12,7 @@ namespace  iugu.net.Lib
     {
         public Charge()
         {
-            BaseURI += "/charge";
+            BaseURI = "/charge";
         }
 
         /// <summary>

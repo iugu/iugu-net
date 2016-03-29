@@ -14,7 +14,7 @@ namespace iugu.net.Lib
     {
         public Customer()
         {
-            BaseURI += "/customers";
+            BaseURI = "/customers";
         }
 
         public CustomersModel Get()

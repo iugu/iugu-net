@@ -16,7 +16,7 @@ namespace iugu.net.Lib
     {
         public Invoice()
         {
-            BaseURI += "/invoices";
+            BaseURI = "/invoices";
         }
 
         //limit (opcional)	Máximo de registros retornados

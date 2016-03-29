@@ -10,7 +10,7 @@ namespace iugu.net.Lib
     {
         public Transfers()
         {
-            BaseURI += "/transfers";
+            BaseURI = "/transfers";
         }
 
         /// <summary>
