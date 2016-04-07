@@ -237,5 +237,28 @@ namespace iugu.net.Lib
             var retorno = await PostAsync<InvoiceModel>(default(object), $"{id}/capture").ConfigureAwait(false);
             return retorno;
         }
+
+        /// <summary>
+        /// Reenviar fatura para o email do cliente
+        /// </summary>
+        /// <param name="id">Identificador da fatura</param>
+        /// <returns>Objeto invoice resultante da requisição</returns>
+        public async Task<InvoiceModel> ResendInvoiceMail(string id)
+        {
+            var retorno = await ResendInvoiceMail(id, null).ConfigureAwait(false);
+            return retorno;
+        }
+
+        /// <summary>
+        /// Reenviar fatura para o email do cliente
+        /// </summary>
+        /// <param name="id">Identificador da fatura</param>
+        /// <param name="customApiToken">Token customizado geralmente passado quando está se trabalhando como marketplace</param>
+        /// <returns>Objeto invoice resultante da requisição</returns>
+        public async Task<InvoiceModel> ResendInvoiceMail(string id, string customApiToken)
+        {
+            var retorno = await PostAsync<InvoiceModel>(default(object), $"{id}/send_email", customApiToken).ConfigureAwait(false);
+            return retorno;
+        }
     }
 }

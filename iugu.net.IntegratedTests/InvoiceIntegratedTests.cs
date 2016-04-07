@@ -4,6 +4,7 @@ using iugu.net.Request;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace iugu.net.IntegratedTests
@@ -235,5 +236,45 @@ namespace iugu.net.IntegratedTests
             Assert.That(invoice.status, Is.EqualTo(Constants.InvoiceStatus.PENDING));
             Assert.That(cancelInvoice.status, Is.EqualTo(Constants.InvoiceStatus.CANCELED));
         }
+
+
+        [Test]
+        public async Task List_invoices()
+        {
+            // Arrange
+            InvoiceListModel invoices = null;
+
+            // Act
+            using (var apiInvoice = new Invoice())
+            {
+                invoices = await apiInvoice.GetAsync().ConfigureAwait(false);
+            };
+
+            // Assert
+            Assert.That(invoices, Is.Not.Null);
+            Assert.That(invoices?.items, Is.Not.Empty);
+        }
+
+        [Test]
+        public async Task Resend_invoice_mail()
+        {
+            // Arrange
+            InvoiceListModel invoices = null;
+            InvoiceModel resendInvoiceModel = null;
+            var resendInvoiceId = "";
+
+            // Act
+            using (var apiInvoice = new Invoice())
+            {
+                invoices = await apiInvoice.GetAsync().ConfigureAwait(false);
+                resendInvoiceId = invoices.items.First().id;
+                resendInvoiceModel = await apiInvoice.ResendInvoiceMail(resendInvoiceId).ConfigureAwait(false);
+            };
+
+            // Assert
+            Assert.That(resendInvoiceModel, Is.Not.Null);
+            Assert.That(resendInvoiceModel.id, Is.EqualTo(resendInvoiceId));
+        }
+
     }
 }
