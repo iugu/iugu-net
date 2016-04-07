@@ -2,7 +2,8 @@
 
 namespace iugu.net.Entity
 {
-    // TODO: Precisa de refatoração, nomes fora do padrão .Net, sem documentação também
+    // TODO: Precisa de refatoração, nomes fora do padrão .Net, sem documentação também, 
+    // faltando propriededas que não estão na documentação
     public class InvoiceModel
     {
         public string id { get; set; }
@@ -17,7 +18,11 @@ namespace iugu.net.Entity
         public object tax_cents { get; set; }
         public string updated_at { get; set; }
         public int total_cents { get; set; }
+        public string total_paid { get; set; }
+        public int total_paid_cents { get; set; }
         public object paid_at { get; set; }
+        public int? paid_cents { get; set; }
+        public string paid { get; set; }
         public string secure_id { get; set; }
         public string secure_url { get; set; }
         public object customer_id { get; set; }
