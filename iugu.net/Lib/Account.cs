@@ -147,7 +147,6 @@ namespace iugu.net.Lib
         /// <returns>Mensagem com o status da solicitação de update</returns>
         public async Task<SimpleResponseMessage> UpdateBankAccoutDataAsync(BankVerificationRequestMessage request, string accountApiToken)
         {
-            //var currentBaseApiUrl = Api.BaseURI;
             Api.BaseURI = "/bank_verification";
             var retorno = await Api.PostAsync<SimpleResponseMessage>(request, null, accountApiToken).ConfigureAwait(false);
             Api.BaseURI = "/accounts";

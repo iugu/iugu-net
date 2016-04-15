@@ -86,6 +86,7 @@
         /// </summary>
         CC
     }
+
     /// <summary>
     /// Metodos de pagamento suportado
     /// </summary>
@@ -104,5 +105,20 @@
         /// Boleto bancário
         /// </summary>
         BankSlip
+    }
+
+    /// <summary>
+    /// Ordenações suportadas
+    /// </summary>
+    public enum ResultOrderType
+    {
+        /// <summary>
+        /// Menor para o maior
+        /// </summary>
+        Ascending,
+        /// <summary>
+        /// Maior para o menor
+        /// </summary>
+        Descending
     }
 }

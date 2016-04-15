@@ -74,6 +74,7 @@
     <Compile Include="Entity\TokenModel.cs" />
     <Compile Include="Entity\TransferModel.cs" />
     <Compile Include="Enums.cs" />
+    <Compile Include="Filters\FilterOptions.cs" />
     <Compile Include="Lib\Account.cs" />
     <Compile Include="Lib\APIResource.cs" />
     <Compile Include="Lib\Charge.cs" />
@@ -83,6 +84,7 @@
     <Compile Include="Lib\PaymentMethod.cs" />
     <Compile Include="Lib\PaymentToken.cs" />
     <Compile Include="Lib\Plans.cs" />
+    <Compile Include="Lib\Reports.cs" />
     <Compile Include="Lib\StandardHttpClient.cs" />
     <Compile Include="Lib\Subscription.cs" />
     <Compile Include="Lib\Transfers.cs" />
@@ -105,7 +107,9 @@
     <Compile Include="Response\MarketplaceAccoutsResponse.cs" />
     <Compile Include="Response\PaggedResponseMessage.cs" />
     <Compile Include="Response\PaymentTokenResponse.cs" />
+    <Compile Include="Response\RequestWithdrawResponseMessage.cs" />
     <Compile Include="Response\SimpleResponseMessage.cs" />
+    <Compile Include="Response\TransfersReportResponseMessage.cs" />
     <Compile Include="Response\VerifyAccountResponseMessage.cs" />
   </ItemGroup>
   <ItemGroup>
