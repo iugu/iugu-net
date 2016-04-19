@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Linq;
 using System.Configuration;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -202,6 +203,10 @@ namespace iugu.net.Lib
         private string GetCompleteUrl(string partOfUrl, string id)
         {
             var url = string.IsNullOrEmpty(partOfUrl) ? $"{BaseURI}/{id}" : $"{BaseURI}/{partOfUrl}/{id}";
+            if (url.Last().Equals('/'))
+            {
+                url = url.Remove(url.Length - 1);
+            }
             return url;
         }
     }

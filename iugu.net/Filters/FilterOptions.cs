@@ -28,7 +28,7 @@ namespace iugu.net.Filters
             [nameof(MaxResults)] = "limit={0}",
             [nameof(Start)] = "start={0}",
             [nameof(Since)] = "updated_since={0}",
-            [nameof(SortBy)] = "sortby[{0}]={1}"
+            [nameof(SortBy)] = "sortBy[{0}]={1}"
         };
 
         private int? maxResults;

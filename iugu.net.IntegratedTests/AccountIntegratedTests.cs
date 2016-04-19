@@ -137,7 +137,7 @@ namespace iugu.net.IntegratedTests
             using (IApiResources apiClient = new APIResource())
             using (var client = new Account(apiClient))
             {
-                var value = 1273.50m;
+                var value = 5.00m;
                 response = await client.RequestWithdrawAsync("74c265aedbfaea379bc0148fae9b5526", value, "74c265aedbfaea379bc0148fae9b5526").ConfigureAwait(false);
                 Assert.That(response.WithdrawValue, Is.EqualTo(value));
             }
