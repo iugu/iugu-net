@@ -14,7 +14,7 @@ namespace iugu.net.IntegratedTests
     public class ReportsIntegratedTests
     {
         [Test]
-        //[Ignore("Funciona apenas com o live token")]
+        [Ignore("Funciona apenas com o live token")]
         public async Task Get_request_withdraw_report_data()
         {
             // Arrange
@@ -27,11 +27,11 @@ namespace iugu.net.IntegratedTests
                 {
                     MaxResults = 10,
                     Since = DateTime.UtcNow.AddDays(-1),
-                    SortBy = new OrderingFilter { FieldName = "status", Order = ResultOrderType.Descending }
+                    SortBy = new OrderingFilter(FieldSort.AccountName, ResultOrderType.Ascending)
                 };
 
 
-                response = await client.ReportRequestWithdrawAsync("4e7c941b8647ea37faa75d3037cfab19", filter).ConfigureAwait(false);
+                response = await client.ReportRequestWithdrawAsync("", filter).ConfigureAwait(false);
                 Assert.That(response.TotalItems, Is.GreaterThan(0));
                 Assert.That(response.Items, Is.Not.Empty);
             }

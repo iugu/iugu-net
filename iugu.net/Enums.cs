@@ -108,7 +108,7 @@
     }
 
     /// <summary>
-    /// Ordenações suportadas
+    /// Tipo de Ordenaçãp
     /// </summary>
     public enum ResultOrderType
     {
@@ -120,5 +120,18 @@
         /// Maior para o menor
         /// </summary>
         Descending
+    }
+
+    /// <summary>
+    /// Campos com Ordenações suportadas
+    /// </summary>
+    public enum FieldSort
+    {
+        Id,
+        Status,
+        CreateAt,
+        UpdateAt,
+        Amount,
+        AccountName
     }
 }

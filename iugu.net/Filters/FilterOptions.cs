@@ -23,6 +23,17 @@ namespace iugu.net.Filters
             [ResultOrderType.Descending] = "desc",
         };
 
+
+        private readonly Dictionary<FieldSort, string> FieldsWithSort = new Dictionary<FieldSort, string>
+        {
+            [FieldSort.Id] = "id",
+            [FieldSort.Status] = "status",
+            [FieldSort.CreateAt] = "created_at",
+            [FieldSort.UpdateAt] = "updated_at",
+            [FieldSort.Amount] = "amount",
+            [FieldSort.AccountName] = "account_name",
+        };
+
         private readonly Dictionary<string, string> FilterParams = new Dictionary<string, string>
         {
             [nameof(MaxResults)] = "limit={0}",
@@ -86,7 +97,7 @@ namespace iugu.net.Filters
             set
             {
                 sortBy = value;
-                AppendFilter(nameof(SortBy), value.FieldName, SortResult[value.Order]);
+                AppendFilter(nameof(SortBy), FieldsWithSort[value.FieldSort], SortResult[value.Order]);
             }
         }
 
@@ -114,7 +125,13 @@ namespace iugu.net.Filters
 
     public class OrderingFilter
     {
-        public string FieldName { get; set; }
-        public ResultOrderType Order { get; set; }
+        public readonly FieldSort FieldSort;
+        public readonly ResultOrderType Order;
+
+        public OrderingFilter(FieldSort sortBy, ResultOrderType orderBy)
+        {
+            FieldSort = sortBy;
+            Order = orderBy;
+        }
     }
 }
