@@ -22,7 +22,7 @@ namespace iugu.net.Lib
         /// <param name="request">Parametros para criar uma cobrança</param>
         /// <returns>Uma cobrança do tipo boleto</returns>
         [Obsolete("Sera descontinuado na versão 2.x do client, use a versão assincrona do método")]
-        public ChargeBankSlipResponseMessage Create(ChargeRequestMessage request)
+        public ChargeResponseMessage Create(ChargeRequestMessage request)
         {
             var retorno = CreateAsync(request).Result;
             return retorno;
@@ -33,9 +33,20 @@ namespace iugu.net.Lib
         /// </summary>
         /// <param name="request">Parametros para criar uma cobrança</param>
         /// <returns>Uma cobrança do tipo boleto</returns>
-        public async Task<ChargeBankSlipResponseMessage> CreateAsync(ChargeRequestMessage request)
+        public async Task<ChargeResponseMessage> CreateAsync(ChargeRequestMessage request)
         {
-            var retorno = await PostAsync<ChargeBankSlipResponseMessage>(request).ConfigureAwait(false);
+            return await CreateAsync(request, null).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Cria uma nova cobrança possibilitando envio do token customizado, geralmente de uma subconta, em maketplaces
+        /// </summary>
+        /// <param name="request">Parametros para criar uma cobrança</param>
+        /// <param name="customApiToken">Token customizado/param>
+        /// <returns>Uma cobrança do tipo boleto</returns>
+        public async Task<ChargeResponseMessage> CreateAsync(ChargeRequestMessage request, string customApiToken)
+        {
+            var retorno = await PostAsync<ChargeResponseMessage>(request, null, customApiToken).ConfigureAwait(false);
             return retorno;
         }
     }

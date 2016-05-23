@@ -4,9 +4,9 @@ using System.Collections.Generic;
 namespace iugu.net.Response
 {
     /// <summary>
-    /// Representa a resposta da API para uma requisição de cobrança que resulta em boleto
+    /// Representa a resposta da API para uma requisição de cobrança direta
     /// </summary>
-    public class ChargeBankSlipResponseMessage
+    public class ChargeResponseMessage
     {
         /// <summary>
         /// Erros
@@ -31,6 +31,13 @@ namespace iugu.net.Response
         /// </summary>
         [JsonProperty("invoice_id")]
         public string InvoiceId { get; set; }
+
+
+        /// <summary>
+        /// Mensagem de resposta
+        /// </summary>
+        [JsonProperty("message")]
+        public string Message { get; set; }
     }
 
 }

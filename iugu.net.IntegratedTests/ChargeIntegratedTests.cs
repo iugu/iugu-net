@@ -16,7 +16,7 @@ namespace iugu.net.IntegratedTests
         public async Task Create_a_valid_charge_of_type_bank_slip()
         {
             // Arrange
-            var expectedResponse = new ChargeBankSlipResponseMessage
+            var expectedResponse = new ChargeResponseMessage
             {
                 Errors = new Dictionary<string, object>(),
                 Success = true,
@@ -31,7 +31,7 @@ namespace iugu.net.IntegratedTests
                 InvoiceItems = new InvoiceItem[] { new InvoiceItem { Description = "Mensalidade", PriceCents = 100000, Quantity = 1 } },
             };
 
-            ChargeBankSlipResponseMessage chargeTokenResponse;
+            ChargeResponseMessage chargeTokenResponse;
 
             // Act
             using (var apiClient = new Charge())
