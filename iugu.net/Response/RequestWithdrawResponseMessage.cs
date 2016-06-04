@@ -1,9 +1,6 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Linq;
+﻿using iugu.net.JsonCustomConverters;
+using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.IO;
 
 namespace iugu.net.Response
 {
@@ -34,7 +31,7 @@ namespace iugu.net.Response
         public string AccountId { get; set; }
 
         [JsonProperty("bank_address")]
-        [JsonConverter(typeof(ObjectAsStringWithAddictionalQuotesConverter<BankInfo>))]
+        [JsonConverter(typeof(EscapeInvalidQuoteConverter<BankInfo>))]
         public BankInfo BankInfo { get; set; }
     }
 
@@ -67,24 +64,5 @@ namespace iugu.net.Response
         /// </summary>
         [JsonProperty("account_type")]
         public string AccountType { get; set; }
-    }
-
-    public class ObjectAsStringWithAddictionalQuotesConverter<T> : CustomCreationConverter<T> where T : class, new()
-    {
-        public override T Create(Type objectType)
-        {
-            return new T();
-        }
-
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
-        {
-            var contentValue = (reader.Value as string).Replace("\"{", "{").Replace("}\"", "}");
-
-            using (var textReader = new StringReader(contentValue))
-            using (var jsonTextReader = new JsonTextReader(textReader))
-            {
-                return base.ReadJson(jsonTextReader, objectType, existingValue, serializer);
-            }
-        }
     }
 }
