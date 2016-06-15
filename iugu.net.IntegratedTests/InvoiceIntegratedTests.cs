@@ -276,5 +276,25 @@ namespace iugu.net.IntegratedTests
             Assert.That(resendInvoiceModel.id, Is.EqualTo(resendInvoiceId));
         }
 
+
+        [Test]
+        public async Task Get_all_invoices_by_custom_api_token()
+        {
+            // Arrange
+            InvoiceListModel invoices = null;
+            InvoiceListModel invoicesByCustomToken = null;
+
+            // Act
+            using (var apiInvoice = new Invoice())
+            {
+                invoices = await apiInvoice.GetAsync().ConfigureAwait(false);
+                invoicesByCustomToken = await apiInvoice.GetAllAsync("74c265aedbfaea379bc0148fae9b5526").ConfigureAwait(false);
+            };
+
+            // Assert
+            Assert.That(invoices, Is.Not.Null);
+            Assert.That(invoices.items.Count, Is.EqualTo(invoicesByCustomToken?.items.Count));
+        }
+
     }
 }

@@ -1,5 +1,6 @@
 ﻿using iugu.net.Entity;
 using iugu.net.Request;
+using iugu.net.Response;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -39,6 +40,18 @@ namespace iugu.net.Lib
             var retorno = await GetAsync<InvoiceListModel>().ConfigureAwait(false);
             return retorno;
         }
+
+        /// <summary>
+        /// Lista todas as faturas possibilitando enviar um ApiToken de subconta, geralmente utilizado em marketplaces
+        /// </summary>
+        /// <param name="customApiToken">ApiToken customizado</param>
+        /// <returns></returns>
+        public async Task<InvoiceListModel> GetAllAsync(string customApiToken)
+        {
+            var retorno = await GetAsync<InvoiceListModel>(null, customApiToken).ConfigureAwait(false);
+            return retorno;
+        }
+
 
         [Obsolete("Sera descontinuado na versão 2.x do client, use a versão assincrona do método")]
         public InvoiceModel Get(string id)
