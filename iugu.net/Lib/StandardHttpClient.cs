@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 namespace iugu.net.Lib
@@ -28,6 +29,9 @@ namespace iugu.net.Lib
         public StandardHttpClient()
         {
             client = new HttpClient();
+            client.DefaultRequestHeaders
+                  .Accept
+                  .Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
         /// <summary>
