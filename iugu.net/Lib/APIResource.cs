@@ -164,7 +164,14 @@ namespace iugu.net.Lib
             }
             else
             {
-                throw new Exception(response.ReasonPhrase);
+                var responseError = await Task.FromResult(JsonConvert.SerializeObject(new
+                {
+                    StatusCode = response.StatusCode,
+                    ResonPhase = response.ReasonPhrase,
+                    Message = data
+                })).ConfigureAwait(false);
+
+                throw new Exception(responseError);
             }
         }
 
@@ -174,18 +181,18 @@ namespace iugu.net.Lib
             {
                 SetAutorizationHeader(customToken, requestMessage);
 
-                await SetContent(data, JsonSettings, requestMessage);
+                await SetContent(data, requestMessage);
 
                 var response = await client.SendAsync(requestMessage).ConfigureAwait(false);
                 return response;
             }
         }
 
-        private static async Task SetContent(object data, JsonSerializerSettings jsonSettings, HttpRequestMessage requestMessage)
+        private async Task SetContent(object data, HttpRequestMessage requestMessage)
         {
             if (data != null)
             {
-                var content = await Task.Factory.StartNew(() => JsonConvert.SerializeObject(data, jsonSettings)).ConfigureAwait(false);
+                var content = await Task.Factory.StartNew(() => JsonConvert.SerializeObject(data, JsonSettings)).ConfigureAwait(false);
                 requestMessage.Content = new StringContent(content, Encoding.UTF8, "application/json");
             }
         }
@@ -196,7 +203,8 @@ namespace iugu.net.Lib
             {
                 requestMessage.Headers.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.ASCII.GetBytes(customToken)));
             }
-            else {
+            else
+            {
                 requestMessage.Headers.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.ASCII.GetBytes(_apiKey)));
             }
         }

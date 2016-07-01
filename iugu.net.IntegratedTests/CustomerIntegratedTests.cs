@@ -2,6 +2,7 @@
 using iugu.net.Lib;
 using NUnit.Framework;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -35,12 +36,12 @@ namespace iugu.UnitTest
         public void Search_a_not_found_customer()
         {
             // Arrange
-            CustomerModel myClient;
 
             // Act
             using (var apiClient = new Customer())
             {
-                Assert.Throws<AggregateException>(() => apiClient.Get(Guid.NewGuid().ToString()), "Not Found");
+                var ex = Assert.Throws<AggregateException>(() => apiClient.Get(Guid.NewGuid().ToString()));
+                Assert.That(ex.InnerExceptions.First().Message, Does.Contain("404").And.Contain("Not Found"));
             };
 
         }
