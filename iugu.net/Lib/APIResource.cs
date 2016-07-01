@@ -154,12 +154,13 @@ namespace iugu.net.Lib
             return await ProcessResponse<T>(response).ConfigureAwait(false);
         }
 
-        private static async Task<T> ProcessResponse<T>(HttpResponseMessage response)
+        private async Task<T> ProcessResponse<T>(HttpResponseMessage response)
         {
+            var data = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+
             if (response.IsSuccessStatusCode)
             {
-                var data = await response.Content.ReadAsAsync<T>().ConfigureAwait(false);
-                return data;
+                return await Task.FromResult(JsonConvert.DeserializeObject<T>(data, JsonSettings)).ConfigureAwait(false);
             }
             else
             {
