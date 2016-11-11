@@ -4,28 +4,15 @@ using System;
 
 namespace iugu.net.Response
 {
-    //public class FinancialTransactionResponse
-    //{
-    //    [JsonProperty("totalItems")]
-    //    public int TotalItems { get; set; }
-
-    //    [JsonProperty("items")]
-    //    public List<FinancialTransactionItem> Items { get; set; }
-    //}
 
     public class FinancialTransactionResponse
     {
-
-
         [JsonProperty("totalItems")]
         public string TotalItems { get; set; }
-
         [JsonProperty("items")]
         public List<Items> Items { get; set; }
-
         [JsonProperty("transactions")]
         public List<Transactions> Transactions { get; set; }
-
         [JsonProperty("total")]
         public Total Total { get; set; }
 
@@ -39,10 +26,8 @@ namespace iugu.net.Response
     {
         [JsonProperty("advanced_value")]
         public string AdvancedValue { get; set; }
-
         [JsonProperty("advance_fee")]
         public string AdvanceFee { get; set; }
-
         [JsonProperty("received_value")]
         public string ReceivedValue { get; set; }
     }
@@ -55,8 +40,6 @@ namespace iugu.net.Response
         public string AdvanceFee { get; set; }
         [JsonProperty("received_value")]
         public string ReceivedValue { get; set; }
-
-
     }
 
     public class Items
