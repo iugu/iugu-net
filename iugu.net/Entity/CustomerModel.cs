@@ -1,23 +1,47 @@
 ﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace iugu.net.Entity
 {
-    // TODO: Precisa de refatoração, nomes fora do padrão .Net, sem documentação também
-    public class CustomersModel
-    {
-        public int totalItems { get; set; }
-        public List<CustomerModel> items { get; set; }
-    }
-
-    // TODO: Precisa de refatoração, nomes fora do padrão .Net, sem documentação também
+    /// <summary>
+    /// Model que representa dados do cliente
+    /// </summary>
     public class CustomerModel
     {
-        public string id { get; set; }
-        public string email { get; set; }
-        public string name { get; set; }
-        public string notes { get; set; }
-        public string created_at { get; set; }
-        public string updated_at { get; set; }
-        public List<object> custom_variables { get; set; }
+        /// <summary>
+        /// ID do clinte
+        /// </summary>
+        [JsonProperty("id")]
+        public string ID { get; set; }
+        /// <summary>
+        /// Email do cliente
+        /// </summary>
+        [JsonProperty("email")]
+        public string Email { get; set; }
+        /// <summary>
+        /// Nome do cliente (opcional)
+        /// </summary>
+        [JsonProperty("name")]
+        public string Name { get; set; }
+        /// <summary>
+        /// Anotações Gerais do Cliente (opcional)
+        /// </summary>
+        [JsonProperty("notes")]
+        public string Notes { get; set; }
+        /// <summary>
+        /// Data de criação do Cliente (opcional)
+        /// </summary>
+        [JsonProperty("created_at")]
+        public string CreatedAt { get; set; }
+        /// <summary>
+        /// Data de modificação do Cliente (opcional)
+        /// </summary>
+        [JsonProperty("updated_at")]
+        public string UpdatedAt { get; set; }
+        /// <summary>
+        /// Variáveis Personalizadas do Cliente (opcional)
+        /// </summary>
+        [JsonProperty("custom_variables")]
+        public List<object> CustomVariables { get; set; }
     }
 }
