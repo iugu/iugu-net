@@ -3,6 +3,7 @@ using iugu.net.Request;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using iugu.net.Entity.Lists;
 
 namespace iugu.net.Lib
 {

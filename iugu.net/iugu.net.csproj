@@ -95,6 +95,7 @@
     <Compile Include="Entity\DataEntryModel.cs" />
     <Compile Include="Entity\InvoiceItem.cs" />
     <Compile Include="Entity\InvoiceModel.cs" />
+    <Compile Include="Entity\Lists\CustomersModel.cs" />
     <Compile Include="Entity\PayerModel.cs" />
     <Compile Include="Entity\PaymentInfoModel.cs" />
     <Compile Include="Entity\PaymentMethodModel.cs" />
