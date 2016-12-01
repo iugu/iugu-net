@@ -20,7 +20,7 @@ namespace iugu.net.IntegratedTests
                 Method = Constants.PaymentMethod.CREDIT_CARD
             };
 
-            var paymentRequest = new PaymentTokenRequest
+            var paymentRequest = new PaymentTokenRequestMessage()
             {
                 AccountId = "2d8b228d-4183-44b8-ad3b-b8ab0db2aacd",
                 Method = Constants.PaymentMethod.CREDIT_CARD,
