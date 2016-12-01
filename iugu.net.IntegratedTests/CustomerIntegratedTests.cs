@@ -6,6 +6,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using iugu.net.Request;
+using iugu.net.Entity.Lists;
 
 namespace iugu.UnitTest
 {
@@ -29,8 +30,8 @@ namespace iugu.UnitTest
             };
 
             // Assert
-            Assert.That(myClient.email, Is.EqualTo("malka2@gmail.com"));
-            Assert.That(myClient.id, Is.Not.Empty);
+            Assert.That(myClient.Email, Is.EqualTo("malka2@gmail.com"));
+            Assert.That(myClient.ID, Is.Not.Empty);
         }
 
         [Test]

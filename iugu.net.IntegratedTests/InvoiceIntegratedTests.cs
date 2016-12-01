@@ -47,7 +47,7 @@ namespace iugu.net.IntegratedTests
                 var radomPlan = Guid.NewGuid().ToString();
                 var plan = await apiPlan.CreateAsync($"{radomPlan}-12x", $"{radomPlan}-Plan", 1, "months", 0, "BRL", null, null, Constants.PaymentMethod.BANK_SLIP).ConfigureAwait(false);
                 var subscriptionItems = new List<SubscriptionSubitem> { new SubscriptionSubitem { description = "Mensalidade", price_cents = 65000, quantity = 1, recurrent = true } };
-                var subscription = await apiSubscription.CreateAsync(new Request.SubscriptionRequestMessage(customerResponse.id)
+                var subscription = await apiSubscription.CreateAsync(new Request.SubscriptionRequestMessage(customerResponse.ID)
                 {
                     PlanId = plan.identifier,
                     IsCreditBased = false,
@@ -100,7 +100,7 @@ namespace iugu.net.IntegratedTests
                 var radomPlan = Guid.NewGuid().ToString();
                 var plan = await apiPlan.CreateAsync($"{radomPlan}-12x", $"{radomPlan}-Plan", 1, "months", 0, "BRL", null, null, Constants.PaymentMethod.BANK_SLIP).ConfigureAwait(false);
                 var subscriptionItems = new List<SubscriptionSubitem> { new SubscriptionSubitem { description = "Mensalidade", price_cents = 65000, quantity = 1, recurrent = true } };
-                var subscription = await apiSubscription.CreateAsync(new Request.SubscriptionRequestMessage(customerResponse.id)
+                var subscription = await apiSubscription.CreateAsync(new Request.SubscriptionRequestMessage(customerResponse.ID)
                 {
                     PlanId = plan.identifier,
                     IsCreditBased = false,
@@ -153,7 +153,7 @@ namespace iugu.net.IntegratedTests
                 var radomPlan = Guid.NewGuid().ToString();
                 var plan = await apiPlan.CreateAsync($"{radomPlan}-12x", $"{radomPlan}-Plan", 1, "months", 0, "BRL", null, null, Constants.PaymentMethod.BANK_SLIP).ConfigureAwait(false);
                 var subscriptionItems = new List<SubscriptionSubitem> { new SubscriptionSubitem { description = "Mensalidade", price_cents = 65000, quantity = 1, recurrent = true } };
-                var subscription = await apiSubscription.CreateAsync(new Request.SubscriptionRequestMessage(customerResponse.id)
+                var subscription = await apiSubscription.CreateAsync(new Request.SubscriptionRequestMessage(customerResponse.ID)
                 {
                     PlanId = plan.identifier,
                     IsCreditBased = false,
@@ -213,7 +213,7 @@ namespace iugu.net.IntegratedTests
                 var radomPlan = Guid.NewGuid().ToString();
                 var plan = await apiPlan.CreateAsync($"{radomPlan}-12x", $"{radomPlan}-Plan", 1, "months", 0, "BRL", null, null, Constants.PaymentMethod.BANK_SLIP).ConfigureAwait(false);
                 var subscriptionItems = new List<SubscriptionSubitem> { new SubscriptionSubitem { description = "Mensalidade", price_cents = 65000, quantity = 1, recurrent = true } };
-                var subscription = await apiSubscription.CreateAsync(new SubscriptionRequestMessage(customerResponse.id)
+                var subscription = await apiSubscription.CreateAsync(new SubscriptionRequestMessage(customerResponse.ID)
                 {
                     PlanId = plan.identifier,
                     IsCreditBased = false,
