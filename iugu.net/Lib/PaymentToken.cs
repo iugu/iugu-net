@@ -27,7 +27,7 @@ namespace iugu.net.Lib
         /// <param name="request">Parametros de entrada da request</param>
         /// <returns>Resposta da Api para o PaymentToken</returns>
         [Obsolete("Sera descontinuado na versão 2.x do client, use a versão assincrona do método")]
-        public PaymentTokenResponse Create(PaymentTokenRequestMessage request)
+        public PaymentTokenResponseMessage Create(PaymentTokenRequestMessage request)
         {
             var retorno = CreateAsync(request).Result;
             return retorno;
@@ -40,9 +40,9 @@ namespace iugu.net.Lib
         /// </summary>
         /// <param name="request">Parametros de entrada da request</param>
         /// <returns>Resposta da Api para o PaymentToken</returns>
-        public async Task<PaymentTokenResponse> CreateAsync(PaymentTokenRequestMessage request)
+        public async Task<PaymentTokenResponseMessage> CreateAsync(PaymentTokenRequestMessage request)
         {
-            var retorno = await PostAsync<PaymentTokenResponse>(request).ConfigureAwait(false);
+            var retorno = await PostAsync<PaymentTokenResponseMessage>(request).ConfigureAwait(false);
             return retorno;
         }
     }
