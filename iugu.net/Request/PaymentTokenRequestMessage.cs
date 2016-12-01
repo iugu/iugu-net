@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace iugu.net.Request
 {
-    public class PaymentTokenRequest
+    public class PaymentTokenRequestMessage
     {
         /// <summary>
         /// ID de sua Conta na Iugu (O ID de sua conta pode ser encontrado clicando na referência)

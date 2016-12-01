@@ -51,7 +51,7 @@ namespace iugu.net.IntegratedTests
             // Arrange 
             var subscriptionRequest = await SubscriptionApi.GetAsync<PaggedResponseMessage<SubscriptionModel>>().ConfigureAwait(false);
             var subscriptionItems = new List<SubscriptionSubitem> { new SubscriptionSubitem { description = "Mensalidade", price_cents = 65000, quantity = 1, recurrent = true } };
-            var request = new Request.SubscriptionRequestMessage(createdCustomer.id)
+            var request = new Request.SubscriptionRequestMessage(createdCustomer.ID)
             {
                 PlanId = createdPlan.identifier,
                 IsCreditBased = false,
@@ -73,7 +73,7 @@ namespace iugu.net.IntegratedTests
             // Arrange 
             var subscriptionRequest = await SubscriptionApi.GetAsync<PaggedResponseMessage<SubscriptionModel>>().ConfigureAwait(false);
             var subscriptionItems = new List<SubscriptionSubitem> { new SubscriptionSubitem { description = "Mensalidade", price_cents = 65000, quantity = 1, recurrent = true } };
-            var request = new Request.SubscriptionRequestMessage(createdCustomer.id)
+            var request = new Request.SubscriptionRequestMessage(createdCustomer.ID)
             {
                 PlanId = createdPlan.identifier,
                 IsCreditBased = false,
@@ -94,7 +94,7 @@ namespace iugu.net.IntegratedTests
             // Arrange 
             var subscriptionRequest = await SubscriptionApi.GetAsync<PaggedResponseMessage<SubscriptionModel>>().ConfigureAwait(false);
             var subscriptionItems = new List<SubscriptionSubitem> { new SubscriptionSubitem { description = "Mensalidade", price_cents = 65000, quantity = 1, recurrent = true } };
-            var request = new Request.SubscriptionRequestMessage(createdCustomer.id)
+            var request = new Request.SubscriptionRequestMessage(createdCustomer.ID)
             {
                 PlanId = createdPlan.identifier,
                 IsCreditBased = false,
