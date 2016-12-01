@@ -5,7 +5,7 @@ namespace iugu.net.Response
     /// <summary>
     /// Resposta da Api de pedido de saque
     /// </summary>
-    public class AccountRequestWithdrawResponse
+    public class AccountRequestWithdrawResponseMessage
     {
         /// <summary>
         /// Id que identifica o pedido de saque efetuado
