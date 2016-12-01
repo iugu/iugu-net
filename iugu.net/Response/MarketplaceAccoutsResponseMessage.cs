@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace iugu.net.Response
 {
-    public class MarketplaceAccoutsResponse
+    public class MarketplaceAccoutsResponseMessage
     {
         [JsonProperty("totalItems")]
         public int TotalItems { get; set; }

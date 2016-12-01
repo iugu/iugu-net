@@ -133,14 +133,14 @@
     <Compile Include="Request\PlanRequestMessage.cs" />
     <Compile Include="Request\SubscriptionRequestMessage.cs" />
     <Compile Include="Request\VerifyAccountRequestMessage.cs" />
-    <Compile Include="Response\AccountRequestWithdrawResponse.cs" />
+    <Compile Include="Response\AccountRequestWithdrawResponseMessage.cs" />
     <Compile Include="Response\AccountResponseMessage.cs" />
     <Compile Include="Response\ChargeResponseMessage.cs" />
     <Compile Include="Response\FinancialTransactionResponse.cs" />
     <Compile Include="Response\GetAccountResponseMessage.cs" />
-    <Compile Include="Response\MarketplaceAccoutsResponse.cs" />
+    <Compile Include="Response\MarketplaceAccoutsResponseMessage.cs" />
     <Compile Include="Response\PaggedResponseMessage.cs" />
-    <Compile Include="Response\PaymentTokenResponse.cs" />
+    <Compile Include="Response\PaymentTokenResponseMessage.cs" />
     <Compile Include="Response\RequestWithdrawResponseMessage.cs" />
     <Compile Include="Response\SimpleResponseMessage.cs" />
     <Compile Include="Response\TransfersReportResponseMessage.cs" />

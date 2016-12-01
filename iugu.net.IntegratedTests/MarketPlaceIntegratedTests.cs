@@ -46,7 +46,7 @@ namespace iugu.net.IntegratedTests
         {
             // Arrange
             var request = new AccountRequestMessage { Name = "any_market_place_under_account@gmail.com", CommissionPercent = 10 };
-            MarketplaceAccoutsResponse response;
+            MarketplaceAccoutsResponseMessage response;
 
 
             // Act
