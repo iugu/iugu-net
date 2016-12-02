@@ -45,12 +45,11 @@ namespace iugu.net.IntegratedTests
             var radomPlan = Guid.NewGuid().ToString();
             var planId = $"{radomPlan}-Plan";
             PlanModel plan;
-
+            PlanRequestMessage prm = new PlanRequestMessage($"{radomPlan}-12x",planId,1,PlanIntervalType.Monthly,0,CurrencyType.BRL);
             // Act
             using (var apiPlan = new Plans())
             {
-                plan = await apiPlan.CreateAsync($"{radomPlan}-12x", planId, 1, Constants.GenerateCycleType.MONTHLY,
-                    0, "BRL", null, null, Constants.PaymentMethod.BANK_SLIP).ConfigureAwait(false);
+                plan = await apiPlan.CreateAsync(prm).ConfigureAwait(false);
             };
 
             // Assert
@@ -94,8 +93,8 @@ namespace iugu.net.IntegratedTests
             // Act
             using (var apiPlan = new Plans())
             {
-                await apiPlan.CreateAsync($"{radomPlan}-12x", planId, 1, Constants.GenerateCycleType.MONTHLY,
-                    0, "BRL", null, null, Constants.PaymentMethod.BANK_SLIP).ConfigureAwait(false);
+                PlanRequestMessage prm = new PlanRequestMessage($"{radomPlan}-12x", planId, 1, PlanIntervalType.Monthly, 0, CurrencyType.BRL);
+                await apiPlan.CreateAsync(prm).ConfigureAwait(false);
 
                 plan = await apiPlan.GetByIdentifierAsync(planId).ConfigureAwait(false);
             };
