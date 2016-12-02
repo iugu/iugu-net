@@ -21,23 +21,10 @@ namespace iugu.net.Lib
             BaseURI = string.Format("/customers/{0}/payment_methods", CustomerID);
         }
 
-        [Obsolete("Sera descontinuado na versão 2.x do client, use a versão assincrona do método")]
-        public PaymentMethodModel Get()
-        {
-            var retorno = GetAsync().Result;
-            return retorno;
-        }
-
+        
         public async Task<PaymentMethodModel> GetAsync()
         {
             var retorno = await GetAsync<PaymentMethodModel>().ConfigureAwait(false);
-            return retorno;
-        }
-
-        [Obsolete("Sera descontinuado na versão 2.x do client, use a versão assincrona do método")]
-        public PaymentMethodModel Get(string id)
-        {
-            var retorno = GetAsync(id).Result;
             return retorno;
         }
 
@@ -47,21 +34,7 @@ namespace iugu.net.Lib
             return retorno;
         }
 
-        /// <summary>
-        /// Cria uma Forma de Pagamento de Cliente.
-        /// </summary>
-        /// <param name="description">Descrição</param>
-        /// <param name="data">Dados da Forma de Pagamento</param>
-        /// <param name="set_as_default">(opcional)	Tipo da Forma de Pagamento. Atualmente suportamos apenas Cartão de Crédito (tipo credit_card). Só deve ser enviado caso não envie token.</param>
-        /// <param name="token">(opcional)	Token de Pagamento, pode ser utilizado em vez de enviar os dados da forma de pagamento</param>
-        /// <param name="item_type">(opcional)	Transforma a forma de pagamento na padrão do cliente</param>
-        [Obsolete("Sera descontinuado na versão 2.x do client, use a versão assincrona do método")]
-        public PaymentMethodModel Create(string description, CreditCard data, bool? set_as_default, string token = "", string item_type = "")
-        {
-            var retorno = CreateAsync(description, data, set_as_default, token, item_type).Result;
-            return retorno;
-        }
-
+        
         /// <summary>
         /// Cria uma Forma de Pagamento de Cliente.
         /// </summary>
@@ -84,23 +57,9 @@ namespace iugu.net.Lib
             return retorno;
         }
 
-        [Obsolete("Sera descontinuado na versão 2.x do client, use a versão assincrona do método")]
-        public PaymentMethodModel Delete(string id)
-        {
-            var retorno = DeleteAsync(id).Result;
-            return retorno;
-        }
-
         public async Task<PaymentMethodModel> DeleteAsync(string id)
         {
             var retorno = await DeleteAsync<PaymentMethodModel>(id).ConfigureAwait(false);
-            return retorno;
-        }
-
-        [Obsolete("Sera descontinuado na versão 2.x do client, use a versão assincrona do método")]
-        public PaymentMethodModel Put(string id, PaymentMethodModel model)
-        {
-            var retorno = PutAsync(id, model).Result;
             return retorno;
         }
 
