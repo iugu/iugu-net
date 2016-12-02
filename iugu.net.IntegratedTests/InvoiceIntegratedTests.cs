@@ -44,9 +44,17 @@ namespace iugu.net.IntegratedTests
             using (var apiPlan = new Plans())
             {
                 var customerResponse = await apiCustomer.CreateAsync(customer, null).ConfigureAwait(false);
+
                 var radomPlan = Guid.NewGuid().ToString();
-                var plan = await apiPlan.CreateAsync($"{radomPlan}-12x", $"{radomPlan}-Plan", 1, "months", 0, "BRL", null, null, Constants.PaymentMethod.BANK_SLIP).ConfigureAwait(false);
+                PlanRequestMessage prm = new PlanRequestMessage($"{radomPlan}-12x", $"{radomPlan}-Plan",1,PlanIntervalType.Monthly, 0,CurrencyType.BRL);
+
+                var plan = await apiPlan.CreateAsync(prm).ConfigureAwait(false);
+                //var plan = await apiPlan.CreateAsync($"{radomPlan}-12x", $"{radomPlan}-Plan", 1, "months", 0, "BRL", null, null, Constants.PaymentMethod.BANK_SLIP).ConfigureAwait(false);
+
+
                 var subscriptionItems = new List<SubscriptionSubitem> { new SubscriptionSubitem { description = "Mensalidade", price_cents = 65000, quantity = 1, recurrent = true } };
+
+
                 var subscription = await apiSubscription.CreateAsync(new Request.SubscriptionRequestMessage(customerResponse.ID)
                 {
                     PlanId = plan.identifier,
@@ -56,7 +64,8 @@ namespace iugu.net.IntegratedTests
                 }).ConfigureAwait(false);
 
                 var invoiceItems = new Item[] { new Item { description = "Mensalidade", price_cents = 65000, quantity = 1 } };
-                invoice = await apiInvoice.CreateAsync("anyemail@gmail.com.br", invoiceDate, invoiceItems, null, null, null, 0, 0, null, false, subscription.id, null, null, customVariables).ConfigureAwait(false);
+                InvoiceRequestMessage irm = new InvoiceRequestMessage("anyemail@gmail.com.br",invoiceDate,invoiceItems);
+                invoice = await apiInvoice.CreateAsync(irm).ConfigureAwait(false);
             };
 
             // Assert
@@ -98,7 +107,8 @@ namespace iugu.net.IntegratedTests
             {
                 var customerResponse = await apiCustomer.CreateAsync(customer, null).ConfigureAwait(false);
                 var radomPlan = Guid.NewGuid().ToString();
-                var plan = await apiPlan.CreateAsync($"{radomPlan}-12x", $"{radomPlan}-Plan", 1, "months", 0, "BRL", null, null, Constants.PaymentMethod.BANK_SLIP).ConfigureAwait(false);
+                PlanRequestMessage prm = new PlanRequestMessage($"{radomPlan}-12x", $"{radomPlan}-Plan", 1, PlanIntervalType.Monthly, 0, CurrencyType.BRL);
+                var plan = await apiPlan.CreateAsync(prm).ConfigureAwait(false);
                 var subscriptionItems = new List<SubscriptionSubitem> { new SubscriptionSubitem { description = "Mensalidade", price_cents = 65000, quantity = 1, recurrent = true } };
                 var subscription = await apiSubscription.CreateAsync(new Request.SubscriptionRequestMessage(customerResponse.ID)
                 {
@@ -109,7 +119,8 @@ namespace iugu.net.IntegratedTests
                 }).ConfigureAwait(false);
 
                 var invoiceItems = new Item[] { new Item { description = "Mensalidade", price_cents = 65000, quantity = 1 } };
-                var current = await apiInvoice.CreateAsync("anyemail@gmail.com.br", invoiceDate, invoiceItems, null, null, null, 0, 0, null, false, subscription.id, null, null, customVariables);
+                InvoiceRequestMessage irm = new InvoiceRequestMessage("anyemail@gmail.com.br", invoiceDate, invoiceItems);
+                var current = await apiInvoice.CreateAsync(irm);
 
                 invoice = await apiInvoice.DuplicateAsync(current.id, new Request.InvoiceDuplicateRequestMessage(newDate)).ConfigureAwait(false);
             };
@@ -151,7 +162,8 @@ namespace iugu.net.IntegratedTests
             {
                 var customerResponse = await apiCustomer.CreateAsync(customer, null).ConfigureAwait(false);
                 var radomPlan = Guid.NewGuid().ToString();
-                var plan = await apiPlan.CreateAsync($"{radomPlan}-12x", $"{radomPlan}-Plan", 1, "months", 0, "BRL", null, null, Constants.PaymentMethod.BANK_SLIP).ConfigureAwait(false);
+                PlanRequestMessage prm = new PlanRequestMessage($"{radomPlan}-12x", $"{radomPlan}-Plan", 1, PlanIntervalType.Monthly, 0, CurrencyType.BRL);
+                var plan = await apiPlan.CreateAsync(prm).ConfigureAwait(false);
                 var subscriptionItems = new List<SubscriptionSubitem> { new SubscriptionSubitem { description = "Mensalidade", price_cents = 65000, quantity = 1, recurrent = true } };
                 var subscription = await apiSubscription.CreateAsync(new Request.SubscriptionRequestMessage(customerResponse.ID)
                 {
@@ -211,7 +223,8 @@ namespace iugu.net.IntegratedTests
             {
                 var customerResponse = await apiCustomer.CreateAsync(customer, null).ConfigureAwait(false);
                 var radomPlan = Guid.NewGuid().ToString();
-                var plan = await apiPlan.CreateAsync($"{radomPlan}-12x", $"{radomPlan}-Plan", 1, "months", 0, "BRL", null, null, Constants.PaymentMethod.BANK_SLIP).ConfigureAwait(false);
+                PlanRequestMessage prm = new PlanRequestMessage($"{radomPlan}-12x", $"{radomPlan}-Plan", 1, PlanIntervalType.Monthly, 0, CurrencyType.BRL);
+                var plan = await apiPlan.CreateAsync(prm).ConfigureAwait(false);
                 var subscriptionItems = new List<SubscriptionSubitem> { new SubscriptionSubitem { description = "Mensalidade", price_cents = 65000, quantity = 1, recurrent = true } };
                 var subscription = await apiSubscription.CreateAsync(new SubscriptionRequestMessage(customerResponse.ID)
                 {
@@ -260,7 +273,6 @@ namespace iugu.net.IntegratedTests
             Assert.That(cancelInvoice.status, Is.EqualTo(Constants.InvoiceStatus.CANCELED));
         }
 
-
         [Test]
         public async Task List_invoices()
         {
@@ -298,7 +310,6 @@ namespace iugu.net.IntegratedTests
             Assert.That(resendInvoiceModel, Is.Not.Null);
             Assert.That(resendInvoiceModel.id, Is.EqualTo(resendInvoiceId));
         }
-
 
         [Test]
         public async Task Get_all_invoices_by_custom_api_token()

@@ -21,18 +21,6 @@ namespace iugu.net.Lib
         /// </summary>
         /// <param name="request">Parametros para criar uma cobrança</param>
         /// <returns>Uma cobrança do tipo boleto</returns>
-        [Obsolete("Sera descontinuado na versão 2.x do client, use a versão assincrona do método")]
-        public ChargeResponseMessage Create(ChargeRequestMessage request)
-        {
-            var retorno = CreateAsync(request).Result;
-            return retorno;
-        }
-
-        /// <summary>
-        /// Cria uma nova cobrança
-        /// </summary>
-        /// <param name="request">Parametros para criar uma cobrança</param>
-        /// <returns>Uma cobrança do tipo boleto</returns>
         public async Task<ChargeResponseMessage> CreateAsync(ChargeRequestMessage request)
         {
             return await CreateAsync(request, null).ConfigureAwait(false);

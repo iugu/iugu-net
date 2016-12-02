@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using FluentAssertions;
+using iugu.net.Request;
 
 namespace iugu.net.IntegratedTests
 {
@@ -26,7 +27,8 @@ namespace iugu.net.IntegratedTests
             CustomerApi = new Customer();
 
             var radomPlan = Guid.NewGuid().ToString();
-            createdPlan = await PlanApi.CreateAsync($"{radomPlan}-12x", $"{radomPlan}-Plan", 1, "months", 0, "BRL", null, null, Constants.PaymentMethod.BANK_SLIP).ConfigureAwait(false);
+            PlanRequestMessage prm = new PlanRequestMessage($"{radomPlan}-12x", radomPlan, 1, PlanIntervalType.Monthly, 0, CurrencyType.BRL);
+            createdPlan = await PlanApi.CreateAsync(prm).ConfigureAwait(false);
 
             var customer = new Request.CustomerRequestMessage
             {
@@ -103,7 +105,8 @@ namespace iugu.net.IntegratedTests
             var currentSubscription = await SubscriptionApi.CreateAsync(request).ConfigureAwait(false);
 
             var radomPlan = Guid.NewGuid().ToString();
-            var newdPlan = await PlanApi.CreateAsync($"{radomPlan}-12x", $"{radomPlan}-Plan", 1, "months", 0, "BRL", null, null, Constants.PaymentMethod.BANK_SLIP).ConfigureAwait(false);
+            PlanRequestMessage prm = new PlanRequestMessage($"{radomPlan}-12x", radomPlan, 1, PlanIntervalType.Monthly, 0, CurrencyType.BRL);
+            var newdPlan = await PlanApi.CreateAsync(prm).ConfigureAwait(false);
 
             // Act
             var suspendendSubscription = await SubscriptionApi.ChangePlanAsync(currentSubscription.id, newdPlan.identifier).ConfigureAwait(false);
