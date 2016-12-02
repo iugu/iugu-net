@@ -51,9 +51,9 @@ namespace iugu.net.Lib
         /// Listas todas as subcontas dentro de um marketplace
         /// </summary>
         /// <returns></returns>
-        public async Task<MarketplaceAccoutsResponse> GetAllSubAccountsAsync()
+        public async Task<MarketplaceAccoutsResponseMessage> GetAllSubAccountsAsync()
         {
-            var retorno = await Api.GetAsync<MarketplaceAccoutsResponse>().ConfigureAwait(false);
+            var retorno = await Api.GetAsync<MarketplaceAccoutsResponseMessage>().ConfigureAwait(false);
             return retorno;
         }
 
@@ -62,9 +62,9 @@ namespace iugu.net.Lib
         /// </summary>
         /// <param name="customApiToken">api token customizado</param>
         /// <returns></returns>
-        public async Task<MarketplaceAccoutsResponse> GetAllSubAccountsAsync(string customApiToken)
+        public async Task<MarketplaceAccoutsResponseMessage> GetAllSubAccountsAsync(string customApiToken)
         {
-            var retorno = await Api.GetAsync<MarketplaceAccoutsResponse>(null, customApiToken).ConfigureAwait(false);
+            var retorno = await Api.GetAsync<MarketplaceAccoutsResponseMessage>(null, customApiToken).ConfigureAwait(false);
             return retorno;
         }
 

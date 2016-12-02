@@ -131,7 +131,7 @@ namespace iugu.net.IntegratedTests
         public async Task Request_withdraw()
         {
             // Arrange
-            AccountRequestWithdrawResponse response;
+            AccountRequestWithdrawResponseMessage response;
 
             // Act && Assert
             using (IApiResources apiClient = new APIResource())

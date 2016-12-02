@@ -14,13 +14,13 @@ namespace iugu.net.IntegratedTests
         public async Task Create_a_new_payment_token_with_success()
         {
             // Arrange
-            var expectedResponse = new PaymentTokenResponse
+            var expectedResponse = new PaymentTokenResponseMessage
             {
                 Id = "e06809b9da0a3118fa282a18c1f5dc09",
                 Method = Constants.PaymentMethod.CREDIT_CARD
             };
 
-            var paymentRequest = new PaymentTokenRequest
+            var paymentRequest = new PaymentTokenRequestMessage()
             {
                 AccountId = "2d8b228d-4183-44b8-ad3b-b8ab0db2aacd",
                 Method = Constants.PaymentMethod.CREDIT_CARD,
@@ -36,7 +36,7 @@ namespace iugu.net.IntegratedTests
                 }
             };
 
-            PaymentTokenResponse paymentTokenResponse;
+            PaymentTokenResponseMessage paymentTokenResponse;
 
             // Act
             using (var apiClient = new PaymentToken())

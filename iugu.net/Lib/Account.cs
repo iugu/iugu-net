@@ -81,7 +81,7 @@ namespace iugu.net.Lib
         /// <param name="amount">Valor da retirada</param>
         /// <returns>Resposta da API depedido de saque</returns>
         [Obsolete("Funciona apenas se o token de configuração for o UserApiToken - Descontinuado na versão 2.x do client")]
-        public async Task<AccountRequestWithdrawResponse> RequestWithdrawAsync(string targetAccountId, decimal amount)
+        public async Task<AccountRequestWithdrawResponseMessage> RequestWithdrawAsync(string targetAccountId, decimal amount)
         {
             var retorno = await RequestWithdrawAsync(targetAccountId, amount, null).ConfigureAwait(false);
             return retorno;
@@ -94,9 +94,9 @@ namespace iugu.net.Lib
         /// <param name="amount">Valor da retirada</param>
         /// <param name="customUserApiToken">Token customizado do usuário, utilizado em marketplaces</param>
         /// <returns>Resposta da API depedido de saque</returns>
-        public async Task<AccountRequestWithdrawResponse> RequestWithdrawAsync(string targetAccountId, decimal amount, string customUserApiToken)
+        public async Task<AccountRequestWithdrawResponseMessage> RequestWithdrawAsync(string targetAccountId, decimal amount, string customUserApiToken)
         {
-            var retorno = await Api.PostAsync<AccountRequestWithdrawResponse>(new { amount = amount }, $"{targetAccountId}/request_withdraw", customUserApiToken).ConfigureAwait(false);
+            var retorno = await Api.PostAsync<AccountRequestWithdrawResponseMessage>(new { amount = amount }, $"{targetAccountId}/request_withdraw", customUserApiToken).ConfigureAwait(false);
             return retorno;
         }
 
@@ -106,7 +106,7 @@ namespace iugu.net.Lib
         /// <param name="targetAccountId">Id da conta a ser validada</param>
         /// <returns>Resposta da API depedido de saque</returns>
         [Obsolete("Funciona apenas se o token de configuração for o UserApiToken - Descontinuado na versão 2.x do client")]
-        public async Task<AccountRequestWithdrawResponse> RequestWithdrawAllAsync(string targetAccountId)
+        public async Task<AccountRequestWithdrawResponseMessage> RequestWithdrawAllAsync(string targetAccountId)
         {
             var retorno = await RequestWithdrawAllAsync(targetAccountId, null).ConfigureAwait(false);
             return retorno;
@@ -118,11 +118,11 @@ namespace iugu.net.Lib
         /// <param name="targetAccountId">Id da conta a ser validada</param>
         /// <param name="customUserApiToken">User token customizado da Api</param>
         /// <returns>Resposta da API depedido de saque</returns>
-        public async Task<AccountRequestWithdrawResponse> RequestWithdrawAllAsync(string targetAccountId, string customUserApiToken)
+        public async Task<AccountRequestWithdrawResponseMessage> RequestWithdrawAllAsync(string targetAccountId, string customUserApiToken)
         {
             var accountBalanceValue = await Api.GetAsync<GetAccountResponseMessage>(targetAccountId).ConfigureAwait(false);
             var convertedValue = Convert.ToDecimal(accountBalanceValue.Balance.Replace(Constants.CurrencySymbol.BRL, string.Empty).Replace(",", "."));
-            var retorno = await Api.PostAsync<AccountRequestWithdrawResponse>(new { amount = convertedValue }, $"{targetAccountId}/request_withdraw", customUserApiToken).ConfigureAwait(false);
+            var retorno = await Api.PostAsync<AccountRequestWithdrawResponseMessage>(new { amount = convertedValue }, $"{targetAccountId}/request_withdraw", customUserApiToken).ConfigureAwait(false);
             return retorno;
         }
 

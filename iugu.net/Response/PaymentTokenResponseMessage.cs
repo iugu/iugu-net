@@ -2,7 +2,7 @@
 
 namespace iugu.net.Response
 {
-    public class PaymentTokenResponse
+    public class PaymentTokenResponseMessage
     {
         /// <summary>
         /// Token Criado
