@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using iugu.net.Entity.Lists;
 
 namespace iugu.net.IntegratedTests
 {
@@ -20,8 +21,8 @@ namespace iugu.net.IntegratedTests
 
             var customVariables = new List<CustomVariables>
             {
-                new CustomVariables { name = "TaxaIugu", value = "2,50" },
-                new CustomVariables { name = "TaxaPlataformaEdux", value = "1,00" }
+                new CustomVariables { Name = "TaxaIugu", Value = "2,50" },
+                new CustomVariables { Name = "TaxaPlataformaEdux", Value = "1,00" }
             };
 
             var invoiceDate = DateTime.Now.AddDays(2);
@@ -61,14 +62,14 @@ namespace iugu.net.IntegratedTests
                     Subitems = subscriptionItems
                 }).ConfigureAwait(false);
 
-                var invoiceItems = new Item[] { new Item { description = "Mensalidade", price_cents = 65000, quantity = 1 } };
+                var invoiceItems = new Item[] { new Item { Description = "Mensalidade", PriceCents = 65000, Quantity = 1 } };
                 InvoiceRequestMessage irm = new InvoiceRequestMessage("anyemail@gmail.com.br",invoiceDate,invoiceItems);
                 invoice = await apiInvoice.CreateAsync(irm).ConfigureAwait(false);
             };
 
             // Assert
             Assert.That(invoice, Is.Not.Null);
-            Assert.That(invoice.due_date, Does.Contain(invoiceDate.ToString("yyyy-MM-dd")));
+            Assert.That(invoice.DueDate, Does.Contain(invoiceDate.ToString("yyyy-MM-dd")));
         }
 
         [Test]
@@ -79,8 +80,8 @@ namespace iugu.net.IntegratedTests
 
             var customVariables = new List<CustomVariables>
             {
-                new CustomVariables { name = "TaxaIugu", value = "2,50" },
-                new CustomVariables { name = "TaxaPlataformaEdux", value = "1,00" }
+                new CustomVariables { Name = "TaxaIugu", Value = "2,50" },
+                new CustomVariables { Name = "TaxaPlataformaEdux", Value = "1,00" }
             };
 
             var invoiceDate = DateTime.Now.AddDays(2);
@@ -116,11 +117,11 @@ namespace iugu.net.IntegratedTests
                     Subitems = subscriptionItems
                 }).ConfigureAwait(false);
 
-                var invoiceItems = new Item[] { new Item { description = "Mensalidade", price_cents = 65000, quantity = 1 } };
+                var invoiceItems = new Item[] { new Item { Description = "Mensalidade", PriceCents = 65000, Quantity = 1 } };
                 InvoiceRequestMessage irm = new InvoiceRequestMessage("anyemail@gmail.com.br", invoiceDate, invoiceItems);
                 var current = await apiInvoice.CreateAsync(irm);
 
-                invoice = await apiInvoice.DuplicateAsync(current.id, new Request.InvoiceDuplicateRequestMessage(newDate)).ConfigureAwait(false);
+                invoice = await apiInvoice.DuplicateAsync(current.ID, new Request.InvoiceDuplicateRequestMessage(newDate)).ConfigureAwait(false);
             };
 
             // Assert
@@ -135,8 +136,8 @@ namespace iugu.net.IntegratedTests
 
             var customVariables = new List<CustomVariables>
             {
-                new CustomVariables { name = "TaxaIugu", value = "2,50" },
-                new CustomVariables { name = "TaxaPlataformaEdux", value = "1,00" }
+                new CustomVariables { Name = "TaxaIugu", Value = "2,50" },
+                new CustomVariables { Name = "TaxaPlataformaEdux", Value = "1,00" }
             };
 
             var invoiceDate = DateTime.Now.AddDays(2);
@@ -171,7 +172,7 @@ namespace iugu.net.IntegratedTests
                     Subitems = subscriptionItems
                 }).ConfigureAwait(false);
 
-                var invoiceItems = new Item[] { new Item { description = "Mensalidade", price_cents = 65000, quantity = 1 } };
+                var invoiceItems = new Item[] { new Item { Description = "Mensalidade", PriceCents = 65000, Quantity = 1 } };
                 var invoiceRequest = new InvoiceRequestMessage("anyemail@gmail.com.br", invoiceDate, invoiceItems)
                 {
                     SubscriptionId = subscription.id,
@@ -195,8 +196,8 @@ namespace iugu.net.IntegratedTests
 
             var customVariables = new List<CustomVariables>
             {
-                new CustomVariables { name = "TaxaIugu", value = "2,50" },
-                new CustomVariables { name = "TaxaPlataformaEdux", value = "1,00" }
+                new CustomVariables { Name = "TaxaIugu", Value = "2,50" },
+                new CustomVariables { Name = "TaxaPlataformaEdux", Value = "1,00" }
             };
 
             var invoiceDate = DateTime.Now.AddDays(2);
@@ -232,7 +233,7 @@ namespace iugu.net.IntegratedTests
                     Subitems = subscriptionItems
                 }, customApiToken).ConfigureAwait(false);
 
-                var invoiceItems = new Item[] { new Item { description = "Mensalidade", price_cents = 65000, quantity = 1 } };
+                var invoiceItems = new Item[] { new Item { Description = "Mensalidade", PriceCents = 65000, Quantity = 1 } };
                 var request = new InvoiceRequestMessage("anyemail@gmail.com.br", invoiceDate, invoiceItems)
                 {
                     SubscriptionId = subscription.id,
@@ -240,21 +241,21 @@ namespace iugu.net.IntegratedTests
                 };
 
                 var current = await apiInvoice.CreateAsync(request, customApiToken).ConfigureAwait(false);
-                invoice = await apiInvoice.DuplicateAsync(current.id, new InvoiceDuplicateRequestMessage(newDate), customApiToken).ConfigureAwait(false);
-                cancelInvoice = await apiInvoice.GetAsync(current.id, customApiToken).ConfigureAwait(false);
+                invoice = await apiInvoice.DuplicateAsync(current.ID, new InvoiceDuplicateRequestMessage(newDate), customApiToken).ConfigureAwait(false);
+                cancelInvoice = await apiInvoice.GetAsync(current.ID, customApiToken).ConfigureAwait(false);
             };
 
             // Assert
             Assert.That(invoice, Is.Not.Null);
-            Assert.That(invoice.status, Is.EqualTo(Constants.InvoiceStatus.PENDING));
-            Assert.That(cancelInvoice.status, Is.EqualTo(Constants.InvoiceStatus.CANCELED));
+            Assert.That(invoice.Status, Is.EqualTo(Constants.InvoiceStatus.PENDING));
+            Assert.That(cancelInvoice.Status, Is.EqualTo(Constants.InvoiceStatus.CANCELED));
         }
 
         [Test]
         public async Task List_invoices()
         {
             // Arrange
-            InvoiceListModel invoices = null;
+            InvoicesModel invoices = null;
 
             // Act
             using (var apiInvoice = new Invoice())
@@ -264,14 +265,14 @@ namespace iugu.net.IntegratedTests
 
             // Assert
             Assert.That(invoices, Is.Not.Null);
-            Assert.That(invoices?.items, Is.Not.Empty);
+            Assert.That(invoices?.Items, Is.Not.Empty);
         }
 
         [Test]
         public async Task Resend_invoice_mail()
         {
             // Arrange
-            InvoiceListModel invoices = null;
+            InvoicesModel invoices = null;
             InvoiceModel resendInvoiceModel = null;
             var resendInvoiceId = "";
 
@@ -279,21 +280,21 @@ namespace iugu.net.IntegratedTests
             using (var apiInvoice = new Invoice())
             {
                 invoices = await apiInvoice.GetAsync().ConfigureAwait(false);
-                resendInvoiceId = invoices.items.First().id;
+                resendInvoiceId = invoices.Items.First().ID;
                 resendInvoiceModel = await apiInvoice.ResendInvoiceMail(resendInvoiceId).ConfigureAwait(false);
             };
 
             // Assert
             Assert.That(resendInvoiceModel, Is.Not.Null);
-            Assert.That(resendInvoiceModel.id, Is.EqualTo(resendInvoiceId));
+            Assert.That(resendInvoiceModel.ID, Is.EqualTo(resendInvoiceId));
         }
 
         [Test]
         public async Task Get_all_invoices_by_custom_api_token()
         {
             // Arrange
-            InvoiceListModel invoices = null;
-            InvoiceListModel invoicesByCustomToken = null;
+            InvoicesModel invoices = null;
+            InvoicesModel invoicesByCustomToken = null;
 
             // Act
             using (var apiInvoice = new Invoice())
@@ -304,7 +305,7 @@ namespace iugu.net.IntegratedTests
 
             // Assert
             Assert.That(invoices, Is.Not.Null);
-            Assert.That(invoices.items.Count, Is.EqualTo(invoicesByCustomToken?.items.Count));
+            Assert.That(invoices.Items.Count, Is.EqualTo(invoicesByCustomToken?.Items.Count));
         }
 
     }
