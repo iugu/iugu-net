@@ -19,8 +19,8 @@ namespace iugu.UnitTest
         {
             // Arrange
             var custom = new List<CustomVariables>();
-            custom.Add(new CustomVariables { name = "Tipo", value = "Desmanche" });
-            custom.Add(new CustomVariables { name = "Representante", value = "Fabio Munhoz (RJ)" });
+            custom.Add(new CustomVariables { Name = "Tipo", Value = "Desmanche" });
+            custom.Add(new CustomVariables { Name = "Representante", Value = "Fabio Munhoz (RJ)" });
 
             CustomerModel myClient;
 

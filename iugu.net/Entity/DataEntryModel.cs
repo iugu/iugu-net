@@ -1,93 +1,109 @@
-﻿namespace iugu.net.Entity
+﻿using Newtonsoft.Json;
+
+namespace iugu.net.Entity
 {
-    // TODO: Precisa de refatoração, nomes fora do padrão .Net, sem documentação também
     public class CustomVariables
     {
-        public string name { get; set; }
-        public string value { get; set; }
+        /// <summary>
+        /// Nome do atributo
+        /// </summary>
+        [JsonProperty("name")]
+        public string Name { get; set; }
 
+        /// <summary>
+        /// Valor do atributo
+        /// </summary>
+        [JsonProperty("value")]
+        public string Value { get; set; }
     }
 
-    // TODO: Precisa de refatoração, nomes fora do padrão .Net
     public class Logs
     {
         /// <summary>
         /// Descrição da Entrada de Log
         /// </summary>
-        public string description { get; set; }
+        [JsonProperty("description")]
+        public string Description { get; set; }
 
         /// <summary>
         /// Anotações da Entrada de Log
         /// </summary>
-        public string notes { get; set; }
-
+        [JsonProperty("notes")]
+        public string Notes { get; set; }
     }
 
-    // TODO: Precisa de refatoração, nomes fora do padrão .Net
     public class Feature
     {
         /// <summary>
         /// Nome da Funcionalidade
         /// </summary>
-        public string name { get; set; }
+        [JsonProperty("name")]
+        public string Name { get; set; }
 
         /// <summary>
         /// Identificador único da funcionalidade
         /// </summary>
-        public string identifier { get; set; }
+        [JsonProperty("identifier")]
+        public string Identifier { get; set; }
 
         /// <summary>
         /// Valor da Funcionalidade (número maior que 0)
         /// </summary>
-        public int value { get; set; }
+        [JsonProperty("value")]
+        public int Value { get; set; }
     }
 
-    // TODO: Precisa de refatoração, nomes fora do padrão .Net
     public class Prices
     {
         /// <summary>
         /// Moeda do Preço (Somente "BRL" por enquanto)
         /// </summary>
-        public string currency { get; set; }
+        [JsonProperty("currency")]
+        public string Currency { get; set; }
 
         /// <summary>
         /// Preço do Plano em Centavos
         /// </summary>
-        public int value_cents { get; set; }
+        [JsonProperty("value_cents")]
+        public int ValueCents { get; set; }
     }
 
-    // TODO: Precisa de refatoração, nomes fora do padrão .Net
     public class CreditCard
     {
         /// <summary>
         /// Número do Cartão de Crédito
         /// </summary>
-        public int number { get; set; }
+        [JsonProperty("number")]
+        public int Number { get; set; }
 
         /// <summary>
         /// CVV do Cartão de Crédito
         /// </summary>
-        public int verification_value { get; set; }
+        [JsonProperty("verification_value")]
+        public int VerificationValue { get; set; }
 
         /// <summary>
         /// Nome do Cliente como está no Cartão
         /// </summary>
-        public string first_name { get; set; }
+        [JsonProperty("first_name")]
+        public string FirstName { get; set; }
 
         /// <summary>
         /// Sobrenome do Cliente como está no Cartão
         /// </summary>
-        public string last_name { get; set; }
+        [JsonProperty("last_name")]
+        public string LastName { get; set; }
 
         /// <summary>
         /// Mês de Vencimento no Formato MM (Ex: 01, 02, 12)
         /// </summary>
-        public int month { get; set; }
+        [JsonProperty("month")]
+        public int Month { get; set; }
 
         /// <summary>
         /// Ano de Vencimento no Formato YYYY (2014, 2015, 2016)
         /// </summary>
-        public int year { get; set; }
+        [JsonProperty("year")]
+        public int Year { get; set; }
     }
-
 }
