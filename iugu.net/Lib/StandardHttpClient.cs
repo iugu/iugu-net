@@ -30,8 +30,7 @@ namespace iugu.net.Lib
         {
             client = new HttpClient();
             client.DefaultRequestHeaders
-                  .Accept
-                  .Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                  .Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
         /// <summary>

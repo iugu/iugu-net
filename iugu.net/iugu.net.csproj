@@ -109,6 +109,7 @@
     <Compile Include="Lib\APIResource.cs" />
     <Compile Include="Lib\Charge.cs" />
     <Compile Include="Lib\Customer.cs" />
+    <Compile Include="Lib\FinancialTransaction.cs" />
     <Compile Include="Lib\Invoice.cs" />
     <Compile Include="Lib\MarketPlace.cs" />
     <Compile Include="Lib\PaymentMethod.cs" />
@@ -124,6 +125,7 @@
     <Compile Include="Request\BankVerificationRequestMessage.cs" />
     <Compile Include="Request\ChargeRequestMessage.cs" />
     <Compile Include="Request\CustomerRequestMessage.cs" />
+    <Compile Include="Request\FinancialTransactionRequestMessage.cs" />
     <Compile Include="Request\InvoiceDuplicateRequestMessage.cs" />
     <Compile Include="Request\InvoiceRequestMessage.cs" />
     <Compile Include="Request\PaymentTokenRequest.cs" />
@@ -133,6 +135,7 @@
     <Compile Include="Response\AccountRequestWithdrawResponse.cs" />
     <Compile Include="Response\AccountResponseMessage.cs" />
     <Compile Include="Response\ChargeResponseMessage.cs" />
+    <Compile Include="Response\FinancialTransactionResponse.cs" />
     <Compile Include="Response\GetAccountResponseMessage.cs" />
     <Compile Include="Response\MarketplaceAccoutsResponse.cs" />
     <Compile Include="Response\PaggedResponseMessage.cs" />
