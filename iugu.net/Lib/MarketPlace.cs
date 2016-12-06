@@ -3,6 +3,7 @@ using iugu.net.Request;
 using iugu.net.Response;
 using System;
 using System.Threading.Tasks;
+using iugu.net.Interfaces;
 
 namespace iugu.net.Lib
 {

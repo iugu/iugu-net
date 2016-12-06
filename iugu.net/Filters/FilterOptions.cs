@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -118,10 +118,7 @@ namespace iugu.net.Filters
 
         public string ToQueryStringUrl()
         {
-            if (!string.IsNullOrEmpty(currentFilter))
-                return $"?{currentFilter}";
-
-            return string.Empty;
+            return !string.IsNullOrEmpty(currentFilter) ? $"?{currentFilter}" : string.Empty;
         }
 
         private void AppendFilter(string propertyName, params object[] args)
@@ -129,11 +126,7 @@ namespace iugu.net.Filters
             if (args != null && args.Any())
             {
                 var queryString = string.Format(FilterParams[propertyName], args);
-
-                if (!string.IsNullOrEmpty(currentFilter))
-                    currentFilter = string.Join("&", new string[] { currentFilter, queryString });
-                else
-                    currentFilter = queryString;
+                currentFilter = !string.IsNullOrEmpty(currentFilter) ? string.Join("&", new string[] { currentFilter, queryString }) : queryString;
             }
         }
     }
