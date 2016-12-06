@@ -8,6 +8,7 @@ using Ploeh.AutoFixture;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using iugu.net.Interfaces;
 using Newtonsoft.Json;
 
 namespace iugu.net.IntegratedTests
