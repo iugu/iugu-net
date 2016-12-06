@@ -51,12 +51,12 @@ namespace iugu.net.IntegratedTests
                 //var plan = await apiPlan.CreateAsync($"{radomPlan}-12x", $"{radomPlan}-Plan", 1, "months", 0, "BRL", null, null, Constants.PaymentMethod.BANK_SLIP).ConfigureAwait(false);
 
 
-                var subscriptionItems = new List<SubscriptionSubitem> { new SubscriptionSubitem { description = "Mensalidade", price_cents = 65000, quantity = 1, recurrent = true } };
+                var subscriptionItems = new List<SubscriptionSubitem> { new SubscriptionSubitem { Description = "Mensalidade", PriceCents = 65000, Quantity = 1, Recurrent = true } };
 
 
                 var subscription = await apiSubscription.CreateAsync(new Request.SubscriptionRequestMessage(customerResponse.ID)
                 {
-                    PlanId = plan.identifier,
+                    PlanId = plan.Identifier,
                     IsCreditBased = false,
                     CustomVariables = customVariables,
                     Subitems = subscriptionItems
@@ -108,10 +108,10 @@ namespace iugu.net.IntegratedTests
                 var radomPlan = Guid.NewGuid().ToString();
                 PlanRequestMessage prm = new PlanRequestMessage($"{radomPlan}-12x", $"{radomPlan}-Plan", 1, PlanIntervalType.Monthly, 0, CurrencyType.BRL);
                 var plan = await apiPlan.CreateAsync(prm).ConfigureAwait(false);
-                var subscriptionItems = new List<SubscriptionSubitem> { new SubscriptionSubitem { description = "Mensalidade", price_cents = 65000, quantity = 1, recurrent = true } };
+                var subscriptionItems = new List<SubscriptionSubitem> { new SubscriptionSubitem { Description = "Mensalidade", PriceCents = 65000, Quantity = 1, Recurrent = true } };
                 var subscription = await apiSubscription.CreateAsync(new Request.SubscriptionRequestMessage(customerResponse.ID)
                 {
-                    PlanId = plan.identifier,
+                    PlanId = plan.Identifier,
                     IsCreditBased = false,
                     CustomVariables = customVariables,
                     Subitems = subscriptionItems
@@ -163,10 +163,10 @@ namespace iugu.net.IntegratedTests
                 var radomPlan = Guid.NewGuid().ToString();
                 PlanRequestMessage prm = new PlanRequestMessage($"{radomPlan}-12x", $"{radomPlan}-Plan", 1, PlanIntervalType.Monthly, 0, CurrencyType.BRL);
                 var plan = await apiPlan.CreateAsync(prm).ConfigureAwait(false);
-                var subscriptionItems = new List<SubscriptionSubitem> { new SubscriptionSubitem { description = "Mensalidade", price_cents = 65000, quantity = 1, recurrent = true } };
+                var subscriptionItems = new List<SubscriptionSubitem> { new SubscriptionSubitem { Description = "Mensalidade", PriceCents = 65000, Quantity = 1, Recurrent = true } };
                 var subscription = await apiSubscription.CreateAsync(new Request.SubscriptionRequestMessage(customerResponse.ID)
                 {
-                    PlanId = plan.identifier,
+                    PlanId = plan.Identifier,
                     IsCreditBased = false,
                     CustomVariables = customVariables,
                     Subitems = subscriptionItems
@@ -175,7 +175,7 @@ namespace iugu.net.IntegratedTests
                 var invoiceItems = new Item[] { new Item { Description = "Mensalidade", PriceCents = 65000, Quantity = 1 } };
                 var invoiceRequest = new InvoiceRequestMessage("anyemail@gmail.com.br", invoiceDate, invoiceItems)
                 {
-                    SubscriptionId = subscription.id,
+                    SubscriptionId = subscription.ID,
                     CustomVariables = customVariables.ToArray(),
                 };
 
@@ -224,10 +224,10 @@ namespace iugu.net.IntegratedTests
                 var radomPlan = Guid.NewGuid().ToString();
                 PlanRequestMessage prm = new PlanRequestMessage($"{radomPlan}-12x", $"{radomPlan}-Plan", 1, PlanIntervalType.Monthly, 0, CurrencyType.BRL);
                 var plan = await apiPlan.CreateAsync(prm).ConfigureAwait(false);
-                var subscriptionItems = new List<SubscriptionSubitem> { new SubscriptionSubitem { description = "Mensalidade", price_cents = 65000, quantity = 1, recurrent = true } };
+                var subscriptionItems = new List<SubscriptionSubitem> { new SubscriptionSubitem { Description = "Mensalidade", PriceCents = 65000, Quantity = 1, Recurrent = true } };
                 var subscription = await apiSubscription.CreateAsync(new SubscriptionRequestMessage(customerResponse.ID)
                 {
-                    PlanId = plan.identifier,
+                    PlanId = plan.Identifier,
                     IsCreditBased = false,
                     CustomVariables = customVariables,
                     Subitems = subscriptionItems
@@ -236,7 +236,7 @@ namespace iugu.net.IntegratedTests
                 var invoiceItems = new Item[] { new Item { Description = "Mensalidade", PriceCents = 65000, Quantity = 1 } };
                 var request = new InvoiceRequestMessage("anyemail@gmail.com.br", invoiceDate, invoiceItems)
                 {
-                    SubscriptionId = subscription.id,
+                    SubscriptionId = subscription.ID,
                     CustomVariables = customVariables.ToArray()
                 };
 

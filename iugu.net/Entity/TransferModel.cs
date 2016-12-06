@@ -1,19 +1,52 @@
-﻿namespace iugu.net.Entity
+﻿using Newtonsoft.Json;
+
+namespace iugu.net.Entity
 {
-    // TODO: Precisa de refatoração, nomes fora do padrão .Net, sem documentação também
     public class TransferModel
     {
-        public string id { get; set; }
-        public string created_at { get; set; }
-        public string amount_cents { get; set; }
-        public string amount_localized { get; set; }
-        public Receiver receiver { get; set; }
+        /// <summary>
+        /// ID da transferência
+        /// </summary>
+        [JsonProperty("id")]
+        public string ID { get; set; }
+
+        /// <summary>
+        /// Data de criação
+        /// </summary>
+        [JsonProperty("created_at")]
+        public string CreatedAt { get; set; }
+
+        /// <summary>
+        /// Valor em centavos
+        /// </summary>
+        [JsonProperty("amount_cents")]
+        public string AmountCents { get; set; }
+
+        /// <summary>
+        /// Valor localizado
+        /// </summary>
+        [JsonProperty("amount_localized")]
+        public string AmountLocalized { get; set; }
+
+        /// <summary>
+        /// Recebedor
+        /// </summary>
+        [JsonProperty("receiver")]
+        public Receiver Receiver { get; set; }
     }
 
-    // TODO: Precisa de refatoração, nomes fora do padrão .Net, sem documentação também
     public class Receiver
     {
-        public string id { get; set; }
-        public string name { get; set; }
+        /// <summary>
+        /// ID
+        /// </summary>
+        [JsonProperty("id")]
+        public string ID { get; set; }
+        
+        /// <summary>
+        /// Nome
+        /// </summary>
+        [JsonProperty("name")]
+        public string Name { get; set; }
     }
 }
