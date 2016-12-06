@@ -30,7 +30,7 @@ namespace iugu.net.IntegratedTests
                 originalCountPlans = currentPlans.TotalItems;
                 var response = await apiPlan.CreateAsync(planRequest, "74c265aedbfaea379bc0148fae9b5526").ConfigureAwait(false);
 
-                var newPlan = await apiPlan.GetByIdentifierAsync(response.identifier).ConfigureAwait(false);
+                var newPlan = await apiPlan.GetByIdentifierAsync(response.Identifier).ConfigureAwait(false);
                 newCountPlans = newPlan != null ? originalCountPlans + 1 : newCountPlans;
             };
 
@@ -54,7 +54,7 @@ namespace iugu.net.IntegratedTests
 
             // Assert
             Assert.That(plan, Is.Not.Null);
-            Assert.That(plan.identifier, Is.EqualTo(planId));
+            Assert.That(plan.Identifier, Is.EqualTo(planId));
         }
 
         [Test]
@@ -78,7 +78,7 @@ namespace iugu.net.IntegratedTests
 
             // Assert
             Assert.That(plan, Is.Not.Null);
-            Assert.That(plan.identifier, Is.EqualTo(planId));
+            Assert.That(plan.Identifier, Is.EqualTo(planId));
         }
 
 
@@ -101,7 +101,7 @@ namespace iugu.net.IntegratedTests
 
             // Assert
             Assert.That(plan, Is.Not.Null);
-            Assert.That(plan.identifier, Is.EqualTo(planId));
+            Assert.That(plan.Identifier, Is.EqualTo(planId));
         }
     }
 }
