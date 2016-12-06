@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace iugu.net.Request
 {
     /// <summary>
-    /// Requisição para a API de contas
+    /// Requisição para a API de lista, simulação e efetivação de adiantamento
     /// </summary>
     public class FinancialTransactionRequestMessage
     {
@@ -13,7 +13,6 @@ namespace iugu.net.Request
         /// </summary>
         [JsonProperty("transactions")]
         public List<Transactions> Transactions { get; set; }
-
     }
 
     public class Transactions

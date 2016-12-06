@@ -82,6 +82,34 @@ namespace iugu.net.Lib
             GC.SuppressFinalize(this);
         }
 
+
+        public async Task<string> GetAsync(string id, string partOfUrl, string apiUserToken)
+        {
+            var completeUrl = GetCompleteUrl(partOfUrl, id);
+            var response = await SendRequestAsync(HttpMethod.Get, completeUrl, null, apiUserToken).ConfigureAwait(false);
+            return await ProcessResponse(response).ConfigureAwait(false);
+        }
+        public async Task<string> PostAsync(string id, string partOfUrl, string customApiToken)
+        {
+            var completeUrl = GetCompleteUrl(partOfUrl, id);
+            var response = await SendRequestAsync(HttpMethod.Post, completeUrl, null, customApiToken);
+            return await ProcessResponse(response).ConfigureAwait(false);
+        }
+
+        private static async Task<string> ProcessResponse(HttpResponseMessage response)
+        {
+            if (response.IsSuccessStatusCode)
+            {
+                string data = await response.Content.ReadAsStringAsync();
+                return data;
+            }
+            else
+            {
+                throw new Exception(response.ReasonPhrase);
+            }
+        }
+
+
         public async Task<T> GetAsync<T>()
         {
             var response = await SendRequestAsync(HttpMethod.Get, BaseURI).ConfigureAwait(false);
