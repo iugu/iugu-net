@@ -1,19 +1,54 @@
-﻿namespace iugu.net.Entity
+﻿using Newtonsoft.Json;
+
+namespace iugu.net.Entity
 {
-    // TODO: Precisa de refatoração, nomes fora do padrão .Net, sem documentação também
+    // TODO: Precisa de  documentação
     public class PaymentMethodModel
     {
-        public string id { get; set; }
-        public string description { get; set; }
-        public string item_type { get; set; }
-        public PaymentMethodData data { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("id")]
+        public string ID { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("description")]
+        public string Description { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("item_type")]
+        public string ItemType { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("data")]
+        public PaymentMethodData Data { get; set; }
     }
 
-    // TODO: Precisa de refatoração, nomes fora do padrão .Net, sem documentação também
+    // TODO: Precisa de  documentação
     public class PaymentMethodData
     {
-        public string token { get; set; }
-        public string display_number { get; set; }
-        public string brand { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("token")]
+        public string Token { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("display_number")]
+        public string DisplayNumber { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("brand")]
+        public string Brand { get; set; }
     }
 }
