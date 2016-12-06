@@ -1,49 +1,176 @@
 ﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace iugu.net.Entity
 {
-
+    //todo: verify this class as it does not look right
     public class PlanModelsList
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("TotalItems")]
         public int TotalItems { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("Items")]
         public PlanModel[] Items { get; set; }
     }
-    // TODO: Precisa de refatoração, nomes fora do padrão .Net, sem documentação também
+    // TODO: sem documentação
     public class PlanModel
     {
-        public string id { get; set; }
-        public string name { get; set; }
-        public string identifier { get; set; }
-        public int interval { get; set; }
-        public string interval_type { get; set; }
-        public string created_at { get; set; }
-        public string updated_at { get; set; }
-        public List<PlanPrice> prices { get; set; }
-        public List<PlanFeature> features { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("id")]
+        public string ID { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("identifier")]
+        public string Identifier { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("interval")]
+        public int Interval { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("interval_type")]
+        public string IntervalType { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("created_at")]
+        public string CreatedAt { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("updated_at")]
+        public string UpdatedAt { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("prices")]
+        public List<PlanPrice> Prices { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("features")]
+        public List<PlanFeature> Features { get; set; }
     }
 
-    // TODO: Precisa de refatoração, nomes fora do padrão .Net, sem documentação também
+    // TODO: Precisa de documentação
     public class PlanPrice
     {
-        public string created_at { get; set; }
-        public string currency { get; set; }
-        public string id { get; set; }
-        public string plan_id { get; set; }
-        public string updated_at { get; set; }
-        public int value_cents { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("created_at")]
+        public string CreatedAt { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("currency")]
+        public string Currency { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("id")]
+        public string ID { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("plan_id")]
+        public string PlanID { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("updated_at")]
+        public string UpdatedAt { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("value_cents")]
+        public int ValueCents { get; set; }
     }
 
-    // TODO: Precisa de refatoração, nomes fora do padrão .Net, sem documentação também
+    // TODO: Precisa de documentação
     public class PlanFeature
     {
-        public string created_at { get; set; }
-        public string id { get; set; }
-        public string identifier { get; set; }
-        public object important { get; set; }
-        public string name { get; set; }
-        public string plan_id { get; set; }
-        public int position { get; set; }
-        public string updated_at { get; set; }
-        public int value { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("created_at")]
+        public string CreatedAt { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("id")]
+        public string ID { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("identifier")]
+        public string Identifier { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("important")]
+        public object Important { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("plan_id")]
+        public string PlanID { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("position")]
+        public int Position { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("updated_at")]
+        public string UpdatedAt { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("value")]
+        public int Value { get; set; }
     }
 }

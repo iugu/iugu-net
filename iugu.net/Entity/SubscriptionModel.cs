@@ -1,65 +1,261 @@
 ﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace iugu.net.Entity
 {
-    // todo: Precisa de refatoração, nomes fora do padrão .Net, sem documentação também
+    // todo: sem documentação
     public class SubscriptionModel
     {
-        public string id { get; set; }
-        public bool suspended { get; set; }
-        public string plan_identifier { get; set; }
-        public int price_cents { get; set; }
-        public string currency { get; set; }
-        public SubscriptionFeatures features { get; set; }
-        public object expires_at { get; set; }
-        public string created_at { get; set; }
-        public string updated_at { get; set; }
-        public string customer_name { get; set; }
-        public string customer_email { get; set; }
-        public object cycled_at { get; set; }
-        public int credits_min { get; set; }
-        public object credits_cycle { get; set; }
-        public string customer_id { get; set; }
-        public string plan_name { get; set; }
-        public string customer_ref { get; set; }
-        public string plan_ref { get; set; }
-        public bool active { get; set; }
-        public object in_trial { get; set; }
-        public int credits { get; set; }
-        public bool credits_based { get; set; }
-        public object recent_invoices { get; set; }
-        public List<SubscriptionSubitem> subitems { get; set; }
-        public List<SubscriptionLog> logs { get; set; }
-        public List<CustomVariables> custom_variables { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("id")]
+        public string ID { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("suspended")]
+        public bool Suspended { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("plan_identifier")]
+        public string PlanIdentifier { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("price_cents")]
+        public int PriceCents { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("currency")]
+        public string Currency { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("features")]
+        public SubscriptionFeatures Features { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("expires_at")]
+        public object ExpiresAt { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("created_at")]
+        public string CreatedAt { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("updated_at")]
+        public string UpdatedAt { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("customer_name")]
+        public string CustomerName { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("customer_email")]
+        public string CustomerEmail { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("cycled_at")]
+        public object CycledAt { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("credits_min")]
+        public int CreditsMin { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("credits_cycle")]
+        public object CreditsCycle { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("customer_id")]
+        public string CustomerID { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("plan_name")]
+        public string PlanName { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("customer_ref")]
+        public string CustomerRef { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("plan_ref")]
+        public string PlanRef { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("active")]
+        public bool Active { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("in_trial")]
+        public object InTrial { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("credits")]
+        public int Credits { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("credits_based")]
+        public bool CreditsBased { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("recent_invoices")]
+        public object RecentInvoices { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("subitems")]
+        public List<SubscriptionSubitem> Subitems { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("logs")]
+        public List<SubscriptionLog> Logs { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("custom_variables")]
+        public List<CustomVariables> CustomVariables { get; set; }
     }
 
     public class Feat
     {
-        public string name { get; set; }
-        public int value { get; set; }
+        /// <summary>
+        /// Nome
+        /// </summary>
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        /// <summary>
+        /// Valor
+        /// </summary>
+        [JsonProperty("value")]
+        public int Value { get; set; }
     }
 
     public class SubscriptionFeatures
     {
-        public Feat feat { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("feat")]
+        public Feat Feat { get; set; }
     }
 
     public class SubscriptionSubitem
     {
-        public string id { get; set; }
-        public string description { get; set; }
-        public int quantity { get; set; }
-        public int price_cents { get; set; }
-        public string price { get; set; }
-        public string total { get; set; }
-        public bool? recurrent { get; set; }
+        /// <summary>
+        /// ID
+        /// </summary>
+        [JsonProperty("id")]
+        public string ID { get; set; }
+
+        /// <summary>
+        /// Descrição
+        /// </summary>
+        [JsonProperty("description")]
+        public string Description { get; set; }
+
+        /// <summary>
+        /// Quantidade
+        /// </summary>
+        [JsonProperty("quantity")]
+        public int Quantity { get; set; }
+
+        /// <summary>
+        /// Valor em centavos
+        /// </summary>
+        [JsonProperty("price_cents")]
+        public int PriceCents { get; set; }
+
+        /// <summary>
+        /// Preço
+        /// </summary>
+        [JsonProperty("price")]
+        public string Price { get; set; }
+
+        /// <summary>
+        /// Total
+        /// </summary>
+        [JsonProperty("total")]
+        public string Total { get; set; }
+
+        /// <summary>
+        /// Recorrente (Sim/Não)
+        /// </summary>
+        [JsonProperty("recurrent")]
+        public bool? Recurrent { get; set; }
     }
 
     public class SubscriptionLog
     {
-        public string id { get; set; }
-        public string description { get; set; }
-        public string notes { get; set; }
-        public string created_at { get; set; }
+        /// <summary>
+        /// ID
+        /// </summary>
+        [JsonProperty("id")]
+        public string ID { get; set; }
+
+        /// <summary>
+        /// Descrição
+        /// </summary>
+        [JsonProperty("description")]
+        public string Description { get; set; }
+
+        /// <summary>
+        /// Observações
+        /// </summary>
+        [JsonProperty("notes")]
+        public string Notes { get; set; }
+
+        /// <summary>
+        /// Data de criação
+        /// </summary>
+        [JsonProperty("created_at")]
+        public string CreatedAt { get; set; }
     }
 }
