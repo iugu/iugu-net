@@ -10,6 +10,7 @@ using Ploeh.AutoFixture;
 using Newtonsoft.Json;
 using iugu.net.IntegratedTests.Stubs;
 using System.Net.Http;
+using iugu.net.Interfaces;
 
 namespace iugu.net.IntegratedTests
 {

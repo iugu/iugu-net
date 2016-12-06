@@ -1,9 +1,19 @@
-﻿namespace iugu.net.Entity
+﻿using Newtonsoft.Json;
+
+namespace iugu.net.Entity
 {
-    // TODO: Precisa de refatoração, nomes fora do padrão .Net, sem documentação também
     public class TokenModel
     {
-        public string id { get; set; }
-        public string method { get; set; }
+        /// <summary>
+        /// ID
+        /// </summary>
+        [JsonProperty("id")]
+        public string ID { get; set; }
+
+        /// <summary>
+        /// Método
+        /// </summary>
+        [JsonProperty("method")]
+        public string Method { get; set; }
     }
 }

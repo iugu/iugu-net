@@ -2,6 +2,7 @@
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using iugu.net.Interfaces;
 
 namespace iugu.net.Lib
 {
@@ -9,15 +10,7 @@ namespace iugu.net.Lib
     /// Wrapper em cima do HttpClient que provê maior testabilidade e permite inclisive a substituição por qualquer
     /// outra implementação que o consumidor do client queira.
     /// </summary>
-    public interface IHttpClientWrapper : IDisposable
-    {
-        /// <summary>
-        /// Enviar uma requisição
-        /// </summary>
-        /// <param name="request">Dados da mensagem da requisição</param>
-        /// <returns>resposta da requisição</returns>
-        Task<HttpResponseMessage> SendAsync(HttpRequestMessage request);
-    }
+    
 
     /// <summary>
     /// Implementação padrão da interface IHpptClientWrapper da IUGU

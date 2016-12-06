@@ -4,6 +4,7 @@ using iugu.net.Response;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using iugu.net.Entity.Lists;
 
 namespace iugu.net.Lib
 {
@@ -18,10 +19,10 @@ namespace iugu.net.Lib
             BaseURI = "/invoices";
         }
         
-        public async Task<InvoiceListModel> GetAsync()
+        public async Task<InvoicesModel> GetAsync()
         {
             //TODO: Implementar GET com parametros
-            var retorno = await GetAsync<InvoiceListModel>().ConfigureAwait(false);
+            var retorno = await GetAsync<InvoicesModel>().ConfigureAwait(false);
             return retorno;
         }
 
@@ -30,9 +31,9 @@ namespace iugu.net.Lib
         /// </summary>
         /// <param name="customApiToken">ApiToken customizado</param>
         /// <returns></returns>
-        public async Task<InvoiceListModel> GetAllAsync(string customApiToken)
+        public async Task<InvoicesModel> GetAllAsync(string customApiToken)
         {
-            var retorno = await GetAsync<InvoiceListModel>(null, customApiToken).ConfigureAwait(false);
+            var retorno = await GetAsync<InvoicesModel>(null, customApiToken).ConfigureAwait(false);
             return retorno;
         }
         

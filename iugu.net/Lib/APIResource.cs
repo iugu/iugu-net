@@ -6,28 +6,11 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using iugu.net.Interfaces;
 
 namespace iugu.net.Lib
 {
-    /// <summary>
-    /// Inteface básica de um recurso de API
-    /// </summary>
-    public interface IApiResources : IDisposable
-    {
-        string BaseURI { get; set; }
-        Task<T> GetAsync<T>();
-        Task<T> GetAsync<T>(string id);
-        Task<T> GetAsync<T>(string id, string apiUserToken);
-        Task<T> GetAsync<T>(string id, string partOfUrl, string apiUserToken);
-
-        Task<T> PostAsync<T>(object data);
-        Task<T> PostAsync<T>(object data, string partOfUrl);
-        Task<T> PostAsync<T>(object data, string partOfUrl, string apiUserToken);
-
-        Task<T> PutAsync<T>(string id, object data);
-
-        Task<T> DeleteAsync<T>(string id);
-    }
+    
 
     /// <summary>
     /// Implementação da inteface básica de acesso a recursos básicos da API da IUGU
@@ -162,17 +145,15 @@ namespace iugu.net.Lib
             {
                 return await Task.FromResult(JsonConvert.DeserializeObject<T>(data, JsonSettings)).ConfigureAwait(false);
             }
-            else
-            {
-                var responseError = await Task.FromResult(JsonConvert.SerializeObject(new
-                {
-                    StatusCode = response.StatusCode,
-                    ReasonPhase = response.ReasonPhrase,
-                    Message = data
-                })).ConfigureAwait(false);
 
-                throw new Exception(responseError);
-            }
+            var responseError = await Task.FromResult(JsonConvert.SerializeObject(new
+            {
+                StatusCode = response.StatusCode,
+                ReasonPhase = response.ReasonPhrase,
+                Message = data
+            })).ConfigureAwait(false);
+
+            throw new Exception(responseError);
         }
 
         private async Task<HttpResponseMessage> SendRequestAsync(HttpMethod method, string url, object data = null, string customToken = null)

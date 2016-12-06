@@ -52,10 +52,10 @@ namespace iugu.net.IntegratedTests
         {
             // Arrange 
             var subscriptionRequest = await SubscriptionApi.GetAsync<PaggedResponseMessage<SubscriptionModel>>().ConfigureAwait(false);
-            var subscriptionItems = new List<SubscriptionSubitem> { new SubscriptionSubitem { description = "Mensalidade", price_cents = 65000, quantity = 1, recurrent = true } };
+            var subscriptionItems = new List<SubscriptionSubitem> { new SubscriptionSubitem { Description = "Mensalidade", PriceCents = 65000, Quantity = 1, Recurrent = true } };
             var request = new Request.SubscriptionRequestMessage(createdCustomer.ID)
             {
-                PlanId = createdPlan.identifier,
+                PlanId = createdPlan.Identifier,
                 IsCreditBased = false,
                 Subitems = subscriptionItems
             };
@@ -64,8 +64,8 @@ namespace iugu.net.IntegratedTests
             var subscription = await SubscriptionApi.CreateAsync(request).ConfigureAwait(false);
 
             // Assert
-            Assert.That(subscription.id, Is.Not.Null);
-            Assert.That(subscription.plan_identifier, Is.EqualTo(createdPlan.identifier));
+            Assert.That(subscription.ID, Is.Not.Null);
+            Assert.That(subscription.PlanIdentifier, Is.EqualTo(createdPlan.Identifier));
         }
 
 
@@ -74,20 +74,20 @@ namespace iugu.net.IntegratedTests
         {
             // Arrange 
             var subscriptionRequest = await SubscriptionApi.GetAsync<PaggedResponseMessage<SubscriptionModel>>().ConfigureAwait(false);
-            var subscriptionItems = new List<SubscriptionSubitem> { new SubscriptionSubitem { description = "Mensalidade", price_cents = 65000, quantity = 1, recurrent = true } };
+            var subscriptionItems = new List<SubscriptionSubitem> { new SubscriptionSubitem { Description = "Mensalidade", PriceCents = 65000, Quantity = 1, Recurrent = true } };
             var request = new Request.SubscriptionRequestMessage(createdCustomer.ID)
             {
-                PlanId = createdPlan.identifier,
+                PlanId = createdPlan.Identifier,
                 IsCreditBased = false,
                 Subitems = subscriptionItems
             };
             var subscription = await SubscriptionApi.CreateAsync(request).ConfigureAwait(false);
 
             // Act
-            var suspendendSubscription = await SubscriptionApi.SuspendAsync(subscription.id).ConfigureAwait(false);
+            var suspendendSubscription = await SubscriptionApi.SuspendAsync(subscription.ID).ConfigureAwait(false);
 
             // Assert
-            Assert.That(suspendendSubscription.suspended, Is.True);
+            Assert.That(suspendendSubscription.Suspended, Is.True);
         }
 
         [Test]
@@ -95,10 +95,10 @@ namespace iugu.net.IntegratedTests
         {
             // Arrange 
             var subscriptionRequest = await SubscriptionApi.GetAsync<PaggedResponseMessage<SubscriptionModel>>().ConfigureAwait(false);
-            var subscriptionItems = new List<SubscriptionSubitem> { new SubscriptionSubitem { description = "Mensalidade", price_cents = 65000, quantity = 1, recurrent = true } };
+            var subscriptionItems = new List<SubscriptionSubitem> { new SubscriptionSubitem { Description = "Mensalidade", PriceCents = 65000, Quantity = 1, Recurrent = true } };
             var request = new Request.SubscriptionRequestMessage(createdCustomer.ID)
             {
-                PlanId = createdPlan.identifier,
+                PlanId = createdPlan.Identifier,
                 IsCreditBased = false,
                 Subitems = subscriptionItems
             };
@@ -109,7 +109,7 @@ namespace iugu.net.IntegratedTests
             var newdPlan = await PlanApi.CreateAsync(prm).ConfigureAwait(false);
 
             // Act
-            var suspendendSubscription = await SubscriptionApi.ChangePlanAsync(currentSubscription.id, newdPlan.identifier).ConfigureAwait(false);
+            var suspendendSubscription = await SubscriptionApi.ChangePlanAsync(currentSubscription.ID, newdPlan.Identifier).ConfigureAwait(false);
 
             // Assert
             suspendendSubscription.Should().NotBeSameAs(currentSubscription);

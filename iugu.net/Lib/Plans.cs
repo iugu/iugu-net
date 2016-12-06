@@ -4,6 +4,7 @@ using iugu.net.Response;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using iugu.net.Entity.Lists;
 
 namespace iugu.net.Lib
 {
@@ -30,7 +31,11 @@ namespace iugu.net.Lib
             var retorno = await GetAsync<PlanModel>().ConfigureAwait(false);
             return retorno;
         }
-
+        //public async Task<PlansModel> GetAsync()
+        //{
+        //    var retorno = await GetAsync<PlansModel>().ConfigureAwait(false);
+        //    return retorno;
+        //}
         public async Task<PlanModel> GetAsync(string id, string customApiToken = null)
         {
             var retorno = await GetAsync<PlanModel>(id, customApiToken).ConfigureAwait(false);
