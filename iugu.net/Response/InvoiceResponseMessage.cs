@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
+using iugu.net.Entity;
 using Newtonsoft.Json;
 
-namespace iugu.net.Entity
+namespace iugu.net.Response
 {
     //TODO: faltando propriededas que não estão na documentação
-    public class InvoiceModel
+    public class InvoiceResponseMessage
     {
         /// <summary>
         /// ID da fatura
@@ -178,7 +179,7 @@ namespace iugu.net.Entity
         /// Número do boleto bancário
         /// </summary>
         [JsonProperty("bank_slip")]
-        public BankSlip BankSlip { get; set; }
+        public BankSlipResponseMessage BankSlipResponseMessage { get; set; }
 
         /// <summary>
         /// Itens da Fatura

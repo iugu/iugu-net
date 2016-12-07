@@ -5,7 +5,7 @@ namespace iugu.net.Entity
     /// <summary>
     /// Representa um item de uma fatura
     /// </summary>
-    public class InvoiceItem
+    public class InvoiceItemRequestMessage
     {
         /// <summary>
         /// Descrição do Item

@@ -1,6 +1,7 @@
 ﻿using iugu.net.Entity;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using iugu.net.Response;
 
 namespace iugu.net.Request
 {

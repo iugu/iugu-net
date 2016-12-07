@@ -2,7 +2,7 @@
 
 namespace iugu.net.Request
 {
-    public class AccountConfigurationRequestMessage
+    public class SubAccountConfigurationRequestMessage
     {
         /// <summary>
         /// Percentual de comissionamento enviado para a conta que gerencia o marketplace (Valor entre 0 e 70)

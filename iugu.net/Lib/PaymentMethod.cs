@@ -22,15 +22,15 @@ namespace iugu.net.Lib
         }
 
         
-        public async Task<PaymentMethodModel> GetAsync()
+        public async Task<PaymentMethodResponseMessage> GetAsync()
         {
-            var retorno = await GetAsync<PaymentMethodModel>().ConfigureAwait(false);
+            var retorno = await GetAsync<PaymentMethodResponseMessage>().ConfigureAwait(false);
             return retorno;
         }
 
-        public async Task<PaymentMethodModel> GetAsync(string id)
+        public async Task<PaymentMethodResponseMessage> GetAsync(string id)
         {
-            var retorno = await GetAsync<PaymentMethodModel>(id).ConfigureAwait(false);
+            var retorno = await GetAsync<PaymentMethodResponseMessage>(id).ConfigureAwait(false);
             return retorno;
         }
 
@@ -43,7 +43,7 @@ namespace iugu.net.Lib
         /// <param name="set_as_default">(opcional)	Tipo da Forma de Pagamento. Atualmente suportamos apenas Cartão de Crédito (tipo credit_card). Só deve ser enviado caso não envie token.</param>
         /// <param name="token">(opcional)	Token de Pagamento, pode ser utilizado em vez de enviar os dados da forma de pagamento</param>
         /// <param name="item_type">(opcional)	Transforma a forma de pagamento na padrão do cliente</param>
-        public async Task<PaymentMethodModel> CreateAsync(string description, CreditCard data, bool? set_as_default, string token = "", string item_type = "")
+        public async Task<PaymentMethodResponseMessage> CreateAsync(string description, CreditCard data, bool? set_as_default, string token = "", string item_type = "")
         {
             var paymentmethod = new
             {
@@ -53,19 +53,19 @@ namespace iugu.net.Lib
                 token = token,
                 item_type = item_type
             };
-            var retorno = await PostAsync<PaymentMethodModel>(paymentmethod).ConfigureAwait(false);
+            var retorno = await PostAsync<PaymentMethodResponseMessage>(paymentmethod).ConfigureAwait(false);
             return retorno;
         }
 
-        public async Task<PaymentMethodModel> DeleteAsync(string id)
+        public async Task<PaymentMethodResponseMessage> DeleteAsync(string id)
         {
-            var retorno = await DeleteAsync<PaymentMethodModel>(id).ConfigureAwait(false);
+            var retorno = await DeleteAsync<PaymentMethodResponseMessage>(id).ConfigureAwait(false);
             return retorno;
         }
 
-        public async Task<PaymentMethodModel> PutAsync(string id, PaymentMethodModel model)
+        public async Task<PaymentMethodResponseMessage> PutAsync(string id, PaymentMethodResponseMessage responseMessage)
         {
-            var retorno = await PutAsync<PaymentMethodModel>(id, model).ConfigureAwait(false);
+            var retorno = await PutAsync<PaymentMethodResponseMessage>(id, responseMessage).ConfigureAwait(false);
             return retorno;
         }
     }

@@ -23,8 +23,8 @@ namespace iugu.net.IntegratedTests
         public async Task Create_a_under_acoount_with_success()
         {
             // Arrange
-            var request = new AccountRequestMessage { Name = "any_market_place_under_account@gmail.com", CommissionPercent = 10 };
-            AccountResponseMessage response;
+            var request = new SubAccountRequestMessage { Name = "any_market_place_under_account@gmail.com", CommissionPercent = 10 };
+            SubAccountResponseMessage response;
 
             var responseContent = JsonConvert.SerializeObject(new Fixture().Build<AccountModel>()
                                                                            .With(a => a.Name, request.Name)
@@ -46,7 +46,7 @@ namespace iugu.net.IntegratedTests
         public async Task Get_all_accounts_in_marketplace_with_success()
         {
             // Arrange
-            var request = new AccountRequestMessage { Name = "any_market_place_under_account@gmail.com", CommissionPercent = 10 };
+            var request = new SubAccountRequestMessage { Name = "any_market_place_under_account@gmail.com", CommissionPercent = 10 };
             MarketplaceAccoutsResponseMessage response;
 
 

@@ -29,11 +29,11 @@ namespace iugu.net.Lib
         /// <summary>
         /// Permite a criação das sub-contas gerenciadas pela conta que gerencia o marketplace.
         /// </summary>
-        /// <param name="underAccount">Informações da conta que se deseja criar</param>
+        /// <param name="underSubAccount">Informações da conta que se deseja criar</param>
         /// <returns>informações da conta recém criada</returns>
-        public async Task<AccountResponseMessage> CreateUnderAccountAsync(AccountRequestMessage underAccount)
+        public async Task<SubAccountResponseMessage> CreateUnderAccountAsync(SubAccountRequestMessage underSubAccount)
         {
-            var retorno = await Api.PostAsync<AccountResponseMessage>(underAccount, "create_account").ConfigureAwait(false);
+            var retorno = await Api.PostAsync<SubAccountResponseMessage>(underSubAccount, "create_account").ConfigureAwait(false);
             return retorno;
         }
 

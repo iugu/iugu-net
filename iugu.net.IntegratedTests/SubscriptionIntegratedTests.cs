@@ -16,8 +16,8 @@ namespace iugu.net.IntegratedTests
         private Subscription SubscriptionApi { get; set; }
         private Customer CustomerApi { get; set; }
 
-        private PlanModel createdPlan { get; set; }
-        private CustomerModel createdCustomer { get; set; }
+        private PlanResponseMessage createdPlan { get; set; }
+        private CustomerResponseMessage createdCustomer { get; set; }
 
         [OneTimeSetUp]
         public async Task PrepareTests()
@@ -51,7 +51,7 @@ namespace iugu.net.IntegratedTests
         public async Task Create_a_new_subscription()
         {
             // Arrange 
-            var subscriptionRequest = await SubscriptionApi.GetAsync<PaggedResponseMessage<SubscriptionModel>>().ConfigureAwait(false);
+            var subscriptionRequest = await SubscriptionApi.GetAsync<PaggedResponseMessage<SubscriptionResponseMessage>>().ConfigureAwait(false);
             var subscriptionItems = new List<SubscriptionSubitem> { new SubscriptionSubitem { Description = "Mensalidade", PriceCents = 65000, Quantity = 1, Recurrent = true } };
             var request = new Request.SubscriptionRequestMessage(createdCustomer.ID)
             {
@@ -73,7 +73,7 @@ namespace iugu.net.IntegratedTests
         public async Task Suspended_a_subscription()
         {
             // Arrange 
-            var subscriptionRequest = await SubscriptionApi.GetAsync<PaggedResponseMessage<SubscriptionModel>>().ConfigureAwait(false);
+            var subscriptionRequest = await SubscriptionApi.GetAsync<PaggedResponseMessage<SubscriptionResponseMessage>>().ConfigureAwait(false);
             var subscriptionItems = new List<SubscriptionSubitem> { new SubscriptionSubitem { Description = "Mensalidade", PriceCents = 65000, Quantity = 1, Recurrent = true } };
             var request = new Request.SubscriptionRequestMessage(createdCustomer.ID)
             {
@@ -94,7 +94,7 @@ namespace iugu.net.IntegratedTests
         public async Task Change_a_subscription_plan()
         {
             // Arrange 
-            var subscriptionRequest = await SubscriptionApi.GetAsync<PaggedResponseMessage<SubscriptionModel>>().ConfigureAwait(false);
+            var subscriptionRequest = await SubscriptionApi.GetAsync<PaggedResponseMessage<SubscriptionResponseMessage>>().ConfigureAwait(false);
             var subscriptionItems = new List<SubscriptionSubitem> { new SubscriptionSubitem { Description = "Mensalidade", PriceCents = 65000, Quantity = 1, Recurrent = true } };
             var request = new Request.SubscriptionRequestMessage(createdCustomer.ID)
             {
