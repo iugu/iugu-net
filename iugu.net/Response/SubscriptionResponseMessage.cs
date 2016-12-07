@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
+using iugu.net.Entity;
 using Newtonsoft.Json;
 
-namespace iugu.net.Entity
+namespace iugu.net.Response
 {
     // todo: sem documentação
-    public class SubscriptionModel
+    public class SubscriptionResponseMessage
     {
         /// <summary>
         /// 

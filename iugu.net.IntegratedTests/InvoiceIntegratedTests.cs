@@ -6,7 +6,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using iugu.net.Entity.Lists;
+using iugu.net.Response;
+using iugu.net.Response.Lists;
 
 namespace iugu.net.IntegratedTests
 {
@@ -17,7 +18,7 @@ namespace iugu.net.IntegratedTests
         public async Task Create_a_valid_invoice()
         {
             // Arrange
-            InvoiceModel invoice;
+            InvoiceResponseMessage invoice;
 
             var customVariables = new List<CustomVariables>
             {
@@ -26,8 +27,8 @@ namespace iugu.net.IntegratedTests
             };
 
             var invoiceDate = DateTime.Now.AddDays(2);
-            var items = new List<InvoiceItem> {
-                new InvoiceItem { Description = "Mensalidade", PriceCents = 100000, Quantity = 1 }
+            var items = new List<InvoiceItemRequestMessage> {
+                new InvoiceItemRequestMessage { Description = "Mensalidade", PriceCents = 100000, Quantity = 1 }
             };
             var customer = new Request.CustomerRequestMessage
             {
@@ -76,7 +77,7 @@ namespace iugu.net.IntegratedTests
         public async Task Create_a_new_invoice_and_cancel_after()
         {
             // Arrange
-            InvoiceModel invoice;
+            InvoiceResponseMessage invoice;
 
             var customVariables = new List<CustomVariables>
             {
@@ -87,8 +88,8 @@ namespace iugu.net.IntegratedTests
             var invoiceDate = DateTime.Now.AddDays(2);
             var newDate = invoiceDate.AddDays(3).ToString("dd/MM/yyyy");
 
-            var items = new List<InvoiceItem> {
-                new InvoiceItem { Description = "Mensalidade", PriceCents = 100000, Quantity = 1 }
+            var items = new List<InvoiceItemRequestMessage> {
+                new InvoiceItemRequestMessage { Description = "Mensalidade", PriceCents = 100000, Quantity = 1 }
             };
 
             var customer = new Request.CustomerRequestMessage
@@ -132,7 +133,7 @@ namespace iugu.net.IntegratedTests
         public async Task Create_a_new_invoice_with_custom_api_token()
         {
             // Arrange
-            InvoiceModel invoice;
+            InvoiceResponseMessage invoice;
 
             var customVariables = new List<CustomVariables>
             {
@@ -143,8 +144,8 @@ namespace iugu.net.IntegratedTests
             var invoiceDate = DateTime.Now.AddDays(2);
             var newDate = invoiceDate.AddDays(3).ToString("dd/MM/yyyy");
 
-            var items = new List<InvoiceItem> {
-                new InvoiceItem { Description = "Mensalidade", PriceCents = 100000, Quantity = 1 }
+            var items = new List<InvoiceItemRequestMessage> {
+                new InvoiceItemRequestMessage { Description = "Mensalidade", PriceCents = 100000, Quantity = 1 }
             };
             var customer = new Request.CustomerRequestMessage
             {
@@ -191,8 +192,8 @@ namespace iugu.net.IntegratedTests
         {
             // Arrange
             const string customApiToken = "74c265aedbfaea379bc0148fae9b5526";
-            InvoiceModel invoice;
-            InvoiceModel cancelInvoice;
+            InvoiceResponseMessage invoice;
+            InvoiceResponseMessage cancelInvoice;
 
             var customVariables = new List<CustomVariables>
             {
@@ -203,8 +204,8 @@ namespace iugu.net.IntegratedTests
             var invoiceDate = DateTime.Now.AddDays(2);
             var newDate = invoiceDate.AddDays(3).ToString("dd/MM/yyyy");
 
-            var items = new List<InvoiceItem> {
-                new InvoiceItem { Description = "Mensalidade", PriceCents = 100000, Quantity = 1 }
+            var items = new List<InvoiceItemRequestMessage> {
+                new InvoiceItemRequestMessage { Description = "Mensalidade", PriceCents = 100000, Quantity = 1 }
             };
 
             var customer = new Request.CustomerRequestMessage
@@ -255,7 +256,7 @@ namespace iugu.net.IntegratedTests
         public async Task List_invoices()
         {
             // Arrange
-            InvoicesModel invoices = null;
+            InvoicesResponseMessage invoices = null;
 
             // Act
             using (var apiInvoice = new Invoice())
@@ -272,8 +273,8 @@ namespace iugu.net.IntegratedTests
         public async Task Resend_invoice_mail()
         {
             // Arrange
-            InvoicesModel invoices = null;
-            InvoiceModel resendInvoiceModel = null;
+            InvoicesResponseMessage invoices = null;
+            InvoiceResponseMessage resendInvoiceResponseMessage = null;
             var resendInvoiceId = "";
 
             // Act
@@ -281,20 +282,20 @@ namespace iugu.net.IntegratedTests
             {
                 invoices = await apiInvoice.GetAsync().ConfigureAwait(false);
                 resendInvoiceId = invoices.Items.First().ID;
-                resendInvoiceModel = await apiInvoice.ResendInvoiceMail(resendInvoiceId).ConfigureAwait(false);
+                resendInvoiceResponseMessage = await apiInvoice.ResendInvoiceMail(resendInvoiceId).ConfigureAwait(false);
             };
 
             // Assert
-            Assert.That(resendInvoiceModel, Is.Not.Null);
-            Assert.That(resendInvoiceModel.ID, Is.EqualTo(resendInvoiceId));
+            Assert.That(resendInvoiceResponseMessage, Is.Not.Null);
+            Assert.That(resendInvoiceResponseMessage.ID, Is.EqualTo(resendInvoiceId));
         }
 
         [Test]
         public async Task Get_all_invoices_by_custom_api_token()
         {
             // Arrange
-            InvoicesModel invoices = null;
-            InvoicesModel invoicesByCustomToken = null;
+            InvoicesResponseMessage invoices = null;
+            InvoicesResponseMessage invoicesByCustomToken = null;
 
             // Act
             using (var apiInvoice = new Invoice())

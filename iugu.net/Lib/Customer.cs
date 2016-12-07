@@ -3,7 +3,8 @@ using iugu.net.Request;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using iugu.net.Entity.Lists;
+using iugu.net.Response;
+using iugu.net.Response.Lists;
 
 namespace iugu.net.Lib
 {
@@ -19,21 +20,21 @@ namespace iugu.net.Lib
             BaseURI = "/customers";
         }
 
-        public async Task<CustomersModel> GetAsync()
+        public async Task<CustomersResponseMessage> GetAsync()
         {
-            var retorno = await GetAsync<CustomersModel>().ConfigureAwait(false);
+            var retorno = await GetAsync<CustomersResponseMessage>().ConfigureAwait(false);
             return retorno;
         }
 
-        public async Task<CustomerModel> GetAsync(string id)
+        public async Task<CustomerResponseMessage> GetAsync(string id)
         {
-            var retorno = await GetAsync<CustomerModel>(id).ConfigureAwait(false);
+            var retorno = await GetAsync<CustomerResponseMessage>(id).ConfigureAwait(false);
             return retorno;
         }
         
-        public async Task<CustomerModel> GetFromCustomApiTokenAsync(string customApiToken)
+        public async Task<CustomerResponseMessage> GetFromCustomApiTokenAsync(string customApiToken)
         {
-            var retorno = await GetAsync<CustomerModel>(null, customApiToken).ConfigureAwait(false);
+            var retorno = await GetAsync<CustomerResponseMessage>(null, customApiToken).ConfigureAwait(false);
             return retorno;
         }
         
@@ -43,21 +44,21 @@ namespace iugu.net.Lib
         /// <param name="request"></param>
         /// <param name="customApiToken"></param>
         /// <returns></returns>
-        public async Task<CustomerModel> CreateAsync(CustomerRequestMessage request, string customApiToken = null)
+        public async Task<CustomerResponseMessage> CreateAsync(CustomerRequestMessage request, string customApiToken = null)
         {
-            var retorno = await PostAsync<CustomerModel>(request, null, customApiToken).ConfigureAwait(false);
+            var retorno = await PostAsync<CustomerResponseMessage>(request, null, customApiToken).ConfigureAwait(false);
             return retorno;
         }
 
-        public async Task<CustomerModel> DeleteAsync(string id)
+        public async Task<CustomerResponseMessage> DeleteAsync(string id)
         {
-            var retorno = await DeleteAsync<CustomerModel>(id).ConfigureAwait(false);
+            var retorno = await DeleteAsync<CustomerResponseMessage>(id).ConfigureAwait(false);
             return retorno;
         }
 
-        public async Task<CustomerModel> PutAsync(string id, CustomerModel model)
+        public async Task<CustomerResponseMessage> PutAsync(string id, CustomerResponseMessage responseMessage)
         {
-            var retorno = await PutAsync<CustomerModel>(id, model).ConfigureAwait(false);
+            var retorno = await PutAsync<CustomerResponseMessage>(id, responseMessage).ConfigureAwait(false);
             return retorno;
         }
     }

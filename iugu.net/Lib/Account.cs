@@ -82,9 +82,9 @@ namespace iugu.net.Lib
         /// <param name="amount">Valor da retirada</param>
         /// <param name="customUserApiToken">Token customizado do usuário, utilizado em marketplaces</param>
         /// <returns>Resposta da API depedido de saque</returns>
-        public async Task<AccountRequestWithdrawResponseMessage> RequestWithdrawAsync(string targetAccountId, decimal amount, string customUserApiToken)
+        public async Task<SubAccountRequestWithdrawResponseMessage> RequestWithdrawAsync(string targetAccountId, decimal amount, string customUserApiToken)
         {
-            var retorno = await Api.PostAsync<AccountRequestWithdrawResponseMessage>(new { amount = amount }, $"{targetAccountId}/request_withdraw", customUserApiToken).ConfigureAwait(false);
+            var retorno = await Api.PostAsync<SubAccountRequestWithdrawResponseMessage>(new { amount = amount }, $"{targetAccountId}/request_withdraw", customUserApiToken).ConfigureAwait(false);
             return retorno;
         }
 
@@ -94,11 +94,11 @@ namespace iugu.net.Lib
         /// <param name="targetAccountId">Id da conta a ser validada</param>
         /// <param name="customUserApiToken">User token customizado da Api</param>
         /// <returns>Resposta da API depedido de saque</returns>
-        public async Task<AccountRequestWithdrawResponseMessage> RequestWithdrawAllAsync(string targetAccountId, string customUserApiToken)
+        public async Task<SubAccountRequestWithdrawResponseMessage> RequestWithdrawAllAsync(string targetAccountId, string customUserApiToken)
         {
             var accountBalanceValue = await Api.GetAsync<GetAccountResponseMessage>(targetAccountId).ConfigureAwait(false);
             var convertedValue = Convert.ToDecimal(accountBalanceValue.Balance.Replace(Constants.CurrencySymbol.BRL, string.Empty).Replace(",", "."));
-            var retorno = await Api.PostAsync<AccountRequestWithdrawResponseMessage>(new { amount = convertedValue }, $"{targetAccountId}/request_withdraw", customUserApiToken).ConfigureAwait(false);
+            var retorno = await Api.PostAsync<SubAccountRequestWithdrawResponseMessage>(new { amount = convertedValue }, $"{targetAccountId}/request_withdraw", customUserApiToken).ConfigureAwait(false);
             return retorno;
         }
 
@@ -108,7 +108,7 @@ namespace iugu.net.Lib
         /// <param name="request">Configurações</param>
         /// <param name="accountApiToken">Live Api Token da conta</param>
         /// <returns></returns>
-        public async Task<GetAccountResponseMessage> ConfigureAccountAsync(AccountConfigurationRequestMessage request, string accountApiToken)
+        public async Task<GetAccountResponseMessage> ConfigureAccountAsync(SubAccountConfigurationRequestMessage request, string accountApiToken)
         {
             var retorno = await Api.PostAsync<GetAccountResponseMessage>(request, $"/configuration", accountApiToken).ConfigureAwait(false);
             return retorno;

@@ -7,7 +7,7 @@ namespace iugu.net.Entity
     /// </summary>
     public class AccountModel
     {
-        private readonly AddressModel _address;
+        private readonly AddressRequestMessage _address;
         private readonly string _fullAddress;
 
         [JsonConstructor]
@@ -16,7 +16,7 @@ namespace iugu.net.Entity
             _fullAddress = address;
         }
 
-        public AccountModel(AddressModel address)
+        public AccountModel(AddressRequestMessage address)
         {
             this._address = address;
 

@@ -61,7 +61,7 @@ namespace iugu.net.Request
         /// Itens da Fatura que será gerada - Opcional caso seja enviado um invoice_id
         /// </summary>
         [JsonProperty("items")]
-        public InvoiceItem[] InvoiceItems { get; set; }
+        public InvoiceItemRequestMessage[] InvoiceItemsRequestMessage { get; set; }
 
         /// <summary>
         /// Informações do Cliente para o Anti Fraude ou Boleto

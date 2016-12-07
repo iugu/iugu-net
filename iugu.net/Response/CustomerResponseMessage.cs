@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace iugu.net.Entity
+namespace iugu.net.Response
 {
     /// <summary>
     /// Model que representa dados do cliente
     /// </summary>
-    public class CustomerModel
+    public class CustomerResponseMessage
     {
         /// <summary>
         /// ID do clinte

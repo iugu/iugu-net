@@ -41,6 +41,6 @@ namespace iugu.net.Entity
         /// Endereço do Cliente (utilizado em caso de pagamento em boleto)
         /// </summary>
         [JsonProperty("address")]
-        public AddressModel Address { get; set; }
+        public AddressRequestMessage Address { get; set; }
     }
 }

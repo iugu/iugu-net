@@ -6,7 +6,7 @@ namespace iugu.net.Response
     /// <summary>
     /// Requisição para a API de conta 
     /// </summary>
-    public class AccountResponseMessage
+    public class SubAccountResponseMessage
     {
         /// <summary>
         /// Id da conta

@@ -5,7 +5,7 @@ namespace iugu.net.Request
     /// <summary>
     /// Requisição para a API de contas
     /// </summary>
-    public class AccountRequestMessage
+    public class SubAccountRequestMessage
     {
         /// <summary>
         /// Nome da Conta. Caso não seja enviado, um valor padrão com o ID da conta é atribuído

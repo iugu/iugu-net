@@ -3,7 +3,7 @@
 namespace iugu.net.Entity
 {
     // TODO: Precisa de  documentação
-    public class PaymentMethodModel
+    public class PaymentMethodResponseMessage
     {
         /// <summary>
         /// 

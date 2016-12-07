@@ -17,13 +17,13 @@ namespace iugu.net.IntegratedTests
     [TestFixture]
     public class AccountIntegratedTests
     {
-        private AccountResponseMessage response;
+        private SubAccountResponseMessage response;
         private VerifyAccountResponseMessage expectedResponse;
 
         [OneTimeSetUp]
         public async Task PrepareTests()
         {
-            var request = new AccountRequestMessage { Name = "test_account@gmail.com", CommissionPercent = 10 };
+            var request = new SubAccountRequestMessage { Name = "test_account@gmail.com", CommissionPercent = 10 };
 
             var responseContent = JsonConvert.SerializeObject(new Fixture().Build<AccountModel>()
                                                                            .With(a => a.Name, request.Name)
@@ -36,7 +36,7 @@ namespace iugu.net.IntegratedTests
                 response = await client.CreateUnderAccountAsync(request).ConfigureAwait(false);
             }
 
-            var address = new Fixture().Build<AddressModel>().Create();
+            var address = new Fixture().Build<AddressRequestMessage>().Create();
             var fullAddress = $"{address.Street}, {address.Number} - {address.City} - {address.State}/{address.Country}";
             expectedResponse = new VerifyAccountResponseMessage
             {
@@ -112,7 +112,7 @@ namespace iugu.net.IntegratedTests
         {
             // Arrange
             GetAccountResponseMessage response;
-            var request = new AccountConfigurationRequestMessage
+            var request = new SubAccountConfigurationRequestMessage
             {
                 PerDayInterest = true,
                 Fines = true,
@@ -132,7 +132,7 @@ namespace iugu.net.IntegratedTests
         public async Task Request_withdraw()
         {
             // Arrange
-            AccountRequestWithdrawResponseMessage response;
+            SubAccountRequestWithdrawResponseMessage response;
 
             // Act && Assert
             using (IApiResources apiClient = new APIResource())

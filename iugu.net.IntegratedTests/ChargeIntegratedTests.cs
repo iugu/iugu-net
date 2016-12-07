@@ -28,7 +28,7 @@ namespace iugu.net.IntegratedTests
                 Method = Constants.PaymentMethod.BANK_SLIP,
                 CustomerId = "31F26DC9D613403B837B678335B2CCB0",
                 Email = "rscouto@gmail.com",
-                InvoiceItems = new InvoiceItem[] { new InvoiceItem { Description = "Mensalidade", PriceCents = 100000, Quantity = 1 } },
+                InvoiceItemsRequestMessage = new InvoiceItemRequestMessage[] { new InvoiceItemRequestMessage { Description = "Mensalidade", PriceCents = 100000, Quantity = 1 } },
             };
 
             ChargeResponseMessage chargeTokenResponse;

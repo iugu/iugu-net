@@ -5,12 +5,12 @@ namespace iugu.net.Response
     /// <summary>
     /// Resposta da Api de pedido de saque
     /// </summary>
-    public class AccountRequestWithdrawResponseMessage
+    public class SubAccountRequestWithdrawResponseMessage
     {
         /// <summary>
         /// Id que identifica o pedido de saque efetuado
         /// </summary>
-        [JsonProperty("account_id")]
+        [JsonProperty("id")]
         public string OperationId { get; set; }
 
         /// <summary>
