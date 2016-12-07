@@ -223,7 +223,28 @@ namespace iugu.net.IntegratedTests
                 var request = new InvoiceRequestMessage("anyemail@gmail.com.br", invoiceDate, invoiceItems)
                 {
                     SubscriptionId = subscription.id,
-                    CustomVariables = customVariables.ToArray()
+                    CustomVariables = customVariables.ToArray(),
+                    Payer = new PayerModel
+                    {
+                        Address = new AddressModel
+                        {
+                            City = "São Paulo",
+                            Country = "Brasil",
+                            State = "São Paulo",
+                            Number = "100",
+                            Street = "Any Street",
+                            ZipCode = "123.123-123"
+                        },
+                        CpfOrCnpj = "712.652.024-78",
+                        Name = "Cliente da IUGU",
+                        PhonePrefix = "99",
+                        Phone = "9999-9999",
+                    },
+                    EnableLateFine = true,
+                    LatePaymentFine = "2%",
+                    EnableProportionalDailyTax = true,
+                    PaymentMethod = Constants.PaymentMethod.BANK_SLIP,
+
                 };
 
                 var current = await apiInvoice.CreateAsync(request, customApiToken).ConfigureAwait(false);

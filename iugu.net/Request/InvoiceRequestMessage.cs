@@ -28,6 +28,12 @@ namespace iugu.net.Request
         public Item[] Items { get; }
 
         /// <summary>
+        /// Informações do Cliente para o Anti Fraude ou Boleto
+        /// </summary>
+        [JsonProperty("payer")]
+        public PayerModel Payer { get; set; }
+
+        /// <summary>
         /// (opcional) Cliente é redirecionado para essa URL após efetuar o pagamento da Fatura pela página de Fatura da Iugu
         /// </summary>
         [JsonProperty("return_url ")]
