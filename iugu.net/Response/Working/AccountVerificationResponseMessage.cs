@@ -1,13 +1,13 @@
-﻿using iugu.net.Entity;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
-using System;
 
-namespace iugu.net.Response
+namespace iugu.net.Response.Working
 {
-    /// <summary>
-    /// Resposta da verificação dos dados de uma conta
-    /// </summary>
-    public class VerifyAccountResponseMessage
+    class AccountVerificationResponseMessage
     {
         /// <summary>
         /// Identificação da verificação
@@ -25,7 +25,7 @@ namespace iugu.net.Response
         /// Dados da conta
         /// </summary>
         [JsonProperty("data")]
-        public AccountResponseMessage Data { get; set; }
+        public AccountVerificationData Data { get; set; }
 
         /// <summary>
         /// Data da criação da verificação

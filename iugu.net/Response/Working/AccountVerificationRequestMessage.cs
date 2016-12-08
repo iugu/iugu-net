@@ -1,26 +1,57 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
 
-namespace iugu.net.Entity
+namespace iugu.net.Response.Working
 {
-    /// <summary>
-    /// Modelo que representa a conta de um cliente seja ele pessoa física ou jurídica
-    /// </summary>
-    public class AccountModel
+    public class AccountVerificationRequestMessage
     {
-        private readonly AddressRequestMessage _address;
-        private readonly string _fullAddress;
+        /// <summary>
+        /// 'true' para validar os dados bancários através do dígito verificador
+        /// </summary>
+        [JsonProperty("automatic_validation")]
+        public bool AutomaticValidation { get; set; }
 
-        [JsonConstructor]
-        public AccountModel(string address)
-        {
-            _fullAddress = address;
-        }
+        /// <summary>
+        /// Dados para Verificação
+        /// </summary>
+        [JsonProperty("data")]
+        public AccountVerificationData Data { get; set; }
 
-        public AccountModel(AddressRequestMessage address)
-        {
-            this._address = address;
+        /// <summary>
+        /// Documentos para Verificação
+        /// </summary>
+        [JsonProperty("files")]
+        public VerificationFiles Vfiles { get; set; }
 
-        }
+    }
+
+    public class VerificationFiles
+    {
+        /// <summary>
+        /// Multipart do Documento (RG, CPF)
+        /// </summary>
+        [JsonProperty("id")]
+        public bool ID { get; set; }
+
+        /// <summary>
+        /// (opcional) Multipart do CPF (Caso não tenha CPF no id)
+        /// </summary>
+        [JsonProperty("cpf")]
+        public bool Cpf { get; set; }
+
+        /// <summary>
+        /// Multipart de um documento que comprove a atividade exercida pela empresa/pessoa da conta
+        /// </summary>
+        [JsonProperty("activity")]
+        public bool Activity { get; set; }
+    }
+
+    public class AccountVerificationData
+    {
         /// <summary>
         /// Valor máximo da venda('Até R$ 100,00', 'Entre R$ 100,00 e R$ 500,00', 'Mais que R$ 500,00')
         /// </summary>
@@ -79,31 +110,25 @@ namespace iugu.net.Entity
         /// Endreço Completo
         /// </summary>
         [JsonProperty("address")]
-        public string Address
-        {
-            get
-            {
-                return _address == null ? _fullAddress : $"{_address.Street}, {_address.Number} - {_address.City} - {_address.State}/{_address.Country}";
-            }
-        }
-
+        public string Address { get; set; }
+        
         /// <summary>
         /// Cep
         /// </summary>
         [JsonProperty("cep")]
-        public string Cep { get { return _address?.ZipCode; } }
+        public string Cep { get; set; }
 
         /// <summary>
         /// Cidade
         /// </summary>
         [JsonProperty("city")]
-        public string City { get { return _address?.City; } }
+        public string City { get; set; }
 
         /// <summary>
         /// Estado
         /// </summary>
         [JsonProperty("state")]
-        public string State { get { return $"{_address?.Street} - {_address?.Number}"; } }
+        public string State { get; set; }
 
         /// <summary>
         /// Telefone comercial
@@ -151,3 +176,4 @@ namespace iugu.net.Entity
         public string BankAccountNumber { get; set; }
     }
 }
+

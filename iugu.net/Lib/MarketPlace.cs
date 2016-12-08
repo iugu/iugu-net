@@ -31,9 +31,9 @@ namespace iugu.net.Lib
         /// </summary>
         /// <param name="underSubAccount">Informações da conta que se deseja criar</param>
         /// <returns>informações da conta recém criada</returns>
-        public async Task<SubAccountResponseMessage> CreateUnderAccountAsync(SubAccountRequestMessage underSubAccount)
+        public async Task<AccountResponseMessage> CreateUnderAccountAsync(SubAccountRequestMessage underSubAccount)
         {
-            var retorno = await Api.PostAsync<SubAccountResponseMessage>(underSubAccount, "create_account").ConfigureAwait(false);
+            var retorno = await Api.PostAsync<AccountResponseMessage>(underSubAccount, "create_account").ConfigureAwait(false);
             return retorno;
         }
 

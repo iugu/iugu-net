@@ -88,7 +88,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants.cs" />
-    <Compile Include="Entity\AccountModel.cs" />
     <Compile Include="Response\BankSlipResponseMessage.cs" />
     <Compile Include="Request\AddressRequestMessage.cs" />
     <Compile Include="Response\CustomerResponseMessage.cs" />
@@ -138,7 +137,7 @@
     <Compile Include="Request\SubscriptionRequestMessage.cs" />
     <Compile Include="Request\VerifyAccountRequestMessage.cs" />
     <Compile Include="Response\SubAccountRequestWithdrawResponseMessage.cs" />
-    <Compile Include="Response\SubAccountResponseMessage.cs" />
+    <Compile Include="Response\AccountResponseMessage.cs" />
     <Compile Include="Response\ChargeResponseMessage.cs" />
     <Compile Include="Response\FinancialTransactionResponse.cs" />
     <Compile Include="Response\GetAccountResponseMessage.cs" />
@@ -149,6 +148,8 @@
     <Compile Include="Response\SimpleResponseMessage.cs" />
     <Compile Include="Response\TransfersReportResponseMessage.cs" />
     <Compile Include="Response\VerifyAccountResponseMessage.cs" />
+    <Compile Include="Response\Working\AccountVerificationRequestMessage.cs" />
+    <Compile Include="Response\Working\AccountVerificationResponseMessage.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">
