@@ -21,9 +21,9 @@ namespace iugu.net.IntegratedTests
         {
             // Arrange
             var request = new SubAccountRequestMessage { Name = "any_market_place_under_account@gmail.com", CommissionPercent = 10 };
-            SubAccountResponseMessage response;
+            AccountResponseMessage response;
 
-            var responseContent = JsonConvert.SerializeObject(new Fixture().Build<AccountModel>()
+            var responseContent = JsonConvert.SerializeObject(new Fixture().Build<AccountResponseMessage>()
                                                                            .With(a => a.Name, request.Name)
                                                                            .Create());
 

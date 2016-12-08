@@ -55,7 +55,7 @@ namespace iugu.net.Response
         /// Dados enviados na última requisição de verificação
         /// </summary>
         [JsonProperty("last_verification_request_data")]
-        public AccountModel LastAccountVerificationRequestData { get; set; }
+        public AccountResponseMessage LastAccountVerificationRequestData { get; set; }
 
         /// <summary>
         /// Descrição do motivo de rejeição da verificação da conta, caso contrário é nulo
