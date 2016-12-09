@@ -1,55 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
-namespace iugu.net.Response.Working
+namespace iugu.net.Response.Accounts.Data
 {
-    public class AccountVerificationRequestMessage
-    {
-        /// <summary>
-        /// 'true' para validar os dados bancários através do dígito verificador
-        /// </summary>
-        [JsonProperty("automatic_validation")]
-        public bool AutomaticValidation { get; set; }
-
-        /// <summary>
-        /// Dados para Verificação
-        /// </summary>
-        [JsonProperty("data")]
-        public AccountVerificationData Data { get; set; }
-
-        /// <summary>
-        /// Documentos para Verificação
-        /// </summary>
-        [JsonProperty("files")]
-        public VerificationFiles Vfiles { get; set; }
-
-    }
-
-    public class VerificationFiles
-    {
-        /// <summary>
-        /// Multipart do Documento (RG, CPF)
-        /// </summary>
-        [JsonProperty("id")]
-        public bool ID { get; set; }
-
-        /// <summary>
-        /// (opcional) Multipart do CPF (Caso não tenha CPF no id)
-        /// </summary>
-        [JsonProperty("cpf")]
-        public bool Cpf { get; set; }
-
-        /// <summary>
-        /// Multipart de um documento que comprove a atividade exercida pela empresa/pessoa da conta
-        /// </summary>
-        [JsonProperty("activity")]
-        public bool Activity { get; set; }
-    }
-
     public class AccountVerificationData
     {
         /// <summary>
@@ -111,7 +63,7 @@ namespace iugu.net.Response.Working
         /// </summary>
         [JsonProperty("address")]
         public string Address { get; set; }
-        
+
         /// <summary>
         /// Cep
         /// </summary>
@@ -174,6 +126,23 @@ namespace iugu.net.Response.Working
         /// </summary>
         [JsonProperty("bank_cc")]
         public string BankAccountNumber { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("document_id")]
+        public string DocumentID { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("document_cpf")]
+        public string DocumentCpf { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("document_activity")]
+        public string DocumentActivity { get; set; }
     }
 }
-

@@ -3,6 +3,8 @@ using iugu.net.Response;
 using System;
 using System.Threading.Tasks;
 using iugu.net.Interfaces;
+using iugu.net.Request.Accounts;
+using iugu.net.Response.Accounts;
 
 namespace iugu.net.Lib
 {
@@ -30,9 +32,9 @@ namespace iugu.net.Lib
         /// </summary>
         /// <param name="underSubAccount">Informações da conta que se deseja criar</param>
         /// <returns>informações da conta recém criada</returns>
-        public async Task<AccountResponseMessage> CreateUnderAccountAsync(SubAccountRequestMessage underSubAccount)
+        public async Task<CreateAccountResponseMessage> CreateUnderAccountAsync(CreateAccountRequestMessage underSubAccount)
         {
-            var retorno = await Api.PostAsync<AccountResponseMessage>(underSubAccount, "create_account").ConfigureAwait(false);
+            var retorno = await Api.PostAsync<CreateAccountResponseMessage>(underSubAccount, "create_account").ConfigureAwait(false);
             return retorno;
         }
 

@@ -1,6 +1,6 @@
 ﻿using iugu.net.Entity;
 using iugu.net.Response;
-using iugu.net.Response.Working;
+using iugu.net.Response.Accounts;
 using Newtonsoft.Json;
 
 namespace iugu.net.Request
@@ -15,7 +15,7 @@ namespace iugu.net.Request
         /// Obs: Essas informações serão adicionadas as informações da conta
         /// </summary>
         [JsonProperty("data")]
-        public readonly AccountResponseMessage Data;
+        public readonly CreateAccountResponseMessage Data;
 
         /// <summary>
         /// Habilitar a rerificação automática dos dados bancários

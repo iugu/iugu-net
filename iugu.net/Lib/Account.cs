@@ -3,6 +3,8 @@ using iugu.net.Response;
 using System;
 using System.Threading.Tasks;
 using iugu.net.Interfaces;
+using iugu.net.Request.Accounts;
+using iugu.net.Response.Accounts;
 
 namespace iugu.net.Lib
 {
@@ -30,7 +32,7 @@ namespace iugu.net.Lib
         /// <param name="userToken"> User API Token</param>
         /// <param name="accountId">Id da conta a ser validada</param>
         /// <returns>Resposta da API de validação da conta</returns>
-        public VerifyAccountResponseMessage VerifyUnderAccount(VerifyAccountRequestMessage accountData, string accountId, string userToken)
+        public VerifyAccountResponseMessage VerifyUnderAccount(Request.VerifyAccountRequestMessage accountData, string accountId, string userToken)
         {
             var retorno = VerifyUnderAccountAsync(accountData, accountId, userToken).Result;
             return retorno;
@@ -45,7 +47,7 @@ namespace iugu.net.Lib
         /// <param name="userToken"> User API Token</param>
         /// <param name="accountId">Id da conta a ser validada</param>
         /// <returns>Resposta da API de validação da conta</returns>
-        public async Task<VerifyAccountResponseMessage> VerifyUnderAccountAsync(VerifyAccountRequestMessage accountData, string accountId, string userToken)
+        public async Task<VerifyAccountResponseMessage> VerifyUnderAccountAsync(Request.VerifyAccountRequestMessage accountData, string accountId, string userToken)
         {
             var retorno = await Api.PostAsync<VerifyAccountResponseMessage>(accountData, $"{accountId}/request_verification", userToken).ConfigureAwait(false);
             return retorno;
@@ -57,7 +59,7 @@ namespace iugu.net.Lib
         /// <param name="accountId">Id da Conta</param>
         /// <param name="userToken">Token de Usuário</param>
         /// <returns></returns>
-        public GetAccountResponseMessage Get(string accountId, string userToken)
+        public FindAccountResponseMessage Get(string accountId, string userToken)
         {
             var retorno = GetAsync(accountId, userToken).Result;
             return retorno;
@@ -69,9 +71,9 @@ namespace iugu.net.Lib
         /// <param name="accountId">Id da Conta</param>
         /// <param name="userToken">Token de Usuário</param>
         /// <returns></returns>
-        public async Task<GetAccountResponseMessage> GetAsync(string accountId, string userToken)
+        public async Task<FindAccountResponseMessage> GetAsync(string accountId, string userToken)
         {
-            var retorno = await Api.GetAsync<GetAccountResponseMessage>(accountId, userToken).ConfigureAwait(false);
+            var retorno = await Api.GetAsync<FindAccountResponseMessage>(accountId, userToken).ConfigureAwait(false);
             return retorno;
         }
 
@@ -96,7 +98,7 @@ namespace iugu.net.Lib
         /// <returns>Resposta da API depedido de saque</returns>
         public async Task<SubAccountRequestWithdrawResponseMessage> RequestWithdrawAllAsync(string targetAccountId, string customUserApiToken)
         {
-            var accountBalanceValue = await Api.GetAsync<GetAccountResponseMessage>(targetAccountId).ConfigureAwait(false);
+            var accountBalanceValue = await Api.GetAsync<FindAccountResponseMessage>(targetAccountId).ConfigureAwait(false);
             var convertedValue = Convert.ToDecimal(accountBalanceValue.Balance.Replace(Constants.CurrencySymbol.BRL, string.Empty).Replace(",", "."));
             var retorno = await Api.PostAsync<SubAccountRequestWithdrawResponseMessage>(new { amount = convertedValue }, $"{targetAccountId}/request_withdraw", customUserApiToken).ConfigureAwait(false);
             return retorno;
@@ -108,9 +110,9 @@ namespace iugu.net.Lib
         /// <param name="request">Configurações</param>
         /// <param name="accountApiToken">Live Api Token da conta</param>
         /// <returns></returns>
-        public async Task<GetAccountResponseMessage> ConfigureAccountAsync(SubAccountConfigurationRequestMessage request, string accountApiToken)
+        public async Task<FindAccountResponseMessage> ConfigureAccountAsync(ConfigureAccountRequestMessage request, string accountApiToken)
         {
-            var retorno = await Api.PostAsync<GetAccountResponseMessage>(request, $"/configuration", accountApiToken).ConfigureAwait(false);
+            var retorno = await Api.PostAsync<FindAccountResponseMessage>(request, $"/configuration", accountApiToken).ConfigureAwait(false);
             return retorno;
         }
 

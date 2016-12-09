@@ -11,14 +11,15 @@ using Newtonsoft.Json;
 using iugu.net.IntegratedTests.Stubs;
 using System.Net.Http;
 using iugu.net.Interfaces;
-using iugu.net.Response.Working;
+using iugu.net.Request.Accounts;
+using iugu.net.Response.Accounts;
 
 namespace iugu.net.IntegratedTests
 {
     [TestFixture]
     public class AccountIntegratedTests
     {
-        private AccountResponseMessage response;
+        private CreateAccountResponseMessage response;
         private VerifyAccountResponseMessage expectedResponse;
 
         [OneTimeSetUp]
@@ -113,8 +114,8 @@ namespace iugu.net.IntegratedTests
         public async Task Update_account_configurations_with_success()
         {
             // Arrange
-            GetAccountResponseMessage response;
-            var request = new SubAccountConfigurationRequestMessage
+            FindAccountResponseMessage response;
+            var request = new ConfigureAccountRequestMessage
             {
                 PerDayInterest = true,
                 Fines = true,

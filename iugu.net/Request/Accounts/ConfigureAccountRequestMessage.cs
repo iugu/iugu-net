@@ -1,11 +1,15 @@
-﻿using Newtonsoft.Json;
+﻿using iugu.net.Request.Accounts.Data;
+using Newtonsoft.Json;
 
-namespace iugu.net.Request
+namespace iugu.net.Request.Accounts
 {
-    public class SubAccountConfigurationRequestMessage
+    /// <summary>
+    /// 
+    /// </summary>
+    public class ConfigureAccountRequestMessage
     {
         /// <summary>
-        /// Percentual de comissionamento enviado para a conta que gerencia o marketplace (Valor entre 0 e 70)
+        /// Requisição para a API de contas, usado em POST https://api.iugu.com/v1/accounts/configuration
         /// </summary>
         [JsonProperty("commission_percent")]
         public int? CommissionPercent { get; set; }
@@ -70,70 +74,7 @@ namespace iugu.net.Request
         public CreditCardOptions CreditCardOptions { get; set; }
     }
 
-    public class BankSlipOptions
-    {
-        /// <summary>
-        /// Ativo
-        /// </summary>
-        [JsonProperty("active")]
-        public bool Active { get; set; }
+    
 
-        /// <summary>
-        /// Dias de Vencimento Extras no Boleto (Ex: 2)
-        /// </summary>
-        [JsonProperty("extra_due ")]
-        public int? ExtraDueDays { get; set; }
-
-        /// <summary>
-        /// Dias de Vencimento Extras na 2a Via do Boleto (Ex: 1)
-        /// </summary>
-        [JsonProperty("reprint_extra_due")]
-        public bool ReprintExtraDueDays { get; set; }
-    }
-
-    public class CreditCardOptions
-    {
-        /// <summary>
-        /// Ativo
-        /// </summary>
-        [JsonProperty("active")]
-        public bool Active { get; set; }
-
-        /// <summary>
-        /// Descrição que apareça na Fatura do Cartão do Cliente (Máx: 12 Caractéres)
-        /// </summary>
-        [JsonProperty("soft_descriptor")]
-        public string SoftDescriptor { get; set; }
-
-        /// <summary>
-        /// Ativar parcelamento
-        /// </summary>
-        [JsonProperty("installments")]
-        public bool Installments { get; set; }
-
-        /// <summary>
-        /// Repasse de Juros de Parcelamento ativo? true ou false
-        /// </summary>
-        [JsonProperty("installments_pass_interest")]
-        public bool InstallmentsPassInterest { get; set; }
-
-        /// <summary>
-        /// Número máximo de parcelas (Nr entre 1 a 12)
-        /// </summary>
-        [JsonProperty("max_installments")]
-        public int? MaxInstallments { get; set; }
-
-        /// <summary>
-        /// Número de parcelas sem cobrança de juros ao cliente (Nr entre 1 a 12)
-        /// </summary>
-        [JsonProperty("max_installments_without_interest")]
-        public int? MaxInstallmentsWithoutInterest { get; set; }
-
-        /// <summary>
-        /// Habilita o fluxo de pagamento em duas etapas (Autorização e Captura)
-        /// </summary>
-        [JsonProperty("two_step_transaction")]
-        public bool TwoStepTransaction { get; set; }
-
-    }
+    
 }

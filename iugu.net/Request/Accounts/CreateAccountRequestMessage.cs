@@ -1,11 +1,11 @@
 ﻿using Newtonsoft.Json;
 
-namespace iugu.net.Request
+namespace iugu.net.Request.Accounts
 {
     /// <summary>
-    /// Requisição para a API de contas
+    /// Requisição para a API de contas, usado em POST https://api.iugu.com/v1/marketplace/create_account
     /// </summary>
-    public class SubAccountRequestMessage
+    public class CreateAccountRequestMessage
     {
         /// <summary>
         /// Nome da Conta. Caso não seja enviado, um valor padrão com o ID da conta é atribuído
@@ -16,7 +16,7 @@ namespace iugu.net.Request
         /// <summary>
         /// Percentual de comissionamento enviado para a conta que gerencia o marketplace (Valor entre 0 e 70)
         /// </summary>
-        [JsonProperty("commission_percent ")]
+        [JsonProperty("commission_percent")]
         public int? CommissionPercent { get; set; }
     }
 }
