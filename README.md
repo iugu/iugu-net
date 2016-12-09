@@ -1,9 +1,9 @@
 # iugu.net
 Client .Net de acesso aos principais recursos da Api da **IUGU**
 
- Master Build | Develop Build | Nuget Downloads | Master Coverage % | Develop Coverage % |
+ Master Build | Develop Build | Nuget | Master Coverage % | Develop Coverage % |
 --------------|---------------|------------|----------- |-----------|
-|[![Build status](https://ci.appveyor.com/api/projects/status/aoicbabfky8vtvy3/branch/master?svg=true)](https://ci.appveyor.com/project/rscouto/iugu-net/branch/master) | [![Build status](https://ci.appveyor.com/api/projects/status/aox0w63vmeiapfjy?svg=true)](https://ci.appveyor.com/project/rscouto/iugu-net-fx8qt) | [![Nuget downloads](https://img.shields.io/nuget/dt/iugu.net.svg)](https://www.nuget.org/packages/iugu.net/) | [![Coverage Status](https://coveralls.io/repos/github/iugu/iugu-net/badge.svg?branch=master)](https://coveralls.io/github/iugu/iugu-net?branch=master)|[![Coverage Status](https://coveralls.io/repos/github/iugu/iugu-net/badge.svg?branch=master)](https://coveralls.io/github/iugu/iugu-net?branch=develop)
+|[![Build status](https://ci.appveyor.com/api/projects/status/aoicbabfky8vtvy3/branch/master?svg=true)](https://ci.appveyor.com/project/rscouto/iugu-net/branch/master) | [![Build status](https://ci.appveyor.com/api/projects/status/aox0w63vmeiapfjy?svg=true)](https://ci.appveyor.com/project/rscouto/iugu-net-fx8qt) | [![NuGet](https://img.shields.io/nuget/v/Nuget.Core.svg)](https://www.nuget.org/packages/iugu.net) | [![Coverage Status](https://coveralls.io/repos/github/iugu/iugu-net/badge.svg?branch=master)](https://coveralls.io/github/iugu/iugu-net?branch=master)|[![Coverage Status](https://coveralls.io/repos/github/iugu/iugu-net/badge.svg?branch=master)](https://coveralls.io/github/iugu/iugu-net?branch=develop)
 
 
 
@@ -15,7 +15,7 @@ Client .Net de acesso aos principais recursos da Api da **IUGU**
 
 ### Configuração
 
-* Em seu arquivo de configuração (.config), é necessário adicionar a apiKey encontrada no seu painel [administrativo da IUGU](https://iugu.com/a/administration), em *Administração* > *Configuração de Contas*. Neste ta tela você ontem o seu *ID da Conta* 
+* Em seu arquivo de configuração (.config), é necessário adicionar a apiKey encontrada no seu painel [administrativo da IUGU](https://iugu.com/a/administration), em *Administração* > *Configuração de Contas*. Nesta tela você encontra seu *ID da Conta* 
 
 ```xml
 <appSettings>
