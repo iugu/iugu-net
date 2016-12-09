@@ -192,7 +192,7 @@ namespace iugu.net.Lib
         {
             if (data != null)
             {
-                var content = await Task.Factory.StartNew(() => JsonConvert.SerializeObject(data, JsonSettings)).ConfigureAwait(false);
+                var content = await Task.FromResult(JsonConvert.SerializeObject(data, JsonSettings)).ConfigureAwait(false);
                 requestMessage.Content = new StringContent(content, Encoding.UTF8, "application/json");
             }
         }
