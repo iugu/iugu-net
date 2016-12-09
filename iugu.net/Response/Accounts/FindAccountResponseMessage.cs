@@ -1,13 +1,17 @@
 ﻿using iugu.net.Entity;
 using Newtonsoft.Json;
 using System;
+using iugu.net.Request.Accounts.Data;
+using iugu.net.Response.Accounts;
+using iugu.net.Response.Accounts.Data;
 
 namespace iugu.net.Response
 {
     /// <summary>
-    /// Resposta da API de contas ao obter 1 conta
+    /// Resposta da API de contas ao obter 1 conta. Resposta para a chamada GET https://api.iugu.com/v1/accounts/ID_DA_SUBCONTA
+    /// e POST https://api.iugu.com/v1/accounts/configuration
     /// </summary>
-    public class GetAccountResponseMessage
+    public class FindAccountResponseMessage
     {
         /// <summary>
         /// Identificação da conta
@@ -55,7 +59,7 @@ namespace iugu.net.Response
         /// Dados enviados na última requisição de verificação
         /// </summary>
         [JsonProperty("last_verification_request_data")]
-        public AccountResponseMessage LastAccountVerificationRequestData { get; set; }
+        public AccountVerificationData LastAccountVerificationRequestData { get; set; }
 
         /// <summary>
         /// Descrição do motivo de rejeição da verificação da conta, caso contrário é nulo
@@ -187,7 +191,19 @@ namespace iugu.net.Response
         /// Informações extras da conta, baseadas em chave valor
         /// </summary>
         [JsonProperty("informations")]
-        public Information[] ExtraInformations { get; set; }
+        public AccountInformation[] ExtraAccountInformation { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("configuration")]
+        public AccountConfiguration Configuration { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("credit_card")]
+        public CreditCardConfiguration CreditCard { get; set; }
     }
 
     /// <summary>
@@ -271,17 +287,4 @@ namespace iugu.net.Response
         [JsonProperty("updated_at")]
         public string UpdatedAt { get; set; }
     }
-
-    /// <summary>
-    /// Informações extras da conta
-    /// </summary>
-    public class Information
-    {
-        [JsonProperty("key")]
-        public string Key { get; set; }
-
-        [JsonProperty("value")]
-        public string Value { get; set; }
-    }
-
 }

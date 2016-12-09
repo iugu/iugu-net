@@ -88,8 +88,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants.cs" />
+    <Compile Include="Request\Accounts\Data\AccountConfiguration.cs" />
+    <Compile Include="Request\Accounts\Data\BankSlipConfiguration.cs" />
+    <Compile Include="Request\Accounts\Data\BankSlipOptions.cs" />
+    <Compile Include="Request\Accounts\Data\CreditCardConfiguration.cs" />
+    <Compile Include="Request\Accounts\Data\CreditCardOptions.cs" />
+    <Compile Include="Response\Accounts\Data\AccountInformation.cs" />
+    <Compile Include="Response\Accounts\Data\AccountVerificationData.cs" />
+    <Compile Include="Response\Accounts\Data\VerificationFiles.cs" />
     <Compile Include="Response\BankSlipResponseMessage.cs" />
     <Compile Include="Request\AddressRequestMessage.cs" />
+    <Compile Include="Response\Accounts\ConfigureAccountResponseMessage.cs" />
     <Compile Include="Response\CustomerResponseMessage.cs" />
     <Compile Include="Entity\DataEntryModel.cs" />
     <Compile Include="Request\InvoiceItemRequestMessage.cs" />
@@ -124,8 +133,8 @@
     <Compile Include="Lib\Subscription.cs" />
     <Compile Include="Lib\Transfers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Request\SubAccountConfigurationRequestMessage.cs" />
-    <Compile Include="Request\SubAccountRequestMessage.cs" />
+    <Compile Include="Request\Accounts\ConfigureAccountRequestMessage.cs" />
+    <Compile Include="Request\Accounts\CreateAccountRequestMessage.cs" />
     <Compile Include="Request\BankVerificationRequestMessage.cs" />
     <Compile Include="Request\ChargeRequestMessage.cs" />
     <Compile Include="Request\CustomerRequestMessage.cs" />
@@ -137,19 +146,20 @@
     <Compile Include="Request\SubscriptionRequestMessage.cs" />
     <Compile Include="Request\VerifyAccountRequestMessage.cs" />
     <Compile Include="Response\SubAccountRequestWithdrawResponseMessage.cs" />
-    <Compile Include="Response\AccountResponseMessage.cs" />
+    <Compile Include="Response\Accounts\CreateAccountResponseMessage.cs" />
     <Compile Include="Response\ChargeResponseMessage.cs" />
+    <Compile Include="Response\GetAccountResponseMessage.cs" />
     <Compile Include="Response\FinancialTransactionResponse.cs" />
     <Compile Include="Response\GetAccountResponseMessage.cs" />
+    <Compile Include="Response\Accounts\FindAccountResponseMessage.cs" />
     <Compile Include="Response\MarketplaceAccoutsResponseMessage.cs" />
     <Compile Include="Response\PaggedResponseMessage.cs" />
     <Compile Include="Response\PaymentTokenResponseMessage.cs" />
     <Compile Include="Response\RequestWithdrawResponseMessage.cs" />
     <Compile Include="Response\SimpleResponseMessage.cs" />
     <Compile Include="Response\TransfersReportResponseMessage.cs" />
-    <Compile Include="Response\VerifyAccountResponseMessage.cs" />
-    <Compile Include="Response\Working\AccountVerificationRequestMessage.cs" />
-    <Compile Include="Response\Working\AccountVerificationResponseMessage.cs" />
+    <Compile Include="Request\Accounts\VerifyAccountRequestMessage.cs" />
+    <Compile Include="Response\Accounts\VerifyAccountResponseMessage.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">

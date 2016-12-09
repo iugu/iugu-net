@@ -4,8 +4,10 @@ using NUnit.Framework;
 using Ploeh.AutoFixture;
 using FluentAssertions;
 using System.Threading.Tasks;
+using iugu.net.Request.Accounts;
 using iugu.net.Response;
-using iugu.net.Response.Working;
+using iugu.net.Response.Accounts;
+using iugu.net.Response.Accounts.Data;
 
 namespace iugu.net.UnitTests
 {
