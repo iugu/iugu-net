@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>iugu.net</id>
-        <version>1.5.2.0</version>
+        <version>1.8</version>
         <title>iugu.net</title>
         <authors>IUGU</authors>
         <owners>IUGU</owners>
@@ -15,7 +15,7 @@
         </dependencies>
     </metadata>
     <files>
-    <file src="iugu.net\bin\Release\iugu.net.dll" target="lib\net452" />
-    <file src="iugu.net\bin\Release\iugu.net.pdb" target="lib\net452" />
+    <file src="iugu.net\bin\Release\iugu.net.dll" target="lib\net45" />
+    <file src="iugu.net\bin\Release\iugu.net.pdb" target="lib\net45" />
     </files>
 </package>
