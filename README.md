@@ -3,7 +3,7 @@ Client .Net de acesso aos principais recursos da Api da **IUGU**
 
  Master Build | Develop Build | Nuget | Master Coverage % | Develop Coverage % |
 --------------|---------------|------------|----------- |-----------|
-|[![Build status](https://ci.appveyor.com/api/projects/status/aoicbabfky8vtvy3/branch/master?svg=true)](https://ci.appveyor.com/project/rscouto/iugu-net/branch/master) | [![Build status](https://ci.appveyor.com/api/projects/status/aox0w63vmeiapfjy?svg=true)](https://ci.appveyor.com/project/rscouto/iugu-net-fx8qt) | [![NuGet](https://img.shields.io/nuget/v/Nuget.Core.svg)](https://www.nuget.org/packages/iugu.net) | [![Coverage Status](https://coveralls.io/repos/github/iugu/iugu-net/badge.svg?branch=master)](https://coveralls.io/github/iugu/iugu-net?branch=master)|[![Coverage Status](https://coveralls.io/repos/github/iugu/iugu-net/badge.svg?branch=master)](https://coveralls.io/github/iugu/iugu-net?branch=develop)
+|[![Build status](https://ci.appveyor.com/api/projects/status/aoicbabfky8vtvy3/branch/master?svg=true)](https://ci.appveyor.com/project/rscouto/iugu-net/branch/master) | [![Build status](https://ci.appveyor.com/api/projects/status/aox0w63vmeiapfjy?svg=true)](https://ci.appveyor.com/project/rscouto/iugu-net-fx8qt) | [![NuGet version](https://badge.fury.io/nu/iugu.net.svg)](https://badge.fury.io/nu/iugu.net) | [![Coverage Status](https://coveralls.io/repos/github/iugu/iugu-net/badge.svg?branch=master)](https://coveralls.io/github/iugu/iugu-net?branch=master)|[![Coverage Status](https://coveralls.io/repos/github/iugu/iugu-net/badge.svg?branch=master)](https://coveralls.io/github/iugu/iugu-net?branch=develop)
 
 
 
