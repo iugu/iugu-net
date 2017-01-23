@@ -9,6 +9,9 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using iugu.net.Filters;
+using System.Linq;
+using System.IO;
 
 namespace iugu.net.IntegratedTests
 {
@@ -50,6 +53,28 @@ namespace iugu.net.IntegratedTests
             using (var client = new MarketPlace())
             {
                 response = await client.GetAllSubAccountsAsync().ConfigureAwait(false);
+            }
+
+            // Assert
+            Assert.That(response, Is.Not.Null);
+        }
+
+        [Test]
+        [Ignore("Apenas com Live Api Token")]
+        public async Task Get_all_accounts_in_marketplace_paggeed_with_success()
+        {
+            // Arrange
+            PaggedResponseMessage<MarketPlaceAccountItem> response;
+            var filter = new QueryStringFilter
+            {
+                MaxResults = 1000,
+                SortBy = new OrderingFilter(FieldSort.AccountName, ResultOrderType.Ascending)
+            };
+
+            // Act
+            using (var client = new MarketPlace())
+            {
+                response = await client.GetAllSubAccountsAsync("74c265aedbfaea379bc0148fae9b5526", filter).ConfigureAwait(false);
             }
 
             // Assert

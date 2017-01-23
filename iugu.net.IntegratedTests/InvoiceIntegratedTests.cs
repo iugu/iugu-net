@@ -1,6 +1,8 @@
 ﻿using iugu.net.Entity;
+using iugu.net.Filters;
 using iugu.net.Lib;
 using iugu.net.Request;
+using iugu.net.Response;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -303,18 +305,43 @@ namespace iugu.net.IntegratedTests
         {
             // Arrange
             InvoiceListModel invoices = null;
-            InvoiceListModel invoicesByCustomToken = null;
+            PaggedResponseMessage<InvoiceModel> invoicesByCustomToken;
+            var filter = new QueryStringFilter
+            {
+                MaxResults = 1000,
+            };
 
             // Act
             using (var apiInvoice = new Invoice())
             {
                 invoices = await apiInvoice.GetAsync().ConfigureAwait(false);
-                invoicesByCustomToken = await apiInvoice.GetAllAsync("74c265aedbfaea379bc0148fae9b5526").ConfigureAwait(false);
+                invoicesByCustomToken = await apiInvoice.GetAllAsync("74c265aedbfaea379bc0148fae9b5526", filter).ConfigureAwait(false);
             };
 
             // Assert
             Assert.That(invoices, Is.Not.Null);
-            Assert.That(invoices.items.Count, Is.EqualTo(invoicesByCustomToken?.items.Count));
+            Assert.That(invoices.totalItems, Is.EqualTo(invoicesByCustomToken.TotalItems));
+        }
+
+        [Test]
+        public async Task Get_all_invoices_pagged_by_custom_api_token()
+        {
+            // Arrange
+            PaggedResponseMessage<InvoiceModel> response;
+            var filter = new QueryStringFilter
+            {
+                MaxResults = 1000,
+            };
+
+            // Act
+            using (var apiInvoice = new Invoice())
+            {
+                response = await apiInvoice.GetAllAsync("74c265aedbfaea379bc0148fae9b5526", filter).ConfigureAwait(false);
+            };
+
+            // Assert
+            Assert.That(response.Items, Is.Not.Null);
+            Assert.That(response.TotalItems, Is.GreaterThan(0));
         }
 
     }

@@ -1,4 +1,5 @@
-﻿using iugu.net.Request;
+﻿using iugu.net.Filters;
+using iugu.net.Request;
 using iugu.net.Response;
 using System;
 using System.Threading.Tasks;
@@ -58,13 +59,26 @@ namespace iugu.net.Lib
         }
 
         /// <summary>
-        /// Listas todas as subcontas dentro de um marketplace
+        /// Listas todas(1000) as subcontas dentro de um marketplace
         /// </summary>
         /// <param name="customApiToken">api token customizado</param>
         /// <returns></returns>
         public async Task<MarketplaceAccoutsResponse> GetAllSubAccountsAsync(string customApiToken)
         {
             var retorno = await Api.GetAsync<MarketplaceAccoutsResponse>(null, customApiToken).ConfigureAwait(false);
+            return retorno;
+        }
+
+        /// <summary>
+        /// Listas todas as subcontas dentro de um marketplace com paginação e filtro
+        /// </summary>
+        /// <param name="customApiToken">api token customizado</param>
+        /// <param name="filter">Opções de filtros e ordenação</param>
+        /// <returns></returns>
+        public async Task<PaggedResponseMessage<MarketPlaceAccountItem>> GetAllSubAccountsAsync(string customApiToken, QueryStringFilter filter)
+        {
+            var queryStringFilter = filter?.ToQueryStringUrl();
+            var retorno = await Api.GetAsync<PaggedResponseMessage<MarketPlaceAccountItem>>(null, queryStringFilter, customApiToken).ConfigureAwait(false);
             return retorno;
         }
 

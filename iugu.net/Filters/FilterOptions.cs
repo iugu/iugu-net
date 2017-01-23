@@ -29,6 +29,7 @@ namespace iugu.net.Filters
             [FieldSort.UpdateAt] = "updated_at",
             [FieldSort.Amount] = "amount",
             [FieldSort.AccountName] = "account_name",
+            [FieldSort.Name] = "name",
         };
 
         private readonly Dictionary<string, string> FilterParams = new Dictionary<string, string>
@@ -97,6 +98,23 @@ namespace iugu.net.Filters
                 AppendFilter(nameof(SortBy), FieldsWithSort[value.FieldSort], SortResult[value.Order]);
             }
         }
+
+        private string query;
+        [JsonProperty("query")]
+        public string Query
+        {
+            get { return query; }
+            set
+            {
+                query = value;
+
+                if (!string.IsNullOrEmpty(value))
+                {
+                    AppendFilter(nameof(Query), value);
+                }
+            }
+        }
+
 
         public string ToQueryStringUrl()
         {

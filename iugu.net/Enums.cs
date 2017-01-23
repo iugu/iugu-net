@@ -132,6 +132,7 @@
         CreateAt,
         UpdateAt,
         Amount,
-        AccountName
+        AccountName,
+        Name,
     }
 }

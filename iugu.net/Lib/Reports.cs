@@ -40,7 +40,7 @@ namespace iugu.net.Lib
         /// Report com os pedidos de saque realizados e para que conta, com filtros e token customizados
         /// </summary>
         /// <param name="customApiToken">todo: describe customApiToken parameter on ReportAsync</param>
-        /// <param name="filter">Opções de diltros e ordenação</param>
+        /// <param name="filter">Opções de filtros e ordenação</param>
         /// <returns>A lista de saques paginada</returns>
         public async Task<PaggedResponseMessage<RequestWithdrawResponseMessage>> ReportRequestWithdrawAsync(string customApiToken, QueryStringFilter filter)
         {

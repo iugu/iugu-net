@@ -1,4 +1,5 @@
 ﻿using iugu.net.Entity;
+using iugu.net.Filters;
 using iugu.net.Request;
 using iugu.net.Response;
 using System;
@@ -42,13 +43,28 @@ namespace iugu.net.Lib
         }
 
         /// <summary>
-        /// Lista todas as faturas possibilitando enviar um ApiToken de subconta, geralmente utilizado em marketplaces
+        /// Lista todas as ultimas(1000) faturas possibilitando enviar um ApiToken de subconta, geralmente utilizado em marketplaces
         /// </summary>
         /// <param name="customApiToken">ApiToken customizado</param>
         /// <returns></returns>
         public async Task<InvoiceListModel> GetAllAsync(string customApiToken)
         {
-            var retorno = await GetAsync<InvoiceListModel>(null, customApiToken).ConfigureAwait(false);
+            var filter = new QueryStringFilter { MaxResults = 1000 };
+            var queryStringFilter = filter?.ToQueryStringUrl();
+            var retorno = await GetAsync<InvoiceListModel>(null, queryStringFilter, customApiToken).ConfigureAwait(false);
+            return retorno;
+        }
+
+        /// <summary>
+        /// Lista todas as faturas possibilitando enviar um ApiToken de subconta, geralmente utilizado em marketplaces e filtros customizaveis.
+        /// </summary>
+        /// <param name="customApiToken">ApiToken customizado</param>
+        /// <param name="filter">Opções de filtros, para paginação e ordenação</param>
+        /// <returns></returns>
+        public async Task<PaggedResponseMessage<InvoiceModel>> GetAllAsync(string customApiToken, QueryStringFilter filter)
+        {
+            var queryStringFilter = filter?.ToQueryStringUrl();
+            var retorno = await GetAsync<PaggedResponseMessage<InvoiceModel>>(null, queryStringFilter, customApiToken).ConfigureAwait(false);
             return retorno;
         }
 
