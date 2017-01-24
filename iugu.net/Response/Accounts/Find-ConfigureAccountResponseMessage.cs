@@ -1,17 +1,15 @@
-﻿using iugu.net.Entity;
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using iugu.net.Request.Accounts.Data;
-using iugu.net.Response.Accounts;
 using iugu.net.Response.Accounts.Data;
+using Newtonsoft.Json;
 
-namespace iugu.net.Response
+namespace iugu.net.Response.Accounts
 {
     /// <summary>
     /// Resposta da API de contas ao obter 1 conta. Resposta para a chamada GET https://api.iugu.com/v1/accounts/ID_DA_SUBCONTA
     /// e POST https://api.iugu.com/v1/accounts/configuration
     /// </summary>
-    public class FindAccountResponseMessage
+    public class FindConfigureAccountResponseMessage
     {
         /// <summary>
         /// Identificação da conta
@@ -198,12 +196,7 @@ namespace iugu.net.Response
         /// </summary>
         [JsonProperty("configuration")]
         public AccountConfiguration Configuration { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        [JsonProperty("credit_card")]
-        public CreditCardConfiguration CreditCard { get; set; }
+        
     }
 
     /// <summary>

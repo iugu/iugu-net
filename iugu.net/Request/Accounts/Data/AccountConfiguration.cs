@@ -21,5 +21,11 @@ namespace iugu.net.Request.Accounts.Data
         /// </summary>
         [JsonProperty("bank_slip")]
         public BankSlipConfiguration BankSlip { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("credit_card")]
+        public CreditCardConfiguration CreditCard { get; set; }
     }
 }

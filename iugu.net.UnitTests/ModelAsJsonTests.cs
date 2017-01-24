@@ -1,12 +1,8 @@
-﻿using iugu.net.Entity;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using NUnit.Framework;
 using Ploeh.AutoFixture;
 using FluentAssertions;
 using System.Threading.Tasks;
-using iugu.net.Request.Accounts;
-using iugu.net.Response;
-using iugu.net.Response.Accounts;
 using iugu.net.Response.Accounts.Data;
 
 namespace iugu.net.UnitTests
@@ -15,11 +11,12 @@ namespace iugu.net.UnitTests
     public class ModelAsJsonTests
     {
         [Test]
-        public async Task Given_a_complete_account_model_when_serialize_should_be_created_a_json_without_nested_object_address()
+        public async Task
+            Given_a_complete_account_model_when_serialize_should_be_created_a_json_without_nested_object_address()
         {
             // Arrange
             var accountData = new Fixture().Build<AccountVerificationData>()
-                                           .Create();
+                .Create();
 
             var expectedJson = JsonConvert.SerializeObject(new
             {
@@ -50,7 +47,6 @@ namespace iugu.net.UnitTests
 
             // Assert
             expectedJson.Should().BeEquivalentTo(serialilizeObj);
-
         }
     }
 }
