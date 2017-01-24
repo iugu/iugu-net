@@ -2,7 +2,7 @@
 
 namespace iugu.net.Entity
 {
-    public class BankSlip
+    public class BankSlipResponseMessage
     {
         /// <summary>
         /// Linha digitável

@@ -4,7 +4,6 @@ using iugu.net.Response;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using iugu.net.Entity.Lists;
 
 namespace iugu.net.Lib
 {
@@ -15,36 +14,36 @@ namespace iugu.net.Lib
             BaseURI = "/plans";
         }
 
-        public async Task<PaggedResponseMessage<PlanModel>> GetAllAsync()
+        public async Task<PaggedResponseMessage<PlanResponseMessage>> GetAllAsync()
         {
             var retorno = await GetAllAsync(null).ConfigureAwait(false);
             return retorno;
         }
 
-        public async Task<PaggedResponseMessage<PlanModel>> GetAllAsync(string customApiToken)
+        public async Task<PaggedResponseMessage<PlanResponseMessage>> GetAllAsync(string customApiToken)
         {
-            var retorno = await GetAsync<PaggedResponseMessage<PlanModel>>(null, customApiToken).ConfigureAwait(false);
+            var retorno = await GetAsync<PaggedResponseMessage<PlanResponseMessage>>(null, customApiToken).ConfigureAwait(false);
             return retorno;
         }
-        public async Task<PlanModel> GetAsync()
+        public async Task<PlanResponseMessage> GetAsync()
         {
-            var retorno = await GetAsync<PlanModel>().ConfigureAwait(false);
+            var retorno = await GetAsync<PlanResponseMessage>().ConfigureAwait(false);
             return retorno;
         }
-        //public async Task<PlansModel> GetAsync()
+        //public async Task<PlansResponseMessage> GetAsync()
         //{
-        //    var retorno = await GetAsync<PlansModel>().ConfigureAwait(false);
+        //    var retorno = await GetAsync<PlansResponseMessage>().ConfigureAwait(false);
         //    return retorno;
         //}
-        public async Task<PlanModel> GetAsync(string id, string customApiToken = null)
+        public async Task<PlanResponseMessage> GetAsync(string id, string customApiToken = null)
         {
-            var retorno = await GetAsync<PlanModel>(id, customApiToken).ConfigureAwait(false);
+            var retorno = await GetAsync<PlanResponseMessage>(id, customApiToken).ConfigureAwait(false);
             return retorno;
         }
 
-        public async Task<PlanModel> GetByIdentifierAsync(string planIdentifier, string customApiToken = null)
+        public async Task<PlanResponseMessage> GetByIdentifierAsync(string planIdentifier, string customApiToken = null)
         {
-            var retorno = await GetAsync<PlanModel>(null, $"identifier/{planIdentifier}", customApiToken).ConfigureAwait(false);
+            var retorno = await GetAsync<PlanResponseMessage>(null, $"identifier/{planIdentifier}", customApiToken).ConfigureAwait(false);
             return retorno;
         }
 
@@ -53,27 +52,27 @@ namespace iugu.net.Lib
         /// </summary>
         /// <param name="plan">todo: describe plan parameter on CreateAsync</param>
         /// <param name="customApiToken">todo: describe customApiToken parameter on CreateAsync</param>
-        public async Task<PlanModel> CreateAsync(PlanRequestMessage plan, string customApiToken = null)
+        public async Task<PlanResponseMessage> CreateAsync(PlanRequestMessage plan, string customApiToken = null)
         {
-            var retorno = await PostAsync<PlanModel>(plan, null, customApiToken).ConfigureAwait(false);
+            var retorno = await PostAsync<PlanResponseMessage>(plan, null, customApiToken).ConfigureAwait(false);
             return retorno;
         }
 
-        public async Task<PlanModel> DeleteAsync(string id)
+        public async Task<PlanResponseMessage> DeleteAsync(string id)
         {
             var retorno = await DeleteAsync(id, null).ConfigureAwait(false);
             return retorno;
         }
 
-        public async Task<PlanModel> DeleteAsync(string id, string customApiToken)
+        public async Task<PlanResponseMessage> DeleteAsync(string id, string customApiToken)
         {
-            var retorno = await DeleteAsync<PlanModel>(id, customApiToken).ConfigureAwait(false);
+            var retorno = await DeleteAsync<PlanResponseMessage>(id, customApiToken).ConfigureAwait(false);
             return retorno;
         }
 
-        public async Task<PlanModel> PutAsync(string id, PlanModel model)
+        public async Task<PlanResponseMessage> PutAsync(string id, PlanResponseMessage responseMessage)
         {
-            var retorno = await PutAsync<PlanModel>(id, model).ConfigureAwait(false);
+            var retorno = await PutAsync<PlanResponseMessage>(id, responseMessage).ConfigureAwait(false);
             return retorno;
         }
     }

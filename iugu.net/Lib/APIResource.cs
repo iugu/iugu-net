@@ -17,9 +17,8 @@ namespace iugu.net.Lib
     /// </summary>
     public class APIResource : IApiResources
     {
-        private readonly IHttpClientWrapper client;
-        private readonly JsonSerializerSettings JsonSettings;
-        private readonly string _version;
+        private readonly IHttpClientWrapper _client;
+        private readonly JsonSerializerSettings _jsonSettings;
         private readonly string _endpoint;
         private readonly string _apiVersion;
         private readonly string _apiKey;
@@ -36,9 +35,8 @@ namespace iugu.net.Lib
         /// </summary>
         public APIResource(IHttpClientWrapper customClient, JsonSerializerSettings customJsonSerializerSettings = null)
         {
-            client = customClient;
-            JsonSettings = customJsonSerializerSettings ?? new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore };
-            _version = "1.0.5";
+            _client = customClient;
+            _jsonSettings = customJsonSerializerSettings ?? new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore };
             _apiVersion = "v1";
             _endpoint = "https://api.iugu.com";
             _apiKey = ConfigurationManager.AppSettings["iuguApiKey"];
@@ -61,7 +59,7 @@ namespace iugu.net.Lib
 
         public void Dispose()
         {
-            client.Dispose();
+            _client.Dispose();
             GC.SuppressFinalize(this);
         }
 
@@ -143,7 +141,7 @@ namespace iugu.net.Lib
 
             if (response.IsSuccessStatusCode)
             {
-                return await Task.FromResult(JsonConvert.DeserializeObject<T>(data, JsonSettings)).ConfigureAwait(false);
+                return await Task.FromResult(JsonConvert.DeserializeObject<T>(data, _jsonSettings)).ConfigureAwait(false);
             }
 
             var responseError = await Task.FromResult(JsonConvert.SerializeObject(new
@@ -164,7 +162,7 @@ namespace iugu.net.Lib
 
                 await SetContent(data, requestMessage);
 
-                var response = await client.SendAsync(requestMessage).ConfigureAwait(false);
+                var response = await _client.SendAsync(requestMessage).ConfigureAwait(false);
                 return response;
             }
         }
@@ -173,7 +171,7 @@ namespace iugu.net.Lib
         {
             if (data != null)
             {
-                var content = await Task.Factory.StartNew(() => JsonConvert.SerializeObject(data, JsonSettings)).ConfigureAwait(false);
+                var content = await Task.Factory.StartNew(() => JsonConvert.SerializeObject(data, _jsonSettings)).ConfigureAwait(false);
                 requestMessage.Content = new StringContent(content, Encoding.UTF8, "application/json");
             }
         }

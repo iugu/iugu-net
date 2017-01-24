@@ -5,7 +5,7 @@ namespace iugu.net.Entity
     /// <summary>
     /// Model que representa dados de endereço
     /// </summary>
-    public class AddressModel
+    public class AddressRequestMessage
     {
         /// <summary>
         /// Rua

@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace iugu.net.Entity.Lists
+namespace iugu.net.Response.Lists
 {
-    public class InvoicesModel
+    public class InvoicesResponseMessage
     {
         // TODO: Adicionar descrições
         /// <summary>
@@ -22,6 +22,6 @@ namespace iugu.net.Entity.Lists
         /// 
         /// </summary>
         [JsonProperty("items")]
-        public List<InvoiceModel> Items { get; set; }
+        public List<InvoiceResponseMessage> Items { get; set; }
     }
 }

@@ -1,4 +1,6 @@
 ﻿using iugu.net.Entity;
+using iugu.net.Response;
+using iugu.net.Response.Accounts;
 using Newtonsoft.Json;
 
 namespace iugu.net.Request
@@ -13,7 +15,7 @@ namespace iugu.net.Request
         /// Obs: Essas informações serão adicionadas as informações da conta
         /// </summary>
         [JsonProperty("data")]
-        public readonly AccountModel Data;
+        public readonly CreateAccountResponseMessage Data;
 
         /// <summary>
         /// Habilitar a rerificação automática dos dados bancários
@@ -21,10 +23,10 @@ namespace iugu.net.Request
         [JsonProperty("automatic_validation")]
         public readonly bool AutomaticValidation;
 
-        public VerifyAccountRequestMessage(AccountModel account, bool automaticValidation)
-        {
-            Data = account;
-            AutomaticValidation = automaticValidation;
-        }
+        //public VerifyAccountRequestMessage(AccountVerificationData account, bool automaticValidation)
+        //{
+        //    Data = account;
+        //    AutomaticValidation = automaticValidation;
+        //}
     }
 }

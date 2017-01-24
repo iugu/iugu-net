@@ -9,6 +9,8 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using iugu.net.Interfaces;
+using iugu.net.Request.Accounts;
+using iugu.net.Response.Accounts;
 using Newtonsoft.Json;
 
 namespace iugu.net.IntegratedTests
@@ -20,10 +22,10 @@ namespace iugu.net.IntegratedTests
         public async Task Create_a_under_acoount_with_success()
         {
             // Arrange
-            var request = new AccountRequestMessage { Name = "any_market_place_under_account@gmail.com", CommissionPercent = 10 };
-            AccountResponseMessage response;
+            var request = new CreateAccountRequestMessage { Name = "any_market_place_under_account@gmail.com", CommissionPercent = 10 };
+            CreateAccountResponseMessage response;
 
-            var responseContent = JsonConvert.SerializeObject(new Fixture().Build<AccountModel>()
+            var responseContent = JsonConvert.SerializeObject(new Fixture().Build<CreateAccountResponseMessage>()
                                                                            .With(a => a.Name, request.Name)
                                                                            .Create());
 
@@ -43,7 +45,7 @@ namespace iugu.net.IntegratedTests
         public async Task Get_all_accounts_in_marketplace_with_success()
         {
             // Arrange
-            var request = new AccountRequestMessage { Name = "any_market_place_under_account@gmail.com", CommissionPercent = 10 };
+            var request = new CreateAccountRequestMessage { Name = "any_market_place_under_account@gmail.com", CommissionPercent = 10 };
             MarketplaceAccoutsResponseMessage response;
 
 

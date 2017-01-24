@@ -1,12 +1,11 @@
 ﻿using Newtonsoft.Json;
-using System;
 
-namespace iugu.net.Response
+namespace iugu.net.Response.Accounts
 {
     /// <summary>
-    /// Requisição para a API de conta 
+    /// Resposta para a chamada POST https://api.iugu.com/v1/marketplace/create_account
     /// </summary>
-    public class AccountResponseMessage
+    public class CreateAccountResponseMessage
     {
         /// <summary>
         /// Id da conta

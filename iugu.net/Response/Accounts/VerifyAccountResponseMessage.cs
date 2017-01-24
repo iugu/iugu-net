@@ -1,11 +1,11 @@
-﻿using iugu.net.Entity;
+﻿using System;
+using iugu.net.Response.Accounts.Data;
 using Newtonsoft.Json;
-using System;
 
-namespace iugu.net.Response
+namespace iugu.net.Response.Accounts
 {
     /// <summary>
-    /// Resposta da verificação dos dados de uma conta
+    /// Resposta para a chamada POST POST https://api.iugu.com/v1/accounts/ID_DA_CONTA/request_verification
     /// </summary>
     public class VerifyAccountResponseMessage
     {
@@ -16,16 +16,16 @@ namespace iugu.net.Response
         public string Id { get; set; }
 
         /// <summary>
+        /// Dados da conta
+        /// </summary>
+        [JsonProperty("data")]
+        public AccountVerificationData Data { get; set; }
+
+        /// <summary>
         /// Identificação da conta
         /// </summary>
         [JsonProperty("account_id")]
         public string AccountId { get; set; }
-
-        /// <summary>
-        /// Dados da conta
-        /// </summary>
-        [JsonProperty("data")]
-        public AccountModel Data { get; set; }
 
         /// <summary>
         /// Data da criação da verificação

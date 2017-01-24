@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using iugu.net.Response.Accounts;
 
-namespace iugu.net.Entity.Lists
+namespace iugu.net.Response.Lists
 {
-    public class CustomersModel
+    class AccountListResponseMessage
     {
         public int totalItems { get; set; }
-        public List<CustomerModel> items { get; set; }
+        public List<AccountResponseMessage> items { get; set; }
+
     }
 }

@@ -4,22 +4,9 @@ using Newtonsoft.Json;
 namespace iugu.net.Entity
 {
     //todo: verify this class as it does not look right
-    public class PlanModelsList
-    {
-        /// <summary>
-        /// 
-        /// </summary>
-        [JsonProperty("TotalItems")]
-        public int TotalItems { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        [JsonProperty("Items")]
-        public PlanModel[] Items { get; set; }
-    }
+   
     // TODO: sem documentação
-    public class PlanModel
+    public class PlanResponseMessage
     {
         /// <summary>
         /// 

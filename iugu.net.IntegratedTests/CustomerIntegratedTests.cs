@@ -5,8 +5,9 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using iugu.net.Entity.Lists;
 using iugu.net.Request;
+using iugu.net.Response;
+using iugu.net.Response.Lists;
 
 namespace iugu.UnitTest
 {
@@ -21,7 +22,7 @@ namespace iugu.UnitTest
             custom.Add(new CustomVariables { Name = "Tipo", Value = "Desmanche" });
             custom.Add(new CustomVariables { Name = "Representante", Value = "Fabio Munhoz (RJ)" });
 
-            CustomerModel myClient;
+            CustomerResponseMessage myClient;
 
             var crm = new CustomerRequestMessage
             {
@@ -61,7 +62,7 @@ namespace iugu.UnitTest
         public async Task List_customers_with_success()
         {
             // Arrange
-            CustomersModel myClients;
+            CustomersResponseMessage myClients;
 
             // Act
             using (var apiClient = new Customer())

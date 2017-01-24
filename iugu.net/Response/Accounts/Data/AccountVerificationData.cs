@@ -1,26 +1,9 @@
 ﻿using Newtonsoft.Json;
 
-namespace iugu.net.Entity
+namespace iugu.net.Response.Accounts.Data
 {
-    /// <summary>
-    /// Modelo que representa a conta de um cliente seja ele pessoa física ou jurídica
-    /// </summary>
-    public class AccountModel
+    public class AccountVerificationData
     {
-        private readonly AddressModel _address;
-        private readonly string _fullAddress;
-
-        [JsonConstructor]
-        public AccountModel(string address)
-        {
-            _fullAddress = address;
-        }
-
-        public AccountModel(AddressModel address)
-        {
-            this._address = address;
-
-        }
         /// <summary>
         /// Valor máximo da venda('Até R$ 100,00', 'Entre R$ 100,00 e R$ 500,00', 'Mais que R$ 500,00')
         /// </summary>
@@ -79,31 +62,25 @@ namespace iugu.net.Entity
         /// Endreço Completo
         /// </summary>
         [JsonProperty("address")]
-        public string Address
-        {
-            get
-            {
-                return _address == null ? _fullAddress : $"{_address.Street}, {_address.Number} - {_address.City} - {_address.State}/{_address.Country}";
-            }
-        }
+        public string Address { get; set; }
 
         /// <summary>
         /// Cep
         /// </summary>
         [JsonProperty("cep")]
-        public string Cep { get { return _address?.ZipCode; } }
+        public string Cep { get; set; }
 
         /// <summary>
         /// Cidade
         /// </summary>
         [JsonProperty("city")]
-        public string City { get { return _address?.City; } }
+        public string City { get; set; }
 
         /// <summary>
         /// Estado
         /// </summary>
         [JsonProperty("state")]
-        public string State { get { return $"{_address?.Street} - {_address?.Number}"; } }
+        public string State { get; set; }
 
         /// <summary>
         /// Telefone comercial
@@ -149,5 +126,23 @@ namespace iugu.net.Entity
         /// </summary>
         [JsonProperty("bank_cc")]
         public string BankAccountNumber { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("document_id")]
+        public string DocumentID { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("document_cpf")]
+        public string DocumentCpf { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("document_activity")]
+        public string DocumentActivity { get; set; }
     }
 }

@@ -44,7 +44,7 @@ namespace iugu.net.IntegratedTests
             // Arrange
             var radomPlan = Guid.NewGuid().ToString();
             var planId = $"{radomPlan}-Plan";
-            PlanModel plan;
+            PlanResponseMessage plan;
             PlanRequestMessage prm = new PlanRequestMessage($"{radomPlan}-12x",planId,1,PlanIntervalType.Monthly,0,CurrencyType.BRL);
             // Act
             using (var apiPlan = new Plans())
@@ -63,7 +63,7 @@ namespace iugu.net.IntegratedTests
             // Arrange
             var radomPlan = Guid.NewGuid().ToString();
             var planId = $"{radomPlan}-Plan";
-            PlanModel plan;
+            PlanResponseMessage plan;
 
             // Act
             using (var apiPlan = new Plans())
@@ -88,7 +88,7 @@ namespace iugu.net.IntegratedTests
             // Arrange
             var radomPlan = Guid.NewGuid().ToString();
             var planId = $"{radomPlan}-Plan";
-            PlanModel plan;
+            PlanResponseMessage plan;
 
             // Act
             using (var apiPlan = new Plans())

@@ -3,6 +3,7 @@ using iugu.net.Request;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using iugu.net.Response;
 
 namespace iugu.net.Lib
 {
@@ -17,7 +18,7 @@ namespace iugu.net.Lib
         /// Cria uma assinatura para um cliente cadastrado
         /// </summary>
         /// <param name="request">Request para criar uma assinatura</param>
-        public async Task<SubscriptionModel> CreateAsync(SubscriptionRequestMessage request)
+        public async Task<SubscriptionResponseMessage> CreateAsync(SubscriptionRequestMessage request)
         {
             var retorno = await CreateAsync(request, null).ConfigureAwait(false);
             return retorno;
@@ -28,44 +29,44 @@ namespace iugu.net.Lib
         /// </summary>
         /// <param name="request">Request para criar uma assinatura</param>
         /// <param name="customApiToken">Um token customizado, por exemplo, de um cliente de uma subconta, comum em marketplaces</param>
-        public async Task<SubscriptionModel> CreateAsync(SubscriptionRequestMessage request, string customApiToken)
+        public async Task<SubscriptionResponseMessage> CreateAsync(SubscriptionRequestMessage request, string customApiToken)
         {
-            var retorno = await PostAsync<SubscriptionModel>(request, null, customApiToken).ConfigureAwait(false);
+            var retorno = await PostAsync<SubscriptionResponseMessage>(request, null, customApiToken).ConfigureAwait(false);
             return retorno;
         }
 
-        public async Task<SubscriptionModel> DeleteAsync(string id, string customApiToken)
+        public async Task<SubscriptionResponseMessage> DeleteAsync(string id, string customApiToken)
         {
-            var retorno = await DeleteAsync<SubscriptionModel>(id, customApiToken).ConfigureAwait(false);
+            var retorno = await DeleteAsync<SubscriptionResponseMessage>(id, customApiToken).ConfigureAwait(false);
             return retorno;
         }
 
-        public async Task<SubscriptionModel> PutAsync(string id, SubscriptionModel model)
+        public async Task<SubscriptionResponseMessage> PutAsync(string id, SubscriptionResponseMessage responseMessage)
         {
-            var retorno = await PutAsync<SubscriptionModel>(id, model).ConfigureAwait(false);
+            var retorno = await PutAsync<SubscriptionResponseMessage>(id, responseMessage).ConfigureAwait(false);
             return retorno;
         }
 
-        public async Task<SubscriptionModel> SuspendAsync(string id)
+        public async Task<SubscriptionResponseMessage> SuspendAsync(string id)
         {
-            var retorno = await PostAsync<SubscriptionModel>(null, $"{id}/suspend").ConfigureAwait(false);
+            var retorno = await PostAsync<SubscriptionResponseMessage>(null, $"{id}/suspend").ConfigureAwait(false);
             return retorno;
         }
 
-        public async Task<SubscriptionModel> ActivateAsync(string id)
+        public async Task<SubscriptionResponseMessage> ActivateAsync(string id)
         {
-            var retorno = await PostAsync<SubscriptionModel>(null, $"{id}/activate").ConfigureAwait(false);
+            var retorno = await PostAsync<SubscriptionResponseMessage>(null, $"{id}/activate").ConfigureAwait(false);
             return retorno;
         }
         
-        public async Task<SubscriptionModel> ChangePlanAsync(string id, string plan_identifier)
+        public async Task<SubscriptionResponseMessage> ChangePlanAsync(string id, string plan_identifier)
         {
-            var retorno = await PostAsync<SubscriptionModel>(null, $"{id}/change_plan/{plan_identifier}").ConfigureAwait(false);
+            var retorno = await PostAsync<SubscriptionResponseMessage>(null, $"{id}/change_plan/{plan_identifier}").ConfigureAwait(false);
             return retorno;
         }
-        public async Task<SubscriptionModel> AddCreditsAsync(string id, int quantity)
+        public async Task<SubscriptionResponseMessage> AddCreditsAsync(string id, int quantity)
         {
-            var retorno = await PostAsync<SubscriptionModel>(null, $"{id}/add_credits/{quantity}").ConfigureAwait(false);
+            var retorno = await PostAsync<SubscriptionResponseMessage>(null, $"{id}/add_credits/{quantity}").ConfigureAwait(false);
             return retorno;
         }
     }
