@@ -114,7 +114,7 @@ namespace iugu.net.IntegratedTests
         public async Task Update_account_configurations_with_success()
         {
             // Arrange
-            FindAccountResponseMessage response;
+            FindConfigureAccountResponseMessage response;
             var request = new ConfigureAccountRequestMessage
             {
                 PerDayInterest = true,

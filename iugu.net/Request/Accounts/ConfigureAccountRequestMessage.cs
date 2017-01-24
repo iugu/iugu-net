@@ -4,12 +4,12 @@ using Newtonsoft.Json;
 namespace iugu.net.Request.Accounts
 {
     /// <summary>
-    /// 
+    /// Requisição para a API de contas, usado em POST https://api.iugu.com/v1/accounts/configuration
     /// </summary>
     public class ConfigureAccountRequestMessage
     {
         /// <summary>
-        /// Requisição para a API de contas, usado em POST https://api.iugu.com/v1/accounts/configuration
+        /// 
         /// </summary>
         [JsonProperty("commission_percent")]
         public int? CommissionPercent { get; set; }
