@@ -1,4 +1,5 @@
-﻿using iugu.net.Response;
+﻿using iugu.net.Interfaces;
+using iugu.net.Response;
 using System;
 using System.Threading.Tasks;
 

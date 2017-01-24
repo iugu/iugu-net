@@ -47,7 +47,7 @@ namespace iugu.net.IntegratedTests
                 var customerResponse = await apiCustomer.CreateAsync(customer, null).ConfigureAwait(false);
 
                 var radomPlan = Guid.NewGuid().ToString();
-                PlanRequestMessage prm = new PlanRequestMessage($"{radomPlan}-12x", $"{radomPlan}-Plan",1,PlanIntervalType.Monthly, 0,CurrencyType.BRL);
+                PlanRequestMessage prm = new PlanRequestMessage($"{radomPlan}-12x", $"{radomPlan}-Plan", 1, PlanIntervalType.Monthly, 0, CurrencyType.BRL);
 
                 var plan = await apiPlan.CreateAsync(prm).ConfigureAwait(false);
                 //var plan = await apiPlan.CreateAsync($"{radomPlan}-12x", $"{radomPlan}-Plan", 1, "months", 0, "BRL", null, null, Constants.PaymentMethod.BANK_SLIP).ConfigureAwait(false);
@@ -65,7 +65,7 @@ namespace iugu.net.IntegratedTests
                 }).ConfigureAwait(false);
 
                 var invoiceItems = new Item[] { new Item { Description = "Mensalidade", PriceCents = 65000, Quantity = 1 } };
-                InvoiceRequestMessage irm = new InvoiceRequestMessage("anyemail@gmail.com.br",invoiceDate,invoiceItems);
+                InvoiceRequestMessage irm = new InvoiceRequestMessage("anyemail@gmail.com.br", invoiceDate, invoiceItems);
                 invoice = await apiInvoice.CreateAsync(irm).ConfigureAwait(false);
             };
 
@@ -313,29 +313,6 @@ namespace iugu.net.IntegratedTests
         }
 
         [Test]
-        public async Task Get_all_invoices_by_custom_api_token()
-        {
-            // Arrange
-            InvoiceListModel invoices = null;
-            PaggedResponseMessage<InvoiceModel> invoicesByCustomToken;
-            var filter = new QueryStringFilter
-            {
-                MaxResults = 1000,
-            };
-
-            // Act
-            using (var apiInvoice = new Invoice())
-            {
-                invoices = await apiInvoice.GetAsync().ConfigureAwait(false);
-                invoicesByCustomToken = await apiInvoice.GetAllAsync("74c265aedbfaea379bc0148fae9b5526", filter).ConfigureAwait(false);
-            };
-
-            // Assert
-            Assert.That(invoices, Is.Not.Null);
-            Assert.That(invoices.totalItems, Is.EqualTo(invoicesByCustomToken.TotalItems));
-        }
-
-        [Test]
         public async Task Get_all_invoices_pagged_by_custom_api_token()
         {
             // Arrange
@@ -352,7 +329,7 @@ namespace iugu.net.IntegratedTests
             };
 
             // Assert
-            Assert.That(response.Items, Is.Not.Null);
+            Assert.That(response.Items, Is.Not.Empty);
             Assert.That(response.TotalItems, Is.GreaterThan(0));
         }
 

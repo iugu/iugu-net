@@ -19,7 +19,7 @@ namespace iugu.net.Lib
         {
             BaseURI = "/invoices";
         }
-        
+
         public async Task<InvoicesModel> GetAsync()
         {
             //TODO: Implementar GET com parametros
@@ -28,31 +28,18 @@ namespace iugu.net.Lib
         }
 
         /// <summary>
-        /// Lista todas as ultimas(1000) faturas possibilitando enviar um ApiToken de subconta, geralmente utilizado em marketplaces
-        /// </summary>
-        /// <param name="customApiToken">ApiToken customizado</param>
-        /// <returns></returns>
-        public async Task<InvoicesModel> GetAllAsync(string customApiToken)
-        {
-            var filter = new QueryStringFilter { MaxResults = 1000 };
-            var queryStringFilter = filter?.ToQueryStringUrl();
-            var retorno = await GetAsync<InvoiceListModel>(null, queryStringFilter, customApiToken).ConfigureAwait(false);
-            return retorno;
-        }
-
-        /// <summary>
-        /// Lista todas as faturas possibilitando enviar um ApiToken de subconta, geralmente utilizado em marketplaces e filtros customizaveis.
+        /// Lista todas as faturas possibilitando enviar um ApiToken de subconta, geralmente utilizado em marketplaces, também suporta filtros e paginação customizaveis.
         /// </summary>
         /// <param name="customApiToken">ApiToken customizado</param>
         /// <param name="filter">Opções de filtros, para paginação e ordenação</param>
-        /// <returns></returns>
+        /// <returns>Por default 100 invoices, podendo retornar até de 1000 em 1000</returns>
         public async Task<PaggedResponseMessage<InvoiceModel>> GetAllAsync(string customApiToken, QueryStringFilter filter)
         {
             var queryStringFilter = filter?.ToQueryStringUrl();
             var retorno = await GetAsync<PaggedResponseMessage<InvoiceModel>>(null, queryStringFilter, customApiToken).ConfigureAwait(false);
             return retorno;
         }
-        
+
         public async Task<InvoiceModel> GetAsync(string id)
         {
             var retorno = await GetAsync(id, null).ConfigureAwait(false);
@@ -83,14 +70,14 @@ namespace iugu.net.Lib
             return retorno;
         }
 
-        
+
         public async Task<InvoiceModel> PutAsync(string id, InvoiceModel model)
         {
             var retorno = await PutAsync<InvoiceModel>(id, model).ConfigureAwait(false);
             return retorno;
         }
 
-        
+
         public async Task<InvoiceModel> RefundAsync(string id)
         {
             var retorno = await PostAsync<InvoiceModel>(null, $"{id}/refund").ConfigureAwait(false);
