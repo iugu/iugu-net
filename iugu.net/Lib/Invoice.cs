@@ -38,7 +38,7 @@ namespace iugu.net.Lib
         public async Task<InvoiceListModel> GetAsync()
         {
             //TODO: Implementar GET com parametros
-            var retorno = await GetAsync<InvoiceListModel>().ConfigureAwait(false);
+            var retorno = await GetAllAsync(null).ConfigureAwait(false);
             return retorno;
         }
 

@@ -304,23 +304,17 @@ namespace iugu.net.IntegratedTests
         public async Task Get_all_invoices_by_custom_api_token()
         {
             // Arrange
-            InvoiceListModel invoices = null;
-            PaggedResponseMessage<InvoiceModel> invoicesByCustomToken;
-            var filter = new QueryStringFilter
-            {
-                MaxResults = 1000,
-            };
+            InvoiceListModel invoicesByCustomToken;
 
             // Act
             using (var apiInvoice = new Invoice())
             {
-                invoices = await apiInvoice.GetAsync().ConfigureAwait(false);
-                invoicesByCustomToken = await apiInvoice.GetAllAsync("74c265aedbfaea379bc0148fae9b5526", filter).ConfigureAwait(false);
+                invoicesByCustomToken = await apiInvoice.GetAllAsync("74c265aedbfaea379bc0148fae9b5526").ConfigureAwait(false);
             };
 
             // Assert
-            Assert.That(invoices, Is.Not.Null);
-            Assert.That(invoices.totalItems, Is.EqualTo(invoicesByCustomToken.TotalItems));
+            Assert.That(invoicesByCustomToken, Is.Not.Null);
+            Assert.That(invoicesByCustomToken.items.Count, Is.GreaterThan(0));
         }
 
         [Test]

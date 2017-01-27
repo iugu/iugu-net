@@ -4,8 +4,7 @@ using System;
 
 namespace iugu.net.JsonCustomConverters
 {
-
-    public class EscapeInvalidQuoteConverter<T> : JsonConverter
+    internal sealed class EscapeInvalidQuoteConverter<T> : JsonConverter
     {
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {

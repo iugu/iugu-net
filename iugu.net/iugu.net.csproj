@@ -135,6 +135,7 @@
     <Compile Include="Response\AccountRequestWithdrawResponse.cs" />
     <Compile Include="Response\AccountResponseMessage.cs" />
     <Compile Include="Response\ChargeResponseMessage.cs" />
+    <Compile Include="Response\ErrorResponseMessage.cs" />
     <Compile Include="Response\FinancialTransactionResponse.cs" />
     <Compile Include="Response\GetAccountResponseMessage.cs" />
     <Compile Include="Response\MarketplaceAccoutsResponse.cs" />

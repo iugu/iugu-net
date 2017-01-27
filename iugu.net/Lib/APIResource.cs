@@ -6,6 +6,9 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections.Generic;
+using Newtonsoft.Json.Linq;
+using System.Globalization;
 
 namespace iugu.net.Lib
 {
@@ -162,17 +165,9 @@ namespace iugu.net.Lib
             {
                 return await Task.FromResult(JsonConvert.DeserializeObject<T>(data, JsonSettings)).ConfigureAwait(false);
             }
-            else
-            {
-                var responseError = await Task.FromResult(JsonConvert.SerializeObject(new
-                {
-                    StatusCode = response.StatusCode,
-                    ReasonPhase = response.ReasonPhrase,
-                    Message = data
-                })).ConfigureAwait(false);
 
-                throw new Exception(responseError);
-            }
+            var errorMessage = await GetCompleteErrorResponseAsync(data, response).ConfigureAwait(false);
+            throw new Exception(errorMessage);
         }
 
         private async Task<HttpResponseMessage> SendRequestAsync(HttpMethod method, string url, object data = null, string customToken = null)
@@ -200,23 +195,64 @@ namespace iugu.net.Lib
         private void SetAutorizationHeader(string customToken, HttpRequestMessage requestMessage)
         {
             if (!string.IsNullOrEmpty(customToken))
-            {
                 requestMessage.Headers.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.ASCII.GetBytes(customToken)));
-            }
             else
-            {
                 requestMessage.Headers.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.ASCII.GetBytes(_apiKey)));
-            }
         }
 
         private string GetCompleteUrl(string partOfUrl, string id)
         {
             var url = string.IsNullOrEmpty(partOfUrl) ? $"{BaseURI}/{id}" : $"{BaseURI}/{partOfUrl}/{id}";
+
             if (url.Last().Equals('/'))
-            {
                 url = url.Remove(url.Length - 1);
-            }
+
             return url;
         }
+
+        private static async Task<string> GetCompleteErrorResponseAsync(string data, HttpResponseMessage response)
+        {
+            try
+            {
+                var jsonMessage = JsonConvert.DeserializeObject<IuguComplexErrorResponse>(data);
+
+                return await Task.FromResult(JsonConvert.SerializeObject(new
+                {
+                    StatusCode = response.StatusCode,
+                    ReasonPhase = response.ReasonPhrase,
+                    Message = jsonMessage
+                })).ConfigureAwait(false);
+
+            }
+            catch (Exception)
+            {
+                try
+                {
+                    var jsonMessage = JsonConvert.DeserializeObject<IuguErrorResponse>(data).Errors;
+                    return await Task.FromResult(JsonConvert.SerializeObject(new
+                    {
+                        StatusCode = response.StatusCode,
+                        ReasonPhase = response.ReasonPhrase,
+                        Message = jsonMessage
+                    })).ConfigureAwait(false);
+                }
+                catch (Exception)
+                {
+                    return string.Empty;
+                }
+
+            }
+        }
+    }
+
+    internal sealed class IuguComplexErrorResponse
+    {
+        public Dictionary<string, JArray> Errors { get; set; }
+    }
+
+
+    internal sealed class IuguErrorResponse
+    {
+        public string Errors { get; set; }
     }
 }

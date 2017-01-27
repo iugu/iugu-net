@@ -59,15 +59,15 @@ namespace iugu.UnitTest
         }
 
         [Test]
-        public void Search_a_not_found_customer()
+        public async Task Search_a_not_found_customer()
         {
             // Arrange
 
             // Act
             using (var apiClient = new Customer())
             {
-                var ex = Assert.Throws<AggregateException>(() => apiClient.Get(Guid.NewGuid().ToString()));
-                Assert.That(ex.InnerExceptions.First().Message, Does.Contain("404").And.Contain("Not Found"));
+                var ex = Assert.ThrowsAsync<Exception>(async () => await apiClient.GetAsync(Guid.NewGuid().ToString()).ConfigureAwait(false));
+                Assert.That(ex.Message, Does.Contain("404").And.Contain("Not Found"));
             };
 
         }
