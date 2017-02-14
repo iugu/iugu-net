@@ -54,7 +54,7 @@ namespace iugu.net.Lib
         /// <param name="data">Dados da Forma de Pagamento</param>
         /// <param name="set_as_default">(opcional)	Tipo da Forma de Pagamento. Atualmente suportamos apenas Cartão de Crédito (tipo credit_card). Só deve ser enviado caso não envie token.</param>
         /// <param name="token">(opcional)	Token de Pagamento, pode ser utilizado em vez de enviar os dados da forma de pagamento</param>
-        /// <param name="item_type">(opcional)	Transforma a forma de pagamento na padrão do cliente</param>
+        /// <param name="item_type">(opcional)	Tipo da Forma de Pagamento. Atualmente suportamos apenas Cartão de Crédito (tipo credit_card). Só deve ser enviado caso não envie token.</param>
         [Obsolete("Sera descontinuado na versão 2.x do client, use a versão assincrona do método")]
         public PaymentMethodModel Create(string description, CreditCard data, bool? set_as_default, string token = "", string item_type = "")
         {
@@ -66,20 +66,34 @@ namespace iugu.net.Lib
         /// Cria uma Forma de Pagamento de Cliente.
         /// </summary>
         /// <param name="description">Descrição</param>
-        /// <param name="data">Dados da Forma de Pagamento</param>
+        /// <param name="data">(opcional se enviar o token)	Dados da Forma de Pagamento (Em breve, este parâmetro será descontinuado. Para evitar problemas, use a partir de agora o parâmetro  token)</param>
         /// <param name="set_as_default">(opcional)	Tipo da Forma de Pagamento. Atualmente suportamos apenas Cartão de Crédito (tipo credit_card). Só deve ser enviado caso não envie token.</param>
         /// <param name="token">(opcional)	Token de Pagamento, pode ser utilizado em vez de enviar os dados da forma de pagamento</param>
-        /// <param name="item_type">(opcional)	Transforma a forma de pagamento na padrão do cliente</param>
-        public async Task<PaymentMethodModel> CreateAsync(string description, CreditCard data, bool? set_as_default, string token = "", string item_type = "")
+        /// <param name="item_type">(opcional)	Tipo da Forma de Pagamento. Atualmente suportamos apenas Cartão de Crédito (tipo credit_card). Só deve ser enviado caso não envie token.</param>
+        public async Task<PaymentMethodModel> CreateAsync(string description, CreditCard data, bool? set_as_default = null, string token = "", string item_type = "")
         {
-            var paymentmethod = new
+            object paymentmethod = null;
+
+            if (data == null && string.IsNullOrEmpty(token))
             {
-                description = description,
-                data = data,
-                set_as_default = set_as_default,
-                token = token,
-                item_type = item_type
-            };
+                paymentmethod = new
+                {
+                    description = description,
+                    set_as_default = set_as_default,
+                    token = token
+                };
+            }
+            else
+            {
+                paymentmethod = new
+                {
+                    description = description,
+                    data = data,
+                    set_as_default = set_as_default,
+                    item_type = item_type
+                };
+            }
+
             var retorno = await PostAsync<PaymentMethodModel>(paymentmethod).ConfigureAwait(false);
             return retorno;
         }
