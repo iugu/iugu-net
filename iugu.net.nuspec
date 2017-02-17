@@ -4,6 +4,7 @@
         <id>iugu.net</id>
         <version>1.8</version>
         <title>iugu.net</title>
+		<owners>IUGU</owners>
         <authors>IUGU, rscouto</authors>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>Client .Net para a API da IUGU</description>
