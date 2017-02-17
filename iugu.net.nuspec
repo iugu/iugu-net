@@ -4,14 +4,16 @@
         <id>iugu.net</id>
         <version>1.8</version>
         <title>iugu.net</title>
-        <authors>IUGU</authors>
-        <owners>IUGU</owners>
+        <authors>IUGU, rscouto</authors>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>Client .Net para a API da IUGU</description>
-        <copyright>IUGU Copyright ©  2016</copyright>
+        <copyright>IUGU Copyright ©  2017</copyright>
+		<language>pt-BR</language>
+		<projectUrl>https://github.com/iugu/iugu-net</projectUrl>
+		<iconUrl>https://raw.githubusercontent.com/iugu/iugu-net/master/logo-iugu.png</iconUrl>
         <dependencies>
             <dependency id="System.Net.Http" version="4.1.0" />
-			<dependency id="Newtonsoft.Json" version="8.0.1" />
+			<dependency id="Newtonsoft.Json" version="9.0.0" />
             <dependency id="System.Net.Http.Formatting.Extension" version="5.2.3.0" />
         </dependencies>
     </metadata>
