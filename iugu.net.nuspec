@@ -15,7 +15,6 @@
         <dependencies>
             <dependency id="System.Net.Http" version="4.1.0" />
 			<dependency id="Newtonsoft.Json" version="9.0.0" />
-            <dependency id="System.Net.Http.Formatting.Extension" version="5.2.3.0" />
         </dependencies>
     </metadata>
     <files>
