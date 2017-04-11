@@ -8,19 +8,36 @@ namespace iugu.net.JsonCustomConverters
     {
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            writer.WriteValue(value.ToString().Replace(@"""{", "}").Replace(@"}""", "}"));
+            if (CanApplyCustomConverter(value))
+            {
+                writer.WriteValue(value.ToString().Replace(@"""{", "}").Replace(@"}""", "}"));
+            }
         }
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
             var value = JToken.Load(reader).Value<string>();
-            var newValue = value.Replace(@"""{", "}").Replace(@"}""", "}").Trim();
-            return JsonConvert.DeserializeObject<T>(newValue);
+
+            if (CanApplyCustomConverter(value))
+                value = value.Replace(@"""{", "}").Replace(@"}""", "}").Trim();
+
+            return JsonConvert.DeserializeObject<T>(value);
         }
 
         public override bool CanConvert(Type objectType)
         {
             return objectType == typeof(string);
+        }
+
+        private static bool CanApplyCustomConverter(object value)
+        {
+            if (value != null)
+            {
+                var plainValue = value.ToString();
+                return plainValue.Contains(@"""{") && plainValue.Contains(@"}""");
+            }
+
+            return false;
         }
     }
 }
