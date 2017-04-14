@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using iugu.net.JsonCustomConverters;
+using Newtonsoft.Json;
 
 namespace iugu.net.Response
 {
@@ -10,13 +11,14 @@ namespace iugu.net.Response
         /// <summary>
         /// Id que identifica o pedido de saque efetuado
         /// </summary>
-        [JsonProperty("account_id")]
+        [JsonProperty("id")]
         public string OperationId { get; set; }
 
         /// <summary>
         /// Valor solicitado para saque
         /// </summary>
         [JsonProperty("amount")]
+        [JsonConverter(typeof(BrazilianDecimalConverter))]
         public decimal WithdrawValue { get; set; }
     }
 }

@@ -66,5 +66,18 @@ namespace iugu.net.UnitTests
             Assert.That(serializesResponse.Amount, Is.EqualTo("R$ 10,00"));
             Assert.That(serializesResponse.BankInfo.Name, Is.EqualTo("Bradesco"));
         }
+
+        [Test]
+        public async Task Given_a_account_request_withdraw_respose_when_serialize_should_be_success()
+        {
+            // Arrage
+            var inputJson = @"{'id': '2B925E434B324F46827580F6BC0638AB','amount': 'R$ 10,00'}";
+
+            // Act
+            var serializesResponse = JsonConvert.DeserializeObject<AccountRequestWithdrawResponse>(inputJson);
+
+            Assert.That(serializesResponse.OperationId, Is.EqualTo("2B925E434B324F46827580F6BC0638AB"));
+            Assert.That(serializesResponse.WithdrawValue, Is.EqualTo(10.00m));
+        }
     }
 }
