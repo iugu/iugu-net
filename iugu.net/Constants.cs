@@ -23,7 +23,7 @@
             public const string PAID = "paid";
             public const string PARTIALLY_PAID = "partially_paid";
             public const string REFUNDED = "refunded";
-            public const string EXPIRED = "Expired";
+            public const string EXPIRED = "expired";
         }
 
         /// <summary>

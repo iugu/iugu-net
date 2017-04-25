@@ -26,7 +26,7 @@ Client .Net de acesso aos principais recursos da Api da **IUGU**
 ### Documentação completa da API
 A referência completa da Api pode ser encontrada em [IUGU Api](https://iugu.com/referencias/api)
 
-### Exemplo
+### Exemplo ([outros exemplos](https://github.com/iugu/iugu-net/tree/develop/iugu.net.IntegratedTests))
 
 * Lista Clientes
 
@@ -48,6 +48,4 @@ public class AnyClass
 ### Informações Adicionais
 * A partir da versão 1.8.5, houve um downgrade da **versão miníma do .Net framework para a versão 4.5** e uma mudança nas dependências.Essas alterações não provocam necessáriamente quebra de versões, a não ser que exista um conflito de dependências.
 
-
-##### Para mais exemplos no veja o [projeto de testes integrados](https://github.com/iugu/iugu-net/tree/develop/iugu.net.IntegratedTests)
 
