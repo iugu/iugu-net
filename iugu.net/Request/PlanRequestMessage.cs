@@ -63,13 +63,13 @@ namespace iugu.net.Request
         [JsonProperty("features")]
         List<PlanFeature> Features { get; set; }
 
-        private static Dictionary<PlanIntervalType, string> IuguAvailableInterval = new Dictionary<PlanIntervalType, string>
+        private static readonly Dictionary<PlanIntervalType, string> _iuguAvailableInterval = new Dictionary<PlanIntervalType, string>
         {
             [PlanIntervalType.Weekly] = Constants.GenerateCycleType.WEEKLY,
             [PlanIntervalType.Monthly] = Constants.GenerateCycleType.MONTHLY
         };
 
-        private static Dictionary<CurrencyType, string> IuguAvailableCurrency = new Dictionary<CurrencyType, string>
+        private static readonly Dictionary<CurrencyType, string> _iuguAvailableCurrency = new Dictionary<CurrencyType, string>
         {
             [CurrencyType.BRL] = Constants.CurrencyTypes.BRL,
         };
@@ -89,9 +89,9 @@ namespace iugu.net.Request
             Name = name;
             UniqueIdentifier = uniqueIdentifier;
             Cycle = cycle;
-            IntervalType = IuguAvailableInterval[interval];
+            IntervalType = _iuguAvailableInterval[interval];
             ValueInCents = valueInCents;
-            CurrencyTypeName = IuguAvailableCurrency[currency];
+            CurrencyTypeName = _iuguAvailableCurrency[currency];
         }
 
         /// <summary>

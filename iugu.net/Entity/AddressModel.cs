@@ -42,5 +42,11 @@ namespace iugu.net.Entity
         /// </summary>
         [JsonProperty("zip_code")]
         public string ZipCode { get; set; }
+
+        /// <summary>
+        /// Bairro. Obrigatório caso CEP seja incompleto.
+        /// </summary>
+        [JsonProperty("district")]
+        public string District { get; set; }
     }
 }
