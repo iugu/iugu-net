@@ -1,13 +1,12 @@
-﻿using iugu.net.Entity;
-using iugu.net.Lib;
-using NUnit.Framework;
-using System;
-using System.Linq;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using iugu.net.Entity;
+using iugu.net.Lib;
 using iugu.net.Request;
+using NUnit.Framework;
 
-namespace iugu.UnitTest
+namespace iugu.net.IntegratedTests
 {
     [TestFixture]
     public class CustomerIntegratedTests
