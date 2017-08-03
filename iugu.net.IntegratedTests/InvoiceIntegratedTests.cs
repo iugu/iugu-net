@@ -1,19 +1,22 @@
-﻿using iugu.net.Entity;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using iugu.net.Entity;
 using iugu.net.Filters;
+using iugu.net.IntegratedTests.DataBuilders;
 using iugu.net.Lib;
 using iugu.net.Request;
 using iugu.net.Response;
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace iugu.net.IntegratedTests
 {
     [TestFixture]
     public class InvoiceIntegratedTests
     {
+        private static readonly PayerModel _payer = PayerModelDataBuilder.CreateValid();
+
         [Test]
         public async Task Create_a_valid_invoice()
         {
@@ -27,10 +30,8 @@ namespace iugu.net.IntegratedTests
             };
 
             var invoiceDate = DateTime.Now.AddDays(2);
-            var items = new List<InvoiceItem> {
-                new InvoiceItem { Description = "Mensalidade", PriceCents = 100000, Quantity = 1 }
-            };
-            var customer = new Request.CustomerRequestMessage
+
+            var customer = new CustomerRequestMessage
             {
                 Email = "anyemail@email.com",
                 Name = "Client Name",
@@ -47,7 +48,7 @@ namespace iugu.net.IntegratedTests
                 var radomPlan = Guid.NewGuid().ToString();
                 var plan = await apiPlan.CreateAsync($"{radomPlan}-12x", $"{radomPlan}-Plan", 1, "months", 0, "BRL", null, null, Constants.PaymentMethod.BANK_SLIP).ConfigureAwait(false);
                 var subscriptionItems = new List<SubscriptionSubitem> { new SubscriptionSubitem { description = "Mensalidade", price_cents = 65000, quantity = 1, recurrent = true } };
-                var subscription = await apiSubscription.CreateAsync(new Request.SubscriptionRequestMessage(customerResponse.id)
+                var subscription = await apiSubscription.CreateAsync(new SubscriptionRequestMessage(customerResponse.id)
                 {
                     PlanId = plan.identifier,
                     IsCreditBased = false,
@@ -55,8 +56,10 @@ namespace iugu.net.IntegratedTests
                     Subitems = subscriptionItems
                 }).ConfigureAwait(false);
 
-                var invoiceItems = new Item[] { new Item { description = "Mensalidade", price_cents = 65000, quantity = 1 } };
-                invoice = await apiInvoice.CreateAsync("anyemail@gmail.com.br", invoiceDate, invoiceItems, null, null, null, 0, 0, null, false, subscription.id, null, null, customVariables).ConfigureAwait(false);
+                var invoiceItems = new[] { new Item { description = "Mensalidade", price_cents = 65000, quantity = 1 } };
+                invoice = await apiInvoice.CreateAsync("anyemail@gmail.com.br", invoiceDate, invoiceItems, null, null, null, 0,
+                                                        0, null, false, subscription.id, null, null, customVariables, _payer)
+                                          .ConfigureAwait(false);
             };
 
             // Assert
@@ -79,11 +82,8 @@ namespace iugu.net.IntegratedTests
             var invoiceDate = DateTime.Now.AddDays(2);
             var newDate = invoiceDate.AddDays(3).ToString("dd/MM/yyyy");
 
-            var items = new List<InvoiceItem> {
-                new InvoiceItem { Description = "Mensalidade", PriceCents = 100000, Quantity = 1 }
-            };
 
-            var customer = new Request.CustomerRequestMessage
+            var customer = new CustomerRequestMessage
             {
                 Email = "anyemail@email.com",
                 Name = "Client Name",
@@ -100,7 +100,7 @@ namespace iugu.net.IntegratedTests
                 var radomPlan = Guid.NewGuid().ToString();
                 var plan = await apiPlan.CreateAsync($"{radomPlan}-12x", $"{radomPlan}-Plan", 1, "months", 0, "BRL", null, null, Constants.PaymentMethod.BANK_SLIP).ConfigureAwait(false);
                 var subscriptionItems = new List<SubscriptionSubitem> { new SubscriptionSubitem { description = "Mensalidade", price_cents = 65000, quantity = 1, recurrent = true } };
-                var subscription = await apiSubscription.CreateAsync(new Request.SubscriptionRequestMessage(customerResponse.id)
+                var subscription = await apiSubscription.CreateAsync(new SubscriptionRequestMessage(customerResponse.id)
                 {
                     PlanId = plan.identifier,
                     IsCreditBased = false,
@@ -108,10 +108,11 @@ namespace iugu.net.IntegratedTests
                     Subitems = subscriptionItems
                 }).ConfigureAwait(false);
 
-                var invoiceItems = new Item[] { new Item { description = "Mensalidade", price_cents = 65000, quantity = 1 } };
-                var current = await apiInvoice.CreateAsync("anyemail@gmail.com.br", invoiceDate, invoiceItems, null, null, null, 0, 0, null, false, subscription.id, null, null, customVariables);
+                var invoiceItems = new[] { new Item { description = "Mensalidade", price_cents = 65000, quantity = 1 } };
+                var current = await apiInvoice.CreateAsync("anyemail@gmail.com.br", invoiceDate, invoiceItems, null, null, null, 0, 0,
+                                                            null, false, subscription.id, null, null, customVariables, _payer).ConfigureAwait(false);
 
-                invoice = await apiInvoice.DuplicateAsync(current.id, new Request.InvoiceDuplicateRequestMessage(newDate)).ConfigureAwait(false);
+                invoice = await apiInvoice.DuplicateAsync(current.id, new InvoiceDuplicateRequestMessage(newDate)).ConfigureAwait(false);
             };
 
             // Assert
@@ -136,7 +137,7 @@ namespace iugu.net.IntegratedTests
             var items = new List<InvoiceItem> {
                 new InvoiceItem { Description = "Mensalidade", PriceCents = 100000, Quantity = 1 }
             };
-            var customer = new Request.CustomerRequestMessage
+            var customer = new CustomerRequestMessage
             {
                 Email = "anyemail@email.com",
                 Name = "Client Name",
@@ -153,7 +154,7 @@ namespace iugu.net.IntegratedTests
                 var radomPlan = Guid.NewGuid().ToString();
                 var plan = await apiPlan.CreateAsync($"{radomPlan}-12x", $"{radomPlan}-Plan", 1, "months", 0, "BRL", null, null, Constants.PaymentMethod.BANK_SLIP).ConfigureAwait(false);
                 var subscriptionItems = new List<SubscriptionSubitem> { new SubscriptionSubitem { description = "Mensalidade", price_cents = 65000, quantity = 1, recurrent = true } };
-                var subscription = await apiSubscription.CreateAsync(new Request.SubscriptionRequestMessage(customerResponse.id)
+                var subscription = await apiSubscription.CreateAsync(new SubscriptionRequestMessage(customerResponse.id)
                 {
                     PlanId = plan.identifier,
                     IsCreditBased = false,
@@ -161,11 +162,12 @@ namespace iugu.net.IntegratedTests
                     Subitems = subscriptionItems
                 }).ConfigureAwait(false);
 
-                var invoiceItems = new Item[] { new Item { description = "Mensalidade", price_cents = 65000, quantity = 1 } };
+                var invoiceItems = new[] { new Item { description = "Mensalidade", price_cents = 65000, quantity = 1 } };
                 var invoiceRequest = new InvoiceRequestMessage("anyemail@gmail.com.br", invoiceDate, invoiceItems)
                 {
                     SubscriptionId = subscription.id,
                     CustomVariables = customVariables.ToArray(),
+                    Payer = _payer
                 };
 
                 invoice = await apiInvoice.CreateAsync(invoiceRequest, "74c265aedbfaea379bc0148fae9b5526").ConfigureAwait(false);
@@ -196,7 +198,7 @@ namespace iugu.net.IntegratedTests
                 new InvoiceItem { Description = "Mensalidade", PriceCents = 100000, Quantity = 1 }
             };
 
-            var customer = new Request.CustomerRequestMessage
+            var customer = new CustomerRequestMessage
             {
                 Email = "anyemail@email.com",
                 Name = "Client Name",
@@ -221,31 +223,16 @@ namespace iugu.net.IntegratedTests
                     Subitems = subscriptionItems
                 }, customApiToken).ConfigureAwait(false);
 
-                var invoiceItems = new Item[] { new Item { description = "Mensalidade", price_cents = 65000, quantity = 1 } };
+                var invoiceItems = new[] { new Item { description = "Mensalidade", price_cents = 65000, quantity = 1 } };
                 var request = new InvoiceRequestMessage("anyemail@gmail.com.br", invoiceDate, invoiceItems)
                 {
                     SubscriptionId = subscription.id,
                     CustomVariables = customVariables.ToArray(),
-                    Payer = new PayerModel
-                    {
-                        Address = new AddressModel
-                        {
-                            City = "São Paulo",
-                            Country = "Brasil",
-                            State = "São Paulo",
-                            Number = "100",
-                            Street = "Any Street",
-                            ZipCode = "123.123-123"
-                        },
-                        CpfOrCnpj = "712.652.024-78",
-                        Name = "Cliente da IUGU",
-                        PhonePrefix = "99",
-                        Phone = "9999-9999",
-                    },
+                    Payer = PayerModelDataBuilder.CreateValid(),
                     EnableLateFine = true,
                     LatePaymentFine = "2%",
                     EnableProportionalDailyTax = true,
-                    PaymentMethod = Constants.PaymentMethod.BANK_SLIP,
+                    PaymentMethod = Constants.PaymentMethod.BANK_SLIP
 
                 };
 
@@ -324,7 +311,7 @@ namespace iugu.net.IntegratedTests
             PaggedResponseMessage<InvoiceModel> response;
             var filter = new QueryStringFilter
             {
-                MaxResults = 1000,
+                MaxResults = 10
             };
 
             // Act
