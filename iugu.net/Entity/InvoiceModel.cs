@@ -38,6 +38,8 @@ namespace iugu.net.Entity
         public List<Item> items { get; set; }
         public List<Variable> variables { get; set; }
         public List<CustomVariables> custom_variables { get; set; }
+        public bool early_payment_discount { get; set; }
+        public List<EarlyPaymentDiscounts> early_payment_discounts { get; set; }
         public List<Logs> logs { get; set; }
     }
 
@@ -99,5 +101,12 @@ namespace iugu.net.Entity
     public class Facets
     {
         public Status status { get; set; }
+    }
+
+    // TODO: Precisa de refatoração, nomes fora do padrão .Net, sem documentação também
+    public class EarlyPaymentDiscounts
+    {
+        public int days { get; set; }
+        public string percent { get; set; }
     }
 }

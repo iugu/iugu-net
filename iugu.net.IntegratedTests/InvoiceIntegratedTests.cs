@@ -29,6 +29,12 @@ namespace iugu.net.IntegratedTests
                 new CustomVariables { name = "TaxaPlataformaEdux", value = "1,00" }
             };
 
+            var earlyPaymentDiscounts = new List<EarlyPaymentDiscounts>
+            {
+                new EarlyPaymentDiscounts { days = 10, percent = "8.2" },
+                new EarlyPaymentDiscounts { days = 5, percent = "5" }
+            };
+
             var invoiceDate = DateTime.Now.AddDays(2);
 
             var customer = new CustomerRequestMessage
@@ -58,7 +64,7 @@ namespace iugu.net.IntegratedTests
 
                 var invoiceItems = new[] { new Item { description = "Mensalidade", price_cents = 65000, quantity = 1 } };
                 invoice = await apiInvoice.CreateAsync("anyemail@gmail.com.br", invoiceDate, invoiceItems, null, null, null, 0,
-                                                        0, null, false, subscription.id, null, null, customVariables, _payer)
+                                                        0, null, false, subscription.id, null, null, customVariables, _payer, true, earlyPaymentDiscounts)
                                           .ConfigureAwait(false);
             };
 
@@ -110,7 +116,7 @@ namespace iugu.net.IntegratedTests
 
                 var invoiceItems = new[] { new Item { description = "Mensalidade", price_cents = 65000, quantity = 1 } };
                 var current = await apiInvoice.CreateAsync("anyemail@gmail.com.br", invoiceDate, invoiceItems, null, null, null, 0, 0,
-                                                            null, false, subscription.id, null, null, customVariables, _payer).ConfigureAwait(false);
+                                                            null, false, subscription.id, null, null, customVariables, _payer, false, null).ConfigureAwait(false);
 
                 invoice = await apiInvoice.DuplicateAsync(current.id, new InvoiceDuplicateRequestMessage(newDate)).ConfigureAwait(false);
             };
