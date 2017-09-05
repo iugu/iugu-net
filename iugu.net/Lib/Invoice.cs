@@ -109,11 +109,11 @@ namespace iugu.net.Lib
         [Obsolete("Sera descontinuado na versão 2.x do client, use a versão assincrona do método que recebe InvoiceRequestMessage como parâmetro")]
         public InvoiceModel Create(string email, DateTime due_date, Item[] items, string return_url = "",
             string expired_url = "", string notification_url = "", int tax_cents = 0, int discount_cents = 0, string customer_id = "", bool ignore_due_email = false,
-            string subscription_id = "", int credits = 0, Logs logs = null, List<CustomVariables> custom_variables = null, PayerModel payer = null)
+            string subscription_id = "", int credits = 0, Logs logs = null, List<CustomVariables> custom_variables = null, PayerModel payer = null, bool early_payment_discount = false, List<EarlyPaymentDiscounts> early_payment_discounts = null)
         {
             var retorno = CreateAsync(email, due_date, items, return_url, expired_url, notification_url, tax_cents,
                                       discount_cents, customer_id, ignore_due_email, subscription_id, credits, logs,
-                                      custom_variables, payer).Result;
+                                      custom_variables, payer, early_payment_discount, early_payment_discounts).Result;
             return retorno;
         }
 
@@ -139,7 +139,7 @@ namespace iugu.net.Lib
         [Obsolete("Sera descontinuado na versão 2.x do client, use a versão assincrona do método que recebe InvoiceRequestMessage como parâmetro")]
         public async Task<InvoiceModel> CreateAsync(string email, DateTime due_date, Item[] items, string return_url,
     string expired_url, string notification_url, int tax_cents = 0, int discount_cents = 0, string customer_id = null, bool ignore_due_email = false,
-    string subscription_id = null, int? credits = null, Logs logs = null, List<CustomVariables> custom_variables = null, PayerModel payer = null)
+    string subscription_id = null, int? credits = null, Logs logs = null, List<CustomVariables> custom_variables = null, PayerModel payer = null, bool early_payment_discount = false, List<EarlyPaymentDiscounts> early_payment_discounts = null)
         {
             var invoice = new
             {
@@ -157,6 +157,8 @@ namespace iugu.net.Lib
                 logs = logs,
                 custom_variables = custom_variables,
                 notification_url = notification_url,
+                early_payment_discount = early_payment_discount,
+                early_payment_discounts = early_payment_discounts,
                 payer = payer
             };
             var retorno = await PostAsync<InvoiceModel>(invoice).ConfigureAwait(false);
