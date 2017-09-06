@@ -258,32 +258,35 @@ namespace iugu.net.IntegratedTests
         public async Task List_invoices()
         {
             // Arrange
-            InvoiceListModel invoices = null;
+            PaggedResponseMessage<InvoiceModel> invoices;
 
             // Act
             using (var apiInvoice = new Invoice())
             {
-                invoices = await apiInvoice.GetAsync().ConfigureAwait(false);
+                var filter = new QueryStringFilter() { MaxResults = 10 };
+
+                invoices = await apiInvoice.GetAllAsync(null, filter).ConfigureAwait(false);
             };
 
             // Assert
             Assert.That(invoices, Is.Not.Null);
-            Assert.That(invoices?.items, Is.Not.Empty);
+            Assert.That(invoices.Items, Is.Not.Empty);
         }
 
         [Test]
         public async Task Resend_invoice_mail()
         {
             // Arrange
-            InvoiceListModel invoices = null;
+            PaggedResponseMessage<InvoiceModel> invoices;
             InvoiceModel resendInvoiceModel = null;
             var resendInvoiceId = "";
 
             // Act
             using (var apiInvoice = new Invoice())
             {
-                invoices = await apiInvoice.GetAsync().ConfigureAwait(false);
-                resendInvoiceId = invoices.items.First().id;
+                var filter = new QueryStringFilter() { MaxResults = 10 };
+                invoices = await apiInvoice.GetAllAsync(null, filter).ConfigureAwait(false);
+                resendInvoiceId = invoices.Items.First().id;
                 resendInvoiceModel = await apiInvoice.ResendInvoiceMail(resendInvoiceId).ConfigureAwait(false);
             };
 
@@ -297,17 +300,18 @@ namespace iugu.net.IntegratedTests
         public async Task Get_all_invoices_by_custom_api_token()
         {
             // Arrange
-            InvoiceListModel invoicesByCustomToken;
+            PaggedResponseMessage<InvoiceModel> invoicesByCustomToken;
 
             // Act
             using (var apiInvoice = new Invoice())
             {
-                invoicesByCustomToken = await apiInvoice.GetAllAsync("74c265aedbfaea379bc0148fae9b5526").ConfigureAwait(false);
+                var filter = new QueryStringFilter() { MaxResults = 10 };
+                invoicesByCustomToken = await apiInvoice.GetAllAsync("74c265aedbfaea379bc0148fae9b5526", filter).ConfigureAwait(false);
             };
 
             // Assert
             Assert.That(invoicesByCustomToken, Is.Not.Null);
-            Assert.That(invoicesByCustomToken.items.Count, Is.GreaterThan(0));
+            Assert.That(invoicesByCustomToken.Items.Count, Is.GreaterThan(0));
         }
 
         [Test]
