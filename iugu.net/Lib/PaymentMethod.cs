@@ -74,7 +74,7 @@ namespace iugu.net.Lib
         {
             object paymentmethod = null;
 
-            if (data == null && string.IsNullOrEmpty(token))
+            if (data == null && !string.IsNullOrEmpty(token))
             {
                 paymentmethod = new
                 {
