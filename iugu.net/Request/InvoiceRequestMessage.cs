@@ -120,6 +120,18 @@ namespace iugu.net.Request
         public Logs[] Logs { get; set; }
 
         /// <summary>
+        /// (opcional) Ativa ou desativa o desconto por pagamento antecipado
+        /// </summary>
+        [JsonProperty("early_payment_discount")]
+        public bool EarlyPaymentDiscount { get; set; }
+
+        /// <summary>
+        /// (opcional) Quantidade de dias de antecedência para o pagamento receber o desconto
+        /// </summary>
+        [JsonProperty("early_payment_discounts")]
+        public EarlyPaymentDiscounts[] EarlyPaymentDiscounts { get; set; }
+
+        /// <summary>
         /// (opcional) Variáveis Personalizadas
         /// </summary>
         [JsonProperty("custom_variables")]
