@@ -123,7 +123,7 @@ namespace iugu.net.Request
         /// (opcional) Ativa ou desativa o desconto por pagamento antecipado
         /// </summary>
         [JsonProperty("early_payment_discount")]
-        public bool EarlyPaymentDiscount { get; set; }
+        public bool EnableEarlyPaymentDiscount { get; set; }
 
         /// <summary>
         /// (opcional) Quantidade de dias de antecedência para o pagamento receber o desconto
