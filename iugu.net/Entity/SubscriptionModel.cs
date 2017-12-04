@@ -230,6 +230,12 @@ namespace iugu.net.Entity
         /// </summary>
         [JsonProperty("recurrent")]
         public bool? Recurrent { get; set; }
+
+        /// <summary>
+        /// No escopo da alteração, indica se o item deve ser removido da assinatura
+        /// </summary>
+        [JsonProperty("_destroy")]
+        public bool? _destroy { get; set; }
     }
 
     public class SubscriptionLog

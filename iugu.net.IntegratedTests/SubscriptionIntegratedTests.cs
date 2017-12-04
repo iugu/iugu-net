@@ -52,7 +52,7 @@ namespace iugu.net.IntegratedTests
         {
             // Arrange 
             var subscriptionRequest = await SubscriptionApi.GetAsync<PaggedResponseMessage<SubscriptionModel>>().ConfigureAwait(false);
-            var subscriptionItems = new List<SubscriptionSubitem> { new SubscriptionSubitem { Description = "Mensalidade", PriceCents = 65000, Quantity = 1, Recurrent = true } };
+            var subscriptionItems = new List<SubscriptionSubitem> { new SubscriptionSubitem { Description = "Mensalidade", PriceCents = 65000, Quantity = 1, Recurrent = true }, new SubscriptionSubitem { Description = "Mensalidade 2", PriceCents = 75000, Quantity = 1, Recurrent = true } };
             var request = new Request.SubscriptionRequestMessage(createdCustomer.ID)
             {
                 PlanId = createdPlan.Identifier,
@@ -113,6 +113,45 @@ namespace iugu.net.IntegratedTests
 
             // Assert
             suspendendSubscription.Should().NotBeSameAs(currentSubscription);
+        }
+
+        [Test]
+        public async Task Change_a_subscription_remove_a_subitem()
+        {
+            // Arrange 
+            var subscriptionRequest = await SubscriptionApi.GetAsync<PaggedResponseMessage<SubscriptionModel>>().ConfigureAwait(false);
+            var subscriptionItems = new List<SubscriptionSubitem> { new SubscriptionSubitem { Description = "Mensalidade", PriceCents = 65000, Quantity = 1, Recurrent = true }, new SubscriptionSubitem { Description = "Mensalidade 2", PriceCents = 75000, Quantity = 1, Recurrent = true } };
+            var request = new Request.SubscriptionRequestMessage(createdCustomer.ID)
+            {
+                PlanId = createdPlan.Identifier,
+                IsCreditBased = false,
+                Subitems = subscriptionItems
+            };
+            var currentSubscription = await SubscriptionApi.CreateAsync(request).ConfigureAwait(false);
+
+            //Assinatura criada
+            Assert.That(currentSubscription.ID, Is.Not.Null);
+
+            var subscriptionItems2 = new List<SubscriptionSubitem> ();
+
+            foreach (SubscriptionSubitem item in currentSubscription.Subitems)
+            {
+                if(item.Description == "Mensalidade 2")
+                {
+                    item._destroy = true;
+                }
+
+                subscriptionItems2.Add(item);
+            }
+
+            currentSubscription.Subitems.Clear();
+            currentSubscription.Subitems.AddRange(subscriptionItems2);
+
+            var currentSubscription2 = await SubscriptionApi.PutAsync(currentSubscription.ID, currentSubscription).ConfigureAwait(false);
+
+            //Assinatura criada
+            Assert.That(currentSubscription2.Subitems.Count, Is.EqualTo(1));
+
         }
     }
 }
