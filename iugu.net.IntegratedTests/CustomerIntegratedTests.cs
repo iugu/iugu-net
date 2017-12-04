@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using iugu.net.Request;
 using iugu.net.Entity.Lists;
-using iugu.net.Request;
 
 namespace iugu.UnitTest
 {
@@ -55,7 +54,12 @@ namespace iugu.UnitTest
             var customer = new CustomerRequestMessage
             {
                 Email = "malka2@gmail.com",
-                Name = "Daniel Teste 2 C#"
+                Name = "Daniel Teste 2 C#",
+                CpfOrCnpj = "20250884000140", //from http://www.geradorcnpj.com/
+                CustomVariables = custom,
+                zip_code = "01310940",
+                number = 900,
+                complement = "1º Subsolo"
             };
             // Act
             using (var apiClient = new Customer())

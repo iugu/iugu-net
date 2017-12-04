@@ -35,7 +35,11 @@ namespace iugu.net.IntegratedTests
             {
                 Email = "anyemail@email.com",
                 Name = "Client Name",
-                CustomVariables = customVariables
+                CustomVariables = customVariables,
+                CpfOrCnpj = "20250884000140", //from http://www.geradorcnpj.com/                
+                zip_code = "01310940",
+                number = 900,
+                complement = "1º Subsolo"
             };
 
             // Act
@@ -65,7 +69,10 @@ namespace iugu.net.IntegratedTests
                 }).ConfigureAwait(false);
 
                 var invoiceItems = new Item[] { new Item { Description = "Mensalidade", PriceCents = 65000, Quantity = 1 } };
-                InvoiceRequestMessage irm = new InvoiceRequestMessage("anyemail@gmail.com.br", invoiceDate, invoiceItems);
+                InvoiceRequestMessage irm = new InvoiceRequestMessage("anyemail@gmail.com.br", invoiceDate, invoiceItems)
+                {
+                    CustomerId = customerResponse.ID
+                };
                 invoice = await apiInvoice.CreateAsync(irm).ConfigureAwait(false);
             };
 
@@ -97,7 +104,11 @@ namespace iugu.net.IntegratedTests
             {
                 Email = "anyemail@email.com",
                 Name = "Client Name",
-                CustomVariables = customVariables
+                CustomVariables = customVariables,
+                CpfOrCnpj = "20250884000140", //from http://www.geradorcnpj.com/                
+                zip_code = "01310940",
+                number = 900,
+                complement = "1º Subsolo"
             };
 
             // Act
@@ -113,14 +124,18 @@ namespace iugu.net.IntegratedTests
                 var subscriptionItems = new List<SubscriptionSubitem> { new SubscriptionSubitem { Description = "Mensalidade", PriceCents = 65000, Quantity = 1, Recurrent = true } };
                 var subscription = await apiSubscription.CreateAsync(new Request.SubscriptionRequestMessage(customerResponse.ID)
                 {
-                    PlanId = plan.Identifier,
+                    PlanId = plan.Identifier,                    
                     IsCreditBased = false,
+                    CustomerId = customerResponse.ID, 
                     CustomVariables = customVariables,
-                    Subitems = subscriptionItems
+                    Subitems = subscriptionItems                    
                 }).ConfigureAwait(false);
 
                 var invoiceItems = new Item[] { new Item { Description = "Mensalidade", PriceCents = 65000, Quantity = 1 } };
-                InvoiceRequestMessage irm = new InvoiceRequestMessage("anyemail@gmail.com.br", invoiceDate, invoiceItems);
+                InvoiceRequestMessage irm = new InvoiceRequestMessage("anyemail@gmail.com.br", invoiceDate, invoiceItems)
+                {
+                    CustomerId = customerResponse.ID
+                };
                 var current = await apiInvoice.CreateAsync(irm);
 
                 invoice = await apiInvoice.DuplicateAsync(current.ID, new Request.InvoiceDuplicateRequestMessage(newDate)).ConfigureAwait(false);
@@ -152,7 +167,11 @@ namespace iugu.net.IntegratedTests
             {
                 Email = "anyemail@email.com",
                 Name = "Client Name",
-                CustomVariables = customVariables
+                CustomVariables = customVariables,
+                CpfOrCnpj = "20250884000140", //from http://www.geradorcnpj.com/                
+                zip_code = "01310940",
+                number = 900,
+                complement = "1º Subsolo"
             };
 
             // Act
@@ -178,10 +197,11 @@ namespace iugu.net.IntegratedTests
                 var invoiceRequest = new InvoiceRequestMessage("anyemail@gmail.com.br", invoiceDate, invoiceItems)
                 {
                     SubscriptionId = subscription.ID,
+                    CustomerId = customerResponse.ID,
                     CustomVariables = customVariables.ToArray(),
                 };
 
-                invoice = await apiInvoice.CreateAsync(invoiceRequest, "74c265aedbfaea379bc0148fae9b5526").ConfigureAwait(false);
+                invoice = await apiInvoice.CreateAsync(invoiceRequest, "2e90be2d765e374bed509f2d7676a921").ConfigureAwait(false);//aaaa
             };
 
             // Assert
@@ -192,7 +212,7 @@ namespace iugu.net.IntegratedTests
         public async Task Create_a_new_invoice_with_custom_api_token_and_cancel_after()
         {
             // Arrange
-            const string customApiToken = "74c265aedbfaea379bc0148fae9b5526";
+            const string customApiToken = "2e90be2d765e374bed509f2d7676a921";
             InvoiceModel invoice;
             InvoiceModel cancelInvoice;
 
@@ -249,9 +269,9 @@ namespace iugu.net.IntegratedTests
                             State = "São Paulo",
                             Number = "100",
                             Street = "Any Street",
-                            ZipCode = "123.123-123"
+                            ZipCode = "01310940"
                         },
-                        CpfOrCnpj = "712.652.024-78",
+                        CpfOrCnpj = "20250884000140", //from http://www.geradorcnpj.com/        
                         Name = "Cliente da IUGU",
                         PhonePrefix = "99",
                         Phone = "9999-9999",
@@ -325,7 +345,7 @@ namespace iugu.net.IntegratedTests
             // Act
             using (var apiInvoice = new Invoice())
             {
-                response = await apiInvoice.GetAllAsync("74c265aedbfaea379bc0148fae9b5526", filter).ConfigureAwait(false);
+                response = await apiInvoice.GetAllAsync("2e90be2d765e374bed509f2d7676a921", filter).ConfigureAwait(false);
             };
 
             // Assert

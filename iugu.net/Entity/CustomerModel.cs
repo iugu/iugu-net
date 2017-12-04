@@ -43,5 +43,17 @@ namespace iugu.net.Entity
         /// </summary>
         [JsonProperty("custom_variables")]
         public List<object> CustomVariables { get; set; }
+
+        [JsonProperty("zip_code")]
+        public string zip_code { get; set; }
+
+        [JsonProperty("number")]
+        public int number { get; set; }
+
+        [JsonProperty("complement")]
+        public string complement { get; set; }
+
+        [JsonProperty("cpf_cnpj")]
+        public string cpf_cnpj { get; set; }
     }
 }

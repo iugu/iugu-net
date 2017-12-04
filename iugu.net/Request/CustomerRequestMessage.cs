@@ -41,6 +41,15 @@ namespace iugu.net.Request
         /// </summary>
         [JsonProperty("custom_variables")]
         public List<CustomVariables> CustomVariables { get; set; }
+        
+        [JsonProperty("zip_code")]
+        public string zip_code { get; set; }
 
+        [JsonProperty("number")]
+        public int number { get; set; }
+
+        [JsonProperty("complement")]
+        public string complement { get; set; }
+        
     }
 }

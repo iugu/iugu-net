@@ -26,9 +26,9 @@ namespace iugu.net.IntegratedTests
                     PaymentMethod = Constants.PaymentMethod.BANK_SLIP
                 };
 
-                var currentPlans = await apiPlan.GetAllAsync("74c265aedbfaea379bc0148fae9b5526").ConfigureAwait(false);
+                var currentPlans = await apiPlan.GetAllAsync("2e90be2d765e374bed509f2d7676a921").ConfigureAwait(false);
                 originalCountPlans = currentPlans.TotalItems;
-                var response = await apiPlan.CreateAsync(planRequest, "74c265aedbfaea379bc0148fae9b5526").ConfigureAwait(false);
+                var response = await apiPlan.CreateAsync(planRequest, "2e90be2d765e374bed509f2d7676a921").ConfigureAwait(false);
 
                 var newPlan = await apiPlan.GetByIdentifierAsync(response.Identifier).ConfigureAwait(false);
                 newCountPlans = newPlan != null ? originalCountPlans + 1 : newCountPlans;

@@ -26,9 +26,25 @@ namespace iugu.net.IntegratedTests
             var chargeRequest = new ChargeRequestMessage
             {
                 Method = Constants.PaymentMethod.BANK_SLIP,
-                CustomerId = "31F26DC9D613403B837B678335B2CCB0",
-                Email = "rscouto@gmail.com",
-                InvoiceItems = new InvoiceItem[] { new InvoiceItem { Description = "Mensalidade", PriceCents = 100000, Quantity = 1 } },
+                CustomerId = "B78AA2E22FAF4CF994A67380BBFFECD8",
+                Email = "anyemail@email.com",
+                InvoiceItems = new InvoiceItem[] { new InvoiceItem { Description = "Mensalidade", PriceCents = 100000, Quantity = 1 } },   
+                PayerCustomer = new PayerModel
+                {
+                    Email = "anyemail@email.com",
+                    Name = "Client Name",                    
+                    CpfOrCnpj = "20250884000140", //from http://www.geradorcnpj.com/                
+                    Address = new AddressModel
+                    {                        
+                        ZipCode = "01310940",
+                        Number = "900",
+                        City = "São Paulo",
+                        State = "SP",
+                        Country = "Brasil",
+                        Street = "Avenida Paulista"                        
+                    }
+                    
+                }
             };
 
             ChargeResponseMessage chargeTokenResponse;
