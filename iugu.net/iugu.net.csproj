@@ -1,41 +1,22 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{35EE3CD1-39DE-4401-8523-EB94774CBD3B}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>iugu.net</RootNamespace>
-    <AssemblyName>iugu.net</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
+    <TargetFrameworks>netstandard2.0;net45</TargetFrameworks>
+    <PackageId>Iugu.Net</PackageId>
+    <AssemblyTitle>Iugu.Net</AssemblyTitle>
+    <AssemblyName>Iugu.Net</AssemblyName>
+    <Copyright>Copyright (c) 2018, IUGU</Copyright>
+    <Company>IUGU</Company>
+    <Product>Iugu.Net</Product>
+    <Version>2.0.0</Version>
+    <AssemblyVersion>2.0.0.0</AssemblyVersion>
+    <FileVersion>2.0.0.0</FileVersion>
+    <Description>Cliente .Net para a API da IUGU</Description>
+    <RepositoryUrl>https://github.com/iugu/iugu-net</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <PlatformTarget>x64</PlatformTarget>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
+
+  <ItemGroup Condition="$(TargetFramework) == 'net45'">
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
@@ -47,79 +28,9 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
+
   <ItemGroup>
-    <Compile Include="Constants.cs" />
-    <Compile Include="Entity\AccountModel.cs" />
-    <Compile Include="Entity\ChargeModel.cs" />
-    <Compile Include="Entity\AddressModel.cs" />
-    <Compile Include="Entity\CustomerModel.cs" />
-    <Compile Include="Entity\DataEntryModel.cs" />
-    <Compile Include="Entity\InvoiceItem.cs" />
-    <Compile Include="Entity\InvoiceModel.cs" />
-    <Compile Include="Entity\PayerModel.cs" />
-    <Compile Include="Entity\PaymentInfoModel.cs" />
-    <Compile Include="Entity\PaymentMethodModel.cs" />
-    <Compile Include="Entity\PlanModel.cs" />
-    <Compile Include="Entity\SubscriptionModel.cs" />
-    <Compile Include="Entity\TokenModel.cs" />
-    <Compile Include="Entity\TransferModel.cs" />
-    <Compile Include="Enums.cs" />
-    <Compile Include="Filters\FilterOptions.cs" />
-    <Compile Include="JsonCustomConverters\CustomConverters.cs" />
-    <Compile Include="Lib\Account.cs" />
-    <Compile Include="Lib\APIResource.cs" />
-    <Compile Include="Lib\Charge.cs" />
-    <Compile Include="Lib\Customer.cs" />
-    <Compile Include="Lib\FinancialTransaction.cs" />
-    <Compile Include="Lib\Invoice.cs" />
-    <Compile Include="Lib\MarketPlace.cs" />
-    <Compile Include="Lib\PaymentMethod.cs" />
-    <Compile Include="Lib\PaymentToken.cs" />
-    <Compile Include="Lib\Plans.cs" />
-    <Compile Include="Lib\Reports.cs" />
-    <Compile Include="Lib\StandardHttpClient.cs" />
-    <Compile Include="Lib\Subscription.cs" />
-    <Compile Include="Lib\Transfers.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Request\AccountConfigurationRequestMessage.cs" />
-    <Compile Include="Request\AccountRequestMessage.cs" />
-    <Compile Include="Request\BankVerificationRequestMessage.cs" />
-    <Compile Include="Request\ChargeRequestMessage.cs" />
-    <Compile Include="Request\CustomerRequestMessage.cs" />
-    <Compile Include="Request\FinancialTransactionRequestMessage.cs" />
-    <Compile Include="Request\InvoiceDuplicateRequestMessage.cs" />
-    <Compile Include="Request\InvoiceRequestMessage.cs" />
-    <Compile Include="Request\PaymentTokenRequest.cs" />
-    <Compile Include="Request\PlanRequestMessage.cs" />
-    <Compile Include="Request\SubscriptionRequestMessage.cs" />
-    <Compile Include="Request\VerifyAccountRequestMessage.cs" />
-    <Compile Include="Response\AccountRequestWithdrawResponse.cs" />
-    <Compile Include="Response\AccountResponseMessage.cs" />
-    <Compile Include="Response\ChargeResponseMessage.cs" />
-    <Compile Include="Response\ErrorResponseMessage.cs" />
-    <Compile Include="Response\FinancialTransactionResponse.cs" />
-    <Compile Include="Response\GetAccountResponseMessage.cs" />
-    <Compile Include="Response\MarketplaceAccoutsResponse.cs" />
-    <Compile Include="Response\PaggedResponseMessage.cs" />
-    <Compile Include="Response\PaymentTokenResponse.cs" />
-    <Compile Include="Response\RequestWithdrawResponseMessage.cs" />
-    <Compile Include="Response\SimpleResponseMessage.cs" />
-    <Compile Include="Response\TransfersReportResponseMessage.cs" />
-    <Compile Include="Response\VerifyAccountResponseMessage.cs" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.1" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup />
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+
 </Project>

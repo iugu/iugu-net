@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Linq;
-using System.Configuration;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -61,7 +60,7 @@ namespace iugu.net.Lib
             _version = "1.0.5";
             _apiVersion = "v1";
             _endpoint = "https://api.iugu.com";
-            _apiKey = ConfigurationManager.AppSettings["iuguApiKey"];
+            _apiKey = IuguClient.Properties.ApiKey;
 
             if (string.IsNullOrEmpty(_apiKey))
             {
