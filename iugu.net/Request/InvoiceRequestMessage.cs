@@ -42,7 +42,7 @@ namespace iugu.net.Request
         /// <summary>
         /// (opcional) Cliente é redirecionado para essa URL se a Fatura que estiver acessando estiver expirada
         /// </summary>
-        [JsonProperty("expired_url ")]
+        [JsonProperty("expired_url")]
         public string ExpiredUrl { get; set; }
 
         /// <summary>
