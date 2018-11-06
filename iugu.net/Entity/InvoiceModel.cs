@@ -42,6 +42,10 @@ namespace iugu.net.Entity
         public bool early_payment_discount { get; set; }
         public List<EarlyPaymentDiscounts> early_payment_discounts { get; set; }
         public List<Logs> logs { get; set; }
+        public string payable_with { get; set; }
+        public string commission_cents { get; set; }
+        public string customer_ref { get; set; }
+        public string customer_name { get; set; }
     }
 
     // TODO: Precisa de refatoração, nomes fora do padrão .Net, sem documentação também
