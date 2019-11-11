@@ -15,13 +15,13 @@ Client .Net de acesso aos principais recursos da Api da **IUGU**
 
 ### Configuração
 
-* Em seu arquivo de configuração (.config), é necessário adicionar a apiKey encontrada no seu painel [administrativo da IUGU](https://iugu.com/a/administration), em *Administração* > *Configuração de Contas*. Nesta tela você encontra seu *ID da Conta* 
+* Em algum *StartUp* de seu projeto, é necessário adicionar a apiKey encontrada no seu painel [administrativo da IUGU](https://iugu.com/a/administration), em *Administração* > *Configuração de Contas*. Nesta tela você encontra seu *ID da Conta* 
 
-```xml
-<appSettings>
-    <add key="iuguApiKey" value="SUA_APP_KEY_DA_IUGU" />
-    ...
- </appSettings>
+```csharp
+IuguClient.Init(new IuguClientProperties()
+{
+    ApiKey = "SUA_APP_KEY_DA_IUGU"
+});
 ```
 ### Documentação completa da API
 A referência completa da Api pode ser encontrada em [IUGU Api](https://iugu.com/referencias/api)
@@ -46,6 +46,10 @@ public class AnyClass
 ```
 
 ### Informações Adicionais
-* A partir da versão 1.8.5, houve um downgrade da **versão miníma do .Net framework para a versão 4.5** e uma mudança nas dependências.Essas alterações não provocam necessáriamente quebra de versões, a não ser que exista um conflito de dependências.
+* A partir da versão 2.0, o projeto foi reestruturado para ser compilado de forma *retrocompatível* com **.NET Standard 2.0** e **.NET Framework 4.5**.
+Essas alterações não provocam nenhuma quebra de versão em atuais projetos **.NET Framework** e consequentemente adiciona suporte nativo ao **.NET Standard 2.0**.
 
+* A partir da versão 2.0, o cliente **NÃO** é mais configurado através de arquivos `.config`, e sim através do factory `IuguClient.Init`, conforme exemplo acima.
 
+* A partir da versão 1.8.5, houve um downgrade da **versão miníma do .Net framework para a versão 4.5** e uma mudança nas dependências.
+Essas alterações não provocam necessáriamente quebra de versões, a não ser que exista um conflito de dependências.
