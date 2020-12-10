@@ -37,7 +37,7 @@ namespace iugu.net.Request
         /// <summary>
         /// Apenas Cria a Assinatura se a Cobrança for bem sucedida. Isso só funciona caso o cliente já tenha uma forma de pagamento padrão cadastrada
         /// </summary>
-        [JsonProperty("only_on_charge_success ")]
+        [JsonProperty("only_on_charge_success")]
         public bool? OnlyOnChargeSuccess { get; set; }
 
         /// <summary>
@@ -45,19 +45,19 @@ namespace iugu.net.Request
         /// Obs: Dependendo do valor, este atributo será herdado, pois a prioridade é herdar o valor atribuído ao Plano desta Assinatura;
         /// Caso este esteja atribuído o valor ‘all’, o sistema considerará o payable_with da Assinatura; se não, o sistema considerará o payable_with do Plano
         /// </summary>
-        [JsonProperty("payable_with ")]
+        [JsonProperty("payable_with")]
         public string PayableWith { get; set; }
 
         /// <summary>
         /// É uma assinatura baseada em créditos
         /// </summary>
-        [JsonProperty("credits_based ")]
+        [JsonProperty("credits_based")]
         public bool? IsCreditBased { get; set; }
 
         /// <summary>
         /// Preço em centavos da recarga para assinaturas baseadas em crédito
         /// </summary>
-        [JsonProperty("price_cents ")]
+        [JsonProperty("price_cents")]
         public int? PriceCents { get; set; }
 
         /// <summary>
