@@ -81,7 +81,7 @@ namespace iugu.net.Request
         /// <summary>
         /// Dias de Vencimento Extras no Boleto (Ex: 2)
         /// </summary>
-        [JsonProperty("extra_due ")]
+        [JsonProperty("extra_due")]
         public int? ExtraDueDays { get; set; }
 
         /// <summary>
