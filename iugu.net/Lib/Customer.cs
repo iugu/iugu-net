@@ -3,6 +3,7 @@ using iugu.net.Request;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using iugu.net.Response;
 
 namespace iugu.net.Lib
 {
@@ -41,6 +42,13 @@ namespace iugu.net.Lib
         public async Task<CustomerModel> GetAsync(string id)
         {
             var retorno = await GetAsync<CustomerModel>(id).ConfigureAwait(false);
+            return retorno;
+        }
+        
+        public async Task<PaggedResponseMessage<CustomerModel>> GetAllAsync(string customApiToken, QueryStringFilter filter)
+        {
+            var queryStringFilter = filter?.ToQueryStringUrl();
+            var retorno = await GetAsync<PaggedResponseMessage<CustomerModel>>(null, queryStringFilter, customApiToken).ConfigureAwait(false);
             return retorno;
         }
 
