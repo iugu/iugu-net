@@ -30,13 +30,13 @@ namespace iugu.net.Request
         /// <summary>
         /// ID do Cliente. Utilizado para vincular a Fatura a um Cliente - Opcional
         /// </summary>
-        [JsonProperty("customer_id ")]
+        [JsonProperty("customer_id")]
         public string CustomerId { get; set; }
 
         /// <summary>
         /// ID da Fatura a ser utilizada para pagamento - Opcional
         /// </summary>
-        [JsonProperty("invoice_id ")]
+        [JsonProperty("invoice_id")]
         public string InvoiceId { get; set; }
 
         /// <summary>
