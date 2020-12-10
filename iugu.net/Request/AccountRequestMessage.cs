@@ -16,7 +16,7 @@ namespace iugu.net.Request
         /// <summary>
         /// Percentual de comissionamento enviado para a conta que gerencia o marketplace (Valor entre 0 e 70)
         /// </summary>
-        [JsonProperty("commission_percent ")]
+        [JsonProperty("commission_percent")]
         public int? CommissionPercent { get; set; }
     }
 }
